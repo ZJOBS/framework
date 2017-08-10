@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 方法需要BaseDAO修改为一致 -->
+<mapper namespace="">
+	<insert id="insertEntity" parameterType="java.util.Map">
+		INSERT INTO
+		<include refid="table_name" />
+		(<!-- 填入数据 -->)
+		VALUES
+		(#{}<!-- 填入数据 -->)
+	</insert>
+
+	<delete id="deleteEntity" parameterType="java.util.Map">
+		DELETE
+		<include refid="table_name" />
+		WHERE
+		<!-- 填入条件-->
+	</delete>
+
+	<update id="updateEntity" parameterType="java.util.Map">
+	</update>
+
+	<select id="selectEntity" parameterType="java.util.Map"
+		resultType="">
+
+	</select>
+
+
+	<select id="countEntity" parameterType="java.util.Map"
+		resultType="java.lang.Integer">
+	</select>
+
+
+	<select id="selectPageList" parameterType="java.util.Map"
+		resultType="">
+
+	</select>
+
+	<sql id="table_name">
+
+	</sql>
+	<sql id="result_base">
+	</sql>
+
+	<sql id="where">
+		<where>
+			<if test="id !=null and id != ''">
+				id = #{id}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="set">
+		<set>
+			<if test="code !=null">
+				code = #{code},
+			</if>
+		</set>
+	</sql>
+</mapper>
