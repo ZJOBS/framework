@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="zjobs.dao.DictDao">
+    <insert id="insertEntity" parameterType="java.util.Map">
+        INSERT INTO
+        <include refid="tableName"/>
+        (dictId,code,value,activating,name,parentId)
+        VALUES
+        (#{dictId},#{code},#{value},#{activating},#{name},#{parentId})
+    </insert>
+    <delete id="deleteEntity" parameterType="java.util.Map">
+        delete FROM
+        <include refid="tableName"/>
+        where
+        dictId = #{dictId}
+    </delete>
+
+    <update id="updateEntity" parameterType="java.util.Map">
+        UPDATE
+        <include refid="tableName"/>
+        <include refid="set"/>
+        where dictId=#{dictId}
+    </update>
+
+    <select id="selectEntity" parameterType="java.util.Map"
+            resultType="Dict">
+        SELECT
+        <include refid="result_base"/>
+        FROM
+        <include refid="tableName"/>
+        <include refid="where"/>
+    </select>
+
+    <select id="queryPage" parameterType="zjobs.entity.Page"
+            resultType="Dict">
+        SELECT
+        <include refid="result_base"/>
+        FROM
+        <include refid="tableName"/>
+    </select>
+    <select id="queryAll" resultType="zjobs.entity.db.Dict">
+        SELECT * FROM
+        <include refid="tableName"/>
+    </select>
+
+    <sql id="result_base">
+        dictId,code,value,activating,name,parentId
+    </sql>
+    <sql id="where">
+        <where>
+            <if test="dictId !=null and dictId != ''">
+                dictId = #{dictId}
+            </if>
+            <if test="parentId !=null and parentId != ''">
+                AND parentId = #{parentId}
+            </if>
+            <if test="code !=null and code != ''">
+                AND code = #{code}
+            </if>
+            <if test="value !=null and value != ''">
+                AND value = #{value}
+            </if>
+            <if test="activating !=null and activating != ''">
+                AND activating = #{activating}
+            </if>
+            <if test="name !=null and name != ''">
+                AND name = #{name}
+            </if>
+        </where>
+    </sql>
+    <sql id="set">
+        <set>
+            <if test="parentId !=null">
+                parentId = #{parentId},
+            </if>
+            <if test="code !=null">
+                code = #{code},
+            </if>
+            <if test="value !=null">
+                value = #{value},
+            </if>
+            <if test="activating !=null">
+                activating = #{activating},
+            </if>
+            <if test="name !=null">
+                name = #{name}
+            </if>
+        </set>
+    </sql>
+    <sql id="tableName">system_dictionary</sql>
+</mapper>
