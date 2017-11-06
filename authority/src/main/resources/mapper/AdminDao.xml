@@ -33,6 +33,19 @@
         </where>
     </select>
 
+    <select id="queryDataTablePage" parameterType="DataTablePage" resultType="zjobs.entity.db.Admin">
+        SELECT * FROM
+        <include refid="table_name"/>
+        <where>
+            <if test="params.adminId!=null and params.adminId!=''">
+                adminId = #{params.adminId}
+            </if>
+            <if test="params.name!=null and params.name!=''">
+                AND name = #{params.name}
+            </if>
+        </where>
+    </select>
+
     <select id="queryPage" parameterType="Page" resultType="zjobs.entity.db.Admin">
         SELECT * FROM
         <include refid="table_name"/>

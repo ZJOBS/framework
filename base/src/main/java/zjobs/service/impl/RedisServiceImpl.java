@@ -112,6 +112,7 @@ public class RedisServiceImpl<T extends RedisEntity> implements RedisService<T> 
     }
 
     // @Override
+    @Override
     public List<T> getObjects(String objKey) throws Exception {
         List<T> list = new ArrayList<T>();
         List<Object> objs = redisTemplate.boundHashOps(objKey).values();

@@ -2,11 +2,13 @@ package zjobs.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zjobs.dao.MenuDao;
 import zjobs.entity.db.Menu;
 import zjobs.service.AbstractService;
 import zjobs.service.MenuService;
+import zjobs.service.RedisService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +20,15 @@ import java.util.Map;
  */
 @Service
 public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements MenuService {
+    @Autowired
+    private RedisService redisService;
+
+    @Override
+    public void updateRedisMenu() throws Exception {
+        JSONArray jsonArray = getTreeMenu();
+        redisService.put("menu", "menu", jsonArray.toString());
+    }
+
     @Override
     public List<Menu> getList(Map<String, Object> map) {
         return dao.getList(map);
@@ -34,8 +45,8 @@ public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements M
         for (Menu menu : menuList) {
             if (parentId.equals(menu.getParentId())) {
                 JSONObject jo = (JSONObject) JSONObject.toJSON(menu);
-                JSONArray c_node = treeMenuList(menuList, menu.getMenuId());
-                jo.put("children", c_node);
+                JSONArray childNode = treeMenuList(menuList, menu.getMenuId());
+                jo.put("children", childNode);
                 childMenu.add(jo);
             }
         }

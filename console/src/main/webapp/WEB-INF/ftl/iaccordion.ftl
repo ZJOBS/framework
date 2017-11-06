@@ -6,7 +6,7 @@
             <#if child.children?? && child.children?size gt 0>
                 <li>
                     <a href="javascript:void(0)" class="dropdown-toggle">
-                        <i class="menu-icon fa fa-cog"></i>
+                        <i class="menu-icon fa <#if child.image?exists>${child.image}</#if>"></i>
                         <span class="menu-text"> ${child.name} </span>
                         <b class="arrow fa fa-angle-down"></b>
                     </a>
@@ -25,12 +25,12 @@
                 <#--<#else>-->
                     <#if child.url != "">
                         <a href="javascript:void(0)" data-url="${contextPath}/${child.url}">
-                            <i class="menu-icon fa fa-caret-right"></i>
+                            <i class="menu-icon fa <#if child.image?exists>${child.image}</#if>"></i>
                         ${child.name}
                         </a>
                     <#else>
                         <a href="javascript:void(0)">
-                            <i class="menu-icon fa fa-caret-right"></i>
+                            <i class="menu-icon fa <#if child.image?exists>${child.image}</#if>"></i>
                         ${child.name}
                         </a>
                     </#if>

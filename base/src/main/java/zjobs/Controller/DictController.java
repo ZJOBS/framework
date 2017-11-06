@@ -5,7 +5,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import zjobs.Constant.Oper;
+import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Dict;
 import zjobs.entity.Page;
 import zjobs.service.DictService;
@@ -28,10 +30,10 @@ public class DictController extends BaseController {
 
     @RequestMapping(value = "queryDict")
     @ResponseBody
-    public Page<Dict> pageQueryDict(Dict dict, HttpServletRequest request) {
-        Page<Dict> page = null;
+    public DataTablePage<Dict> pageQueryDict(Dict dict) {
+        DataTablePage<Dict> page = null;
         try {
-            page = dictService.queryPage(dict.toMap(), createPage());
+            page = dictService.queryPage(dict.toMap(), createDataTablePage(dict));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,27 +41,67 @@ public class DictController extends BaseController {
         return page;
     }
 
-    @RequestMapping(value = "updateOrDeleteDict")
+
+    @RequestMapping(value = "addDict")
     @ResponseBody
-    public int updateOrDeleteDict(@RequestParam("oper") Oper oper, Dict dict) {
+    public int addDict(Dict dict) {
         int flag = 0;
         try {
-            switch (oper) {
-                case add:
-                    flag = dictService.createEntity(dict);
-                    break;
-                case del:
-                    flag = dictService.removeEntity(dict);
-                    break;
-                case edit:
-                    flag = dictService.modifyEntity(dict);
-                    break;
-            }
+            flag = dictService.createEntity(dict);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return flag;
-
-
     }
+
+
+    @RequestMapping(value = "deleteDict")
+    @ResponseBody
+    public int deleteDict(Dict dict) {
+        int flag = 0;
+        try {
+            flag = dictService.removeEntity(dict);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    @RequestMapping(value = "updateDict")
+    @ResponseBody
+    public int updateDict(Dict dict) {
+        int flag = 0;
+        try {
+            flag = dictService.modifyEntity(dict);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+//    @RequestMapping(value = "updateOrDeleteDict")
+//    @ResponseBody
+//    public int updateOrDeleteDict(@RequestParam("oper") Oper oper, Dict dict) {
+//        int flag = 0;
+//        try {
+//            switch (oper) {
+//                case add:
+//                    flag = dictService.createEntity(dict);
+//                    break;
+//                case del:
+//                    flag = dictService.removeEntity(dict);
+//                    break;
+//                case edit:
+//                    flag = dictService.modifyEntity(dict);
+//                    break;
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return flag;
+//
+//
+//    }
 }

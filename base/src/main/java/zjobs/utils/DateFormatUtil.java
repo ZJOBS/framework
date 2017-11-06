@@ -1,7 +1,7 @@
-package zjobs.common.utils;
+package zjobs.utils;
 
-import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2015/3/13.

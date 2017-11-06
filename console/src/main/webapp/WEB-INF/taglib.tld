@@ -9,57 +9,63 @@
     <short-name>taglib</short-name>
     <uri>http://www.zjobs.cn/jsp/jstl</uri>
 
+    <!--表格组件-->
     <tag>
-        <description>tablecolumn</description>
-        <name>tablecolumn</name>
+        <description>tableColumn</description>
+        <name>tableColumn</name>
         <tag-class>zjobs.web.tag.TableColumn</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <name>id</name>
             <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
         <!--以上为默认值-->
         <attribute>
-            <name>caption</name>
+            <name>key</name>
             <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
+
         <attribute>
-            <name>queryurl</name>
-            <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>editurl</name>
-            <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>columnname</name>
-            <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>columntitle</name>
-            <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>columnformat</name>
+            <name>defaultOperation</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
         <attribute>
-            <name>height</name>
+            <name>customOperation</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
+        </attribute>
+
+        <attribute>
+            <name>queryUrl</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>addUrl</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>editUrl</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>deleteUrl</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>columnName</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>columnTitle</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>columnFormat</name>
+            <required>false</required>
         </attribute>
         <!--如果有不同的ftl，则使用这个标签-->
         <attribute>
             <name>template</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
     </tag>
 
@@ -72,49 +78,43 @@
         <attribute>
             <name>id</name>
             <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
         <!--以上为默认值-->
+
+        <!--原Table-->
+        <!--<attribute>-->
+        <!--<name>rootTable</name>-->
+        <!--<required>true</required>-->
+        <!--<rtexprvalue>true</rtexprvalue>-->
+        <!--</attribute>-->
         <attribute>
-            <name>caption</name>
+            <name>queryUrl</name>
             <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
         <attribute>
-            <name>queryurl</name>
+            <name>columnName</name>
             <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
         <attribute>
-            <name>columnname</name>
+            <name>columnTitle</name>
             <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
-        </attribute>
-        <attribute>
-            <name>columntitle</name>
-            <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
         <attribute>
             <name>relation</name>
             <required>true</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
         <attribute>
-            <name>height</name>
-            <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
+            <name>width</name>
+            <required>true</required>
         </attribute>
         <!--如果有不同的ftl，则使用这个标签-->
         <attribute>
             <name>template</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
     </tag>
 
-
-    <!--管理台菜单-->
+    <!--管理台菜单组件-->
     <tag>
         <description>iaccordion</description>
         <name>iaccordion</name>
@@ -123,7 +123,51 @@
         <attribute>
             <name>id</name>
             <required>false</required>
-            <rtexprvalue>false</rtexprvalue>
         </attribute>
+    </tag>
+
+    <!--绑定与解绑组件-->
+    <tag>
+        <description>iBindAndUnbind</description>
+        <name>iBindAndUnbind</name>
+        <tag-class>zjobs.web.tag.BindAndUnBind</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>leftId</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>leftQueryUrl</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>deleteUrl</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>rightId</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>rightQueryUrl</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>addUrl</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>columnName</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>columnTitle</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>columnFormat</name>
+            <required>false</required>
+        </attribute>
+
     </tag>
 </taglib>

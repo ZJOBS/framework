@@ -1,7 +1,6 @@
 package zjobs.entity;
 
-
-import zjobs.common.utils.DataConversionUtil;
+import zjobs.utils.DataConversionUtil;
 
 import javax.persistence.Id;
 import java.io.Serializable;
@@ -35,7 +34,7 @@ public class BaseEntity {
     protected String updateDateStr;
 
     /*状态为多种时*/
-    protected int state;
+    protected String state;
 
     /*只有禁用和启用状态*/
     protected Boolean activating;
@@ -112,11 +111,11 @@ public class BaseEntity {
         this.updateDateStr = updateDateStr;
     }
 
-    public int getState() {
+    public String getState() {
         return state;
     }
 
-    public void setState(int state) {
+    public void setState(String state) {
         this.state = state;
     }
 
@@ -163,22 +162,22 @@ public class BaseEntity {
 
 
     //    /*获取数据库主键字段的Field*/
-    private Field getIdField() {
+    private Field gainIdField() {
         Field[] fields = this.getClass().getDeclaredFields();
         for (Field field : this.getClass().getDeclaredFields()) {
-            if (field.isAnnotationPresent(Id.class))
+            if (field.isAnnotationPresent(Id.class)) {
                 return field;
+            }
         }
         throw new RuntimeException("undefine POJO @Id");
     }
 
     public void putIdField() {
-        Field idField = getIdField();
+        Field idField = gainIdField();
         String name = idField.getName();
         String methodName = "set" + name.toUpperCase().charAt(0) + name.substring(1);
         Method method = null;
         try {
-            Method[] methods = this.getClass().getDeclaredMethods();
             method = this.getClass().getDeclaredMethod(methodName, String.class);
             method.invoke(this, new Object[]{getId()});
         } catch (NoSuchMethodException e) {
@@ -193,8 +192,31 @@ public class BaseEntity {
         }
     }
 
+    /*获取ID数据*/
+    public Object gainKeyValue() {
+        Field idField = gainIdField();
+        String name = idField.getName();
+        String methodName = "get" + name.toUpperCase().charAt(0) + name.substring(1);
+        Method method = null;
+        Object obj = null;
+        try {
+            method = this.getClass().getDeclaredMethod(methodName);
+            obj = method.invoke(this);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+            throw new RuntimeException("获取method方法失败。");
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+            throw new RuntimeException("设置ID的值失败。");
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+            throw new RuntimeException("设置ID的值失败。");
+        }
+        return obj;
+    }
+
     public void putIdField(String id) {
-        Field idField = getIdField();
+        Field idField = gainIdField();
         String name = idField.getName();
         String methodName = "set" + name.toUpperCase().charAt(0) + name.substring(1);
         Method method = null;

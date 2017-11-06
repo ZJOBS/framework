@@ -27,7 +27,7 @@
 				<ul class="nav ace-nav">
 					<li class="light-blue dropdown-modal">
 						<a data-toggle="dropdown" href="#" class="dropdown-toggle" aria-expanded="false">
-							<img class="nav-user-photo" src="assets/images/avatars/user.jpg" alt="Jason's Photo">
+							<img class="nav-user-photo" src="${pageContext.request.contextPath}/component/assets/images/avatars/user.jpg" alt="Jason's Photo">
 							<span class="user-info">
 									<small>欢迎,</small>
 									${UAI.adminName}

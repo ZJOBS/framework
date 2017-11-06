@@ -1,4 +1,4 @@
-package zjobs.common.utils;
+package zjobs.utils;
 
 import org.apache.commons.lang.StringUtils;
 

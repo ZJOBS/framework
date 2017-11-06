@@ -12,26 +12,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <!-- bootstrap & fontawesome -->
-    <link rel="stylesheet" href="${contextPath}/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${contextPath}/assets/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="${contextPath}/component/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${contextPath}/component/assets/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <!-- page specific plugin styles -->
 
     <!-- text fonts -->
-    <link rel="stylesheet" href="${contextPath}/assets/css/fonts.googleapis.com.css">
+    <link rel="stylesheet" href="${contextPath}/component/assets/css/fonts.googleapis.com.css">
     <!-- ace styles -->
-    <link rel="stylesheet" href="${contextPath}/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style">
-    <link rel="stylesheet" href="${contextPath}/assets/css/ace-skins.min.css">
-    <link rel="stylesheet" href="${contextPath}/assets/css/ace-rtl.min.css">
+    <link rel="stylesheet" href="${contextPath}/component/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style">
+    <link rel="stylesheet" href="${contextPath}/component/assets/css/ace-skins.min.css">
+    <link rel="stylesheet" href="${contextPath}/component/assets/css/ace-rtl.min.css">
 
     <!--[if lte IE 9]>
-    <link rel="stylesheet" href="${contextPath}/assets/css/ace-ie.min.css"/>
+    <link rel="stylesheet" href="${contextPath}/component/assets/css/ace-ie.min.css"/>
     <![endif]-->
 
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-    <script src="${contextPath}/assets/js/ace-extra.min.js"></script>
+    <script src="${contextPath}/component/assets/js/ace-extra.min.js"></script>
+
+    <%--判断 iframe如果是最顶层则执行当前方法--%>
+    <script language="JavaScript">
+        if (window != top)
+            top.location.href = location.href;
+    </script>
+
     <style>@keyframes nodeInserted {
                from {
                    outline-color: #fff

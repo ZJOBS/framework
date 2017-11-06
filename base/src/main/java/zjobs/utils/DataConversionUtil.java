@@ -1,4 +1,4 @@
-package zjobs.common.utils;
+package zjobs.utils;
 
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -9,7 +9,7 @@ public class DataConversionUtil {
     public static Map<String, Object> toMap(Object javaBean) {
         Map<String, Object> result = new HashMap<String, Object>();
         Method[] methods = javaBean.getClass().getMethods();
-        for (Method method : methods)
+        for (Method method : methods) {
             try {
                 if (method.getName().startsWith("get")) {
                     String field = method.getName();
@@ -25,6 +25,7 @@ public class DataConversionUtil {
             } catch (Exception e) {
                 System.out.println("toMap方法报错，已有用log代替");
             }
+        }
         return result;
     }
 

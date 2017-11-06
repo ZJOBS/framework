@@ -15,4 +15,6 @@ public interface MenuService extends BaseService<Menu, Exception> {
 
     public JSONArray getTreeMenu();
 
+    public void updateRedisMenu() throws Exception;
+
 }

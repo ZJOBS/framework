@@ -2,6 +2,7 @@ package zjobs.entity.db;
 
 import org.apache.ibatis.type.IntegerTypeHandler;
 import zjobs.entity.BaseEntity;
+
 import javax.persistence.Id;
 
 /**
@@ -12,6 +13,7 @@ public class Admin extends BaseEntity {
     @Id
     private String adminId;
     private String name;
+    private String avatar;
     private String password;
     private String description;
 
@@ -29,6 +31,13 @@ public class Admin extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getPassword() {
@@ -54,8 +63,10 @@ public class Admin extends BaseEntity {
         return "Admin{" +
                 "adminId='" + adminId + '\'' +
                 ", name='" + name + '\'' +
+                ", avatar='" + avatar + '\'' +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
+                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +
@@ -63,7 +74,7 @@ public class Admin extends BaseEntity {
                 ", sequence=" + sequence +
                 ", createDateStr='" + createDateStr + '\'' +
                 ", updateDateStr='" + updateDateStr + '\'' +
-                ", state=" + state +
+                ", state='" + state + '\'' +
                 ", activating=" + activating +
                 '}';
     }

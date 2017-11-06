@@ -26,7 +26,7 @@ import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
 import zjobs.entity.Page;
-import zjobs.common.utils.PropertiesUtil;
+import zjobs.utils.PropertiesUtil;
 
 /**
  * 分页查询
@@ -34,10 +34,10 @@ import zjobs.common.utils.PropertiesUtil;
  */
 @Intercepts(@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}))
 public class PaginationInterceptor implements Interceptor {
-    private static final String dataBaseType;
+    private static final String DATABASETYPE;
 
     static {
-        dataBaseType = PropertiesUtil.loadProperties("jdbc.properties").get("database_dataBaseType");
+        DATABASETYPE = PropertiesUtil.loadProperties("jdbc.properties").get("database_DATABASETYPE");
     }
 
     private static Map<String, String> Q2Oper;
@@ -62,6 +62,7 @@ public class PaginationInterceptor implements Interceptor {
     }
 
     @SuppressWarnings("rawtypes")
+    @Override
     public Object intercept(Invocation invocation) throws Throwable {
         RoutingStatementHandler handler = (RoutingStatementHandler) invocation
                 .getTarget();
@@ -81,10 +82,15 @@ public class PaginationInterceptor implements Interceptor {
             sql += constructWhere(page.getFilters(), new CallBack() {
                 @Override
                 public String executeData(String f, String o, String d) {
-                    if (o.equals("bw") || o.equals("bn")) return "'" + d + "%'";
-                    else if (o.equals("ew") || o.equals("en")) return "'%" + d + "'";
-                    else if (o.equals("cn") || o.equals("nc")) return "'%" + d + "%'";
-                    else return "'" + d + "'";
+                    if ("bw".equals(o) || "bn".equals(o)) {
+                        return "'" + d + "%'";
+                    } else if ("ew".equals(o) || "en".equals(o)) {
+                        return "'%" + d + "'";
+                    } else if ("cn".equals(o) || "nc".equals(o)) {
+                        return "'%" + d + "%'";
+                    } else {
+                        return "'" + d + "'";
+                    }
                 }
             });
 
@@ -95,22 +101,24 @@ public class PaginationInterceptor implements Interceptor {
         return invocation.proceed();
     }
 
+    @Override
     public Object plugin(Object target) {
         return Plugin.wrap(target, this);
     }
 
+    @Override
     public void setProperties(Properties properties) {
-        //   this.dataBaseType = properties.getProperty("databaseType");
-        System.out.println("数据库类型为" + dataBaseType);
+        //   this.DATABASETYPE = properties.getProperty("databaseType");
+        System.out.println("数据库类型为" + DATABASETYPE);
     }
 
     @SuppressWarnings("rawtypes")
     private String getPageSql(Page page, String sql) {
         StringBuffer sqlBuffer = new StringBuffer(sql);
         //需要优化，将此数据库类型放到常量中，因经常使用
-        if ("mysql".equalsIgnoreCase(dataBaseType)) {
+        if ("mysql".equalsIgnoreCase(DATABASETYPE)) {
             return getMysqlPageSql(page, sqlBuffer);
-        } else if ("oracle".equalsIgnoreCase(dataBaseType)) {
+        } else if ("oracle".equalsIgnoreCase(DATABASETYPE)) {
             return getOraclePageSql(page, sqlBuffer);
         }
         return sqlBuffer.toString();
@@ -138,18 +146,13 @@ public class PaginationInterceptor implements Interceptor {
     }
 
     @SuppressWarnings("rawtypes")
-    private void setTotalRecord(Page page, MappedStatement mappedStatement,
-                                Connection connection) {
+    private void setTotalRecord(Page page, MappedStatement mappedStatement, Connection connection) {
         BoundSql boundSql = mappedStatement.getBoundSql(page);
         String sql = boundSql.getSql();
         String countSql = this.getCountSql(sql);
-        List<ParameterMapping> parameterMappings = boundSql
-                .getParameterMappings();
-        BoundSql countBoundSql = new BoundSql(
-                mappedStatement.getConfiguration(), countSql,
-                parameterMappings, page);
-        ParameterHandler parameterHandler = new DefaultParameterHandler(
-                mappedStatement, page, countBoundSql);
+        List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
+        BoundSql countBoundSql = new BoundSql(mappedStatement.getConfiguration(), countSql, parameterMappings, page);
+        ParameterHandler parameterHandler = new DefaultParameterHandler(mappedStatement, page, countBoundSql);
         PreparedStatement pstmt = null;
         ResultSet rs = null;
         try {
@@ -164,10 +167,12 @@ public class PaginationInterceptor implements Interceptor {
             e.printStackTrace();
         } finally {
             try {
-                if (rs != null)
+                if (rs != null) {
                     rs.close();
-                if (pstmt != null)
+                }
+                if (pstmt != null) {
                     pstmt.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -246,11 +251,12 @@ public class PaginationInterceptor implements Interceptor {
                     if (!op.isEmpty() && !data.isEmpty()) {
                         i++;
                         data = cb.executeData(field, op, data);
-                        if (i == 1)
+                        if (i == 1) {
                             query = " WHERE ";
-                        else
+                        } else {
                             query += " " + group + " ";
-                        if (op.equals("in") || op.equals("ni")) {
+                        }
+                        if ("in".equals(op) || "ni".equals(op)) {
                             query += field + Q2Oper.get(op) + " (" + data + ")";
                         } else {
                             query += field + Q2Oper.get(op) + data;

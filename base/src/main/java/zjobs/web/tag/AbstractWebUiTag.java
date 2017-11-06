@@ -5,6 +5,8 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import zjobs.context.SpringContext;
+import zjobs.service.RedisService;
+
 import javax.servlet.jsp.JspException;
 import java.io.IOException;
 import java.io.StringWriter;
@@ -12,9 +14,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by ZhangJie on 2016/11/10.
+ * @author ZhangJie
  */
-public abstract class WebUiTag extends BaseTag {
+public abstract class AbstractWebUiTag extends BaseTag {
     protected Map<String, Object> data;
     protected String id;
     protected String props;
@@ -24,10 +26,14 @@ public abstract class WebUiTag extends BaseTag {
     protected String css;
     protected String tips;
 
+    protected RedisService redisService;
+
+    @Override
     public String getId() {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -84,6 +90,14 @@ public abstract class WebUiTag extends BaseTag {
         this.data = data;
     }
 
+    public RedisService getRedisService() {
+        return redisService;
+    }
+
+    public void setRedisService(RedisService redisService) {
+        this.redisService = redisService;
+    }
+
     public Map<String, Object> getData() {
         data = new HashMap<String, Object>();
         data.put("contextPath", getRequest().getContextPath());
@@ -92,8 +106,8 @@ public abstract class WebUiTag extends BaseTag {
 
     @Override
     public int doStartTag() throws JspException {
-
         try {
+            redisService = SpringContext.getBean("redisServiceImpl");
             String templateName = getStartTemplate();
             if (templateName != null) {
                 String result = process(templateName, getData());

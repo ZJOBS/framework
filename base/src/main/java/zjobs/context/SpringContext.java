@@ -20,6 +20,7 @@ public class SpringContext implements ApplicationContextAware {
      *
      * @param applicationContext
      */
+    @Override
     public void setApplicationContext(ApplicationContext applicationContext)
             throws BeansException {
         SpringContext.applicationContext = applicationContext;

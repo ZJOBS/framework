@@ -17444,7 +17444,7 @@ img.editable-click:hover {
 }
 
 .ui-dialog, .ui-jqdialog {
-    z-index: 1050 !important;
+   /* z-index: 1050 !important;*//*防止多个dialog同时开启，后开启的被先开启的遮蔽问题*/
     background-color: #FFF;
     padding: 0;
     border: 1px solid #DDD;

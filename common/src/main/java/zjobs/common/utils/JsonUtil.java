@@ -20,7 +20,7 @@ import org.codehaus.jackson.map.ObjectMapper;
  */
 public class JsonUtil {
     //	private static final Logger logger = LoggerFactory.getLogger(JsonUtil.class);
-    private static final ObjectMapper objmap = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAP = new ObjectMapper();
 
     /**
      * json 转为 map 对象
@@ -61,7 +61,7 @@ public class JsonUtil {
         JsonParser localJsonParser = null;
         T localObject1 = null;
         try {
-            localJsonParser = objmap.getJsonFactory().createJsonParser(
+            localJsonParser = OBJECT_MAP.getJsonFactory().createJsonParser(
                     paramString);
             localObject1 = localJsonParser.readValueAs(paramClass);
         } catch (RuntimeException localRuntimeException) {
@@ -73,11 +73,12 @@ public class JsonUtil {
 //					+ paramClass.getSimpleName() + " from " + paramString);
             return null;
         } finally {
-            if (localJsonParser != null)
+            if (localJsonParser != null) {
                 try {
                     localJsonParser.close();
                 } catch (IOException localIOException2) {
                 }
+            }
         }
         return localObject1;
     }
@@ -86,7 +87,7 @@ public class JsonUtil {
         ByteArrayOutputStream localByteArrayOutputStream = new ByteArrayOutputStream();
         JsonGenerator localJsonGenerator = null;
         try {
-            localJsonGenerator = objmap.getJsonFactory().createJsonGenerator(
+            localJsonGenerator = OBJECT_MAP.getJsonFactory().createJsonGenerator(
                     localByteArrayOutputStream,
                     JsonEncoding.valueOf(paramString));
             localJsonGenerator.writeObject(paramObject);
@@ -98,11 +99,12 @@ public class JsonUtil {
 //					localException);
             return null;
         } finally {
-            if (localJsonGenerator != null)
+            if (localJsonGenerator != null) {
                 try {
                     localJsonGenerator.close();
                 } catch (IOException localIOException2) {
                 }
+            }
         }
         return localByteArrayOutputStream.toByteArray();
     }

@@ -9,14 +9,14 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Unit test for simple App.
+ * Unit CyclicBarrier for simple App.
  */
 public class AppTest
         extends TestCase {
     /**
-     * Create the test case
+     * Create the CyclicBarrier case
      *
-     * @param testName name of the test case
+     * @param testName name of the CyclicBarrier case
      */
     public AppTest(String testName) {
         super(testName);

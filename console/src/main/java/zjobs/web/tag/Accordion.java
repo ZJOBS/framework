@@ -19,7 +19,7 @@ import java.util.Map;
  * Created by jiezhang on 2017/6/13.
  */
 @Component
-public class Accordion extends WebUiTag {
+public class Accordion extends AbstractWebUiTag {
     protected String id;
 
     @Override

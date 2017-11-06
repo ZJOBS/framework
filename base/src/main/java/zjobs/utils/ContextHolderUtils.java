@@ -1,4 +1,4 @@
-package zjobs.common.utils;//package org.base.util;
+package zjobs.utils;//package org.base.util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -4,16 +4,20 @@ import javax.servlet.jsp.JspException;
 import java.util.Map;
 
 /**
- * Created by ZhangJie on 2016/11/10.
+ * @author ZhangJie
  */
-public class TableColumn extends WebUiTag {
+public class TableColumn extends AbstractWebUiTag {
     protected String caption;
-    protected String queryurl;
-    protected String editurl;
-    protected String columntitle;
-    protected String columnname;
-    protected String columnformat;
-    protected String height;
+    protected String addUrl;
+    protected String queryUrl;
+    protected String editUrl;
+    protected String deleteUrl;
+    protected String columnTitle;
+    protected String columnName;
+    protected String columnFormat;
+    protected String defaultOperation;
+    protected String customOperation;
+    protected String key;
 
     public String getCaption() {
         return caption;
@@ -23,52 +27,84 @@ public class TableColumn extends WebUiTag {
         this.caption = caption;
     }
 
-    public String getQueryurl() {
-        return queryurl;
+    public String getAddUrl() {
+        return addUrl;
     }
 
-    public void setQueryurl(String queryurl) {
-        this.queryurl = queryurl;
+    public void setAddUrl(String addUrl) {
+        this.addUrl = addUrl;
     }
 
-    public String getEditurl() {
-        return editurl;
+    public String getQueryUrl() {
+        return queryUrl;
     }
 
-    public void setEditurl(String editurl) {
-        this.editurl = editurl;
+    public void setQueryUrl(String queryUrl) {
+        this.queryUrl = queryUrl;
     }
 
-    public String getColumnname() {
-        return columnname;
+    public String getEditUrl() {
+        return editUrl;
     }
 
-    public void setColumnname(String columnname) {
-        this.columnname = columnname;
+    public void setEditUrl(String editUrl) {
+        this.editUrl = editUrl;
     }
 
-    public String getColumntitle() {
-        return columntitle;
+    public String getDeleteUrl() {
+        return deleteUrl;
     }
 
-    public void setColumntitle(String columntitle) {
-        this.columntitle = columntitle;
+    public void setDeleteUrl(String deleteUrl) {
+        this.deleteUrl = deleteUrl;
     }
 
-    public String getColumnformat() {
-        return columnformat;
+    public String getColumnTitle() {
+        return columnTitle;
     }
 
-    public void setColumnformat(String columnformat) {
-        this.columnformat = columnformat;
+    public void setColumnTitle(String columnTitle) {
+        this.columnTitle = columnTitle;
     }
 
-    public String getHeight() {
-        return height;
+    public String getColumnName() {
+        return columnName;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
+    public void setColumnName(String columnName) {
+        this.columnName = columnName;
+    }
+
+    public String getColumnFormat() {
+        return columnFormat;
+    }
+
+    public void setColumnFormat(String columnFormat) {
+        this.columnFormat = columnFormat;
+    }
+
+    public String getDefaultOperation() {
+        return defaultOperation;
+    }
+
+    public void setDefaultOperation(String defaultOperation) {
+        this.defaultOperation = defaultOperation;
+    }
+
+    public String getCustomOperation() {
+        return customOperation;
+    }
+
+    public void setCustomOperation(String customOperation) {
+        this.customOperation = customOperation;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     @Override
@@ -86,13 +122,26 @@ public class TableColumn extends WebUiTag {
         data.put("css", css);
         data.put("props", props);
 
-        data.put("queryurl", queryurl);
-        data.put("editurl", editurl);
+//        try {
+//            Object obj = redisService.get("", "");
+//        } catch (Exception e) {
+//            //redis获取失败
+//            e.printStackTrace();
+//        }
+
+        data.put("key", key);
+        data.put("addUrl", addUrl);
+        data.put("queryUrl", queryUrl);
+        data.put("editUrl", editUrl);
+        data.put("deleteUrl", deleteUrl);
         data.put("caption", caption);
-        data.put("columntitle", columntitle);
-        data.put("columnname", columnname);
-        data.put("columnformat", columnformat);
-        data.put("height", height);
+        String[] columnTitles = columnTitle.split(",");
+        data.put("columnTitle", columnTitles);
+        data.put("columnLength", columnTitles.length - 1);
+        data.put("columnName", columnName);
+        data.put("columnFormat", columnFormat);
+        data.put("defaultOperation", defaultOperation);
+        data.put("customOperation", customOperation);
         return data;
     }
 

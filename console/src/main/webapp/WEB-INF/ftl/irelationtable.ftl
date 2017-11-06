@@ -1,182 +1,115 @@
 <script type="text/javascript">
+
     jQuery(function ($) {
-        var ${id}jqGridIrelation;
-
-        var ${id}grid_selector = "#${id}-table";
-        var ${id}pager_selector = "#${id}-pager";
-        var relation = ${relation};
-        var width = $("#${id}")[0].scrollWidth;
-        //resize to fit page size
-        $(window).on('resize.jqGrid', function () {
-            $(${id}grid_selector).jqGrid('setGridWidth', 550);
-        });
-
-
-
-        function style_search_filters(form) {
-            form.find('.delete-rule').val('X');
-            form.find('.add-rule').addClass('btn btn-xs btn-primary');
-            form.find('.add-group').addClass('btn btn-xs btn-success');
-            form.find('.delete-group').addClass('btn btn-xs btn-danger');
-        }
-
-        function style_search_form(form) {
-            var dialog = form.closest('.ui-jqdialog');
-            var buttons = dialog.find('.EditTable');
-            buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
-            buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
-            buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
-        }
-
-        //替换图标
-        function updatePagerIcons(table) {
-            var replacement = {
-                'ui-icon-seek-first': 'ace-icon fa fa-angle-double-left bigger-140',
-                'ui-icon-seek-prev': 'ace-icon fa fa-angle-left bigger-140',
-                'ui-icon-seek-next': 'ace-icon fa fa-angle-right bigger-140',
-                'ui-icon-seek-end': 'ace-icon fa fa-angle-double-right bigger-140'
-            };
-            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function () {
-                var icon = $(this);
-                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-                if ($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
-            })
-        }
-
-        //启用工具提示，jquery自己的方法
-        function enableTooltips(table) {
-            $('.navtable .ui-pg-button').tooltip({container: 'body'});
-            $(table).find('.ui-pg-div').tooltip({container: 'body'});
-        }
-
-        //删除grid
-        $(document).one('ajaxloadstart.page', function (e) {
-            $.jgrid.gridDestroy(${id}grid_selector);
-            $('.ui-jqdialog').remove();
-        });
-
-
-
-        $('body').delegate('input[name=' + relation[1] + ']', 'mousedown', function (e) {
-            if (!${id}jqGridIrelation) {
-                ${id}jqGridIrelation = jQuery(${id}grid_selector).jqGrid({
-                    url: "${contextPath}${queryurl}",
-                    datatype: "json", //数据来源，本地数据
-                    autoencode: false,//取消自动编码
-                    mtype: "POST",//提交方式
-                    height: <#if height?exists>${height}<#else>'auto'</#if>,
-                    colNames: [${columntitle}],
-                    colModel: [${columnname}],
-                    viewrecords: true,
-                    rowNum: 15,
-                    rowList: [5, 10, 15],
-                    pager: ${id}pager_selector,
-                    altRows: true,
-                    //toppager: true,
-                    multiselect: true,
-                    //multikey: "ctrlKey",
-                    multiboxonly: true,
-                    caption: "${caption}",//顶上说明
-                    onSelectRow: function (id) {
-                        //选中后事件
-                        var rowId = $(${id}grid_selector).jqGrid('getGridParam', 'selrow');
-                        var rowData = $(${id}grid_selector).jqGrid('getRowData', rowId);
-                        $('input[name=' + relation[1] + ']').val(rowData[relation[0]]);
-                        //取消所有选项
-                        // 关闭模板
-                        $('#${id}Modal').modal('hide');
-                    },
-                    autowidth: true,
-                });
-                $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
-                //navButtons
-                jQuery(${id}grid_selector).jqGrid('navGrid', ${id}pager_selector,
-                        { 	//navbar options
-                            add: false,
-                            edit: false,
-                            del: false,
-                            search: true,
-                            searchicon: 'ace-icon fa fa-search orange',
-                            refresh: true,
-                            refreshicon: 'ace-icon fa fa-refresh green',
-                        },
-                        {},
-                        {},
-                        {},
-                        {
-                            //search form
-                            recreateForm: true,
-                            caption: "查询",
-                            Find: "查找",
-                            Reset: "重置",
-                            odata: [{oper: 'eq', text: '等于'}, {oper: 'ne', text: '不等'}, {oper: 'lt', text: '小于'}, {
-                                oper: 'le',
-                                text: '小于等于'
-                            }, {oper: 'gt', text: '大于'}, {oper: 'ge', text: '大于等于'}, {oper: 'bw', text: '开始于'}, {
-                                oper: 'bn',
-                                text: '不开始于'
-                            }, {oper: 'in', text: '包含'}, {oper: 'ni', text: '不包含'}, {oper: 'ew', text: '结束于'}, {
-                                oper: 'en',
-                                text: '不结束于'
-                            }, {oper: 'cn', text: '包含'}, {oper: 'nc', text: '不包含'}, {oper: 'nu', text: '空值'}, {
-                                oper: 'nn',
-                                text: '非空值'
-                            }],
-                            groupOps: [{op: "AND", text: "所有"}, {op: "OR", text: "任一"}],
-                            afterShowSearch: function (e) {
-                                var form = $(e[0]);
-                                form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-                                style_search_form(form);
-                            },
-                            afterRedraw: function () {
-                                style_search_filters($(this));
-                            }
-                            ,
-                            multipleSearch: true,
-                        }
-                )
+        $.${id}dataTablesSettings = {
+            "select": {
+                "style": 'multi',
+                "selector": 'td:first-child'
+            },
+            "sScrollY": "390px",
+            "sPaginationType": "full_numbers", //分页风格，full_number会把所有页码显示出来（大概是，自己尝试）
+            "aLengthMenu": [[10, 15, 20], [10, 15, 20]],
+            "iDisplayLength": 10,//每页显示10条数据
+            "bAutoWidth": true,//宽度是否自动
+            "bLengthChange": true,
+            "bFilter": false,
+            "oLanguage": {
+                "sProcessing": "正在加载数据...",
+                "sLengthMenu": "显示_MENU_条 ",
+                "sZeroRecords": "没有您要搜索的内容",
+                "sInfo": "从_START_ 到 _END_ 条记录——总记录数为 _TOTAL_ 条",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(全部记录数 _MAX_  条)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious": " 上一页 ",
+                    "sNext": " 下一页 ",
+                    "sLast": " 最后一页 "
+                }
+            },
+            "bProcessing": true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+            "bServerSide": true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值。
+            "sAjaxSource": "${contextPath}${queryUrl}", //给服务器发请求的url
+            "sServerMethod": "POST",
+            "aoColumns": [${columnName}],
+            "aoColumnDefs": [<#if columnFormat?exists>${columnFormat}</#if>],
+            "fnServerParams": function (aoData) {
+                aoData._rand = Math.random();
+            },
+            "fnDrawCallback": function () {
             }
-            <#--jQuery(${id}grid_selector).jqGrid('filterToolbar',{-->
-                <#--searchOperators : true,-->
-                <#--odata: [{oper: 'eq', text: '等于'}, {oper: 'ne', text: '不等'}, {oper: 'lt', text: '小于'}, {-->
-                    <#--oper: 'le',-->
-                    <#--text: '小于等于'-->
-                <#--}, {oper: 'gt', text: '大于'}, {oper: 'ge', text: '大于等于'}, {oper: 'bw', text: '开始于'}, {-->
-                    <#--oper: 'bn',-->
-                    <#--text: '不开始于'-->
-                <#--}, {oper: 'in', text: '包含'}, {oper: 'ni', text: '不包含'}, {oper: 'ew', text: '结束于'}, {-->
-                    <#--oper: 'en',-->
-                    <#--text: '不结束于'-->
-                <#--}, {oper: 'cn', text: '包含'}, {oper: 'nc', text: '不包含'}, {oper: 'nu', text: '空值'}, {-->
-                    <#--oper: 'nn',-->
-                    <#--text: '非空值'-->
-                <#--}]-->
-            <#--});//表格中添加 搜索栏，方便使用，但不美观，先关闭-->
-            //刷新
-            $(${id}grid_selector).trigger("reloadGrid");
-
-            <#--$('#${id}').dialog();-->
-
-            $('#${id}Modal').modal('show');
+        };
+        $('#btn_search').click(function () {
+            //这里重新设置参数
+            $.${id}dataTablesSettings.fnServerParams = function (aoData) {
+                aoData._rand = Math.random();
+                //search方法获取值
+                aoData.push(
+                        {"name": "name", "value": $('#name').val()}
+                );
+            };
+            //搜索就是设置参数，然后销毁datatable重新再建一个
+            ${id}DataTable.fnDestroy(false);
+            ${id}DataTable = $("#${id}").dataTable($.${id}dataTablesSettings);
+            //搜索后跳转到第一页
+            ${id}DataTable.fnPageChange(0);
         });
+
+
+        var ${id}DataTable;
+        var ${id}relation = ${relation};
+        $("body").delegate("input[name=" + ${id}relation[1] + "]", "click", function () {
+            if (!${id}DataTable) {
+                ${id}DataTable = $("#${id}").dataTable($.${id}dataTablesSettings);
+            }else{
+                ${id}DataTable.api().ajax.reload();
+            }
+
+            /*显示*/
+            $('#${id}').show();
+
+            $('#${id}_wrapper').dialog({
+                resizable: false,
+                width: ${width},
+                modal: true,
+                title_html: true,
+                buttons: [
+                    {
+                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+        <#--$('#${id}_wrapper').dialog("moveToTop");-->
+        });
+
+        $('#${id}').delegate('tr', "dblclick", function () {
+            $(this).toggleClass('selected');
+            var data = ${id}DataTable.api();
+            $("input[name=" + ${id}relation[1] + "]").val(data.row(this).data()[${id}relation[0]]);
+            $('#${id}_wrapper').dialog("close");
+        });
+
     });
+
 </script>
 
-<!-- Modal -->
-<div class="modal fade" id="${id}Modal" tabindex="2" role="dialog" aria-labelledby="${id}ModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title" id="${id}ModalLabel">关联</h4>
-            </div>
-            <div id="${id}" class="modal-body">
-                <table id="${id}-table" class="table table-striped table-bordered table-hover"></table>
-                <div id="${id}-pager"></div>
-            </div>
-        </div>
-    </div>
-</div>
 
+<table id="${id}" class="table table-striped table-bordered table-hover" style="display: none">
+    <thead>
+    <tr>
+    <#list columnTitle as ct>
+        <th>${ct}</th>
+    </#list>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
 

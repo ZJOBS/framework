@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import zjobs.service.QiNiuService;
 import zjobs.service.SequenceService;
+import zjobs.utils.FileUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +29,7 @@ public class QiNiuServiceImpl implements QiNiuService {
     private String ak;
     @Value("#{properties.qiNiu_SecretKey}")
     private String sk;
-    private String bucketname;
+    private String bucketname = "image";//七牛的空间，可在七年网站上做管理，是否需要
 
     @Autowired
     @Qualifier("snowflakeSequenceImpl")
@@ -37,9 +39,17 @@ public class QiNiuServiceImpl implements QiNiuService {
         Auth auth = Auth.create(ak, sk);
         return auth.uploadToken(bucketname, null, 3600, new StringMap().put("insertOnly", 1));
     }
+    @Override
+    public long uploadFile(MultipartFile file) throws Exception {
+        File file1 = FileUtils.multipartToFile(file);
+        return uploadFile(file1);
+
+    }
+
 
     /*上传图片到七牛云*/
-    public long uploadFile(File file, String FileType) throws Exception {
+    @Override
+    public long uploadFile(File file) throws Exception {
         FileInputStream fis = null;
         int l = (int) (file.length());
         byte[] src = new byte[l];

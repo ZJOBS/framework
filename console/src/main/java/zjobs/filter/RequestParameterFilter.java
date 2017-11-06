@@ -1,6 +1,7 @@
 package zjobs.filter;
 
-import zjobs.common.utils.ContextHolderUtils;
+
+import zjobs.utils.ContextHolderUtils;
 
 import java.io.IOException;
 import javax.servlet.Filter;

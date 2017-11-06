@@ -1,323 +1,295 @@
 <script type="text/javascript">
     jQuery(function ($) {
-        var grid_selector = "#${id}-table";
-        var pager_selector = "#${id}-pager";
-        var parent_column = $(grid_selector).closest('[class*="col-"]');
-        //resize to fit page size
-        $(window).on('resize.jqGrid', function () {
-            $(grid_selector).jqGrid('setGridWidth', parent_column.width());
-        })
-
-        //resize on sidebar collapse/expand
-        $(document).on('settings.ace.jqGrid', function (ev, event_name, collapsed) {
-            if (event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed') {
-                //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
-                setTimeout(function () {
-                    $(grid_selector).jqGrid('setGridWidth', parent_column.width());
-                }, 20);
-            }
-        })
-
-        jQuery(grid_selector).jqGrid({
-            url: "${contextPath}${queryurl}",
-            datatype: "json", //数据来源，本地数据
-            autoencode: false,//取消自动编码
-            mtype: "POST",//提交方式
-            height: <#if height?exists>${height}<#else>'auto'</#if>,
-            colNames: [' ', ${columntitle}],
-            colModel: [
-                {
-                    name: 'myac', index: '', width: 80, fixed: true, sortable: false, resize: false,
-                    formatter: 'actions',
-                    formatoptions: {
-                        keys: true,
-                        delOptions: {recreateForm: true, beforeShowForm: beforeDeleteCallback},
-                    }
-                },
-            ${columnname}
-            ],
-            viewrecords: true,
-            rowNum: 15,
-            rowList: [10, 15, 20],
-            pager: pager_selector,
-            altRows: true,
-            //toppager: true,
-            multiselect: true,
-            //multikey: "ctrlKey",
-            multiboxonly: true,
-            loadComplete: function () {
-                var table = this;
-                setTimeout(function () {
-                    styleCheckbox(table);
-                    updateActionIcons(table);
-                    updatePagerIcons(table);
-                    enableTooltips(table);
-                }, 0);
+        $.dataTablesSettings = {
+            "select": {
+                "style": 'multi',
+                "selector": 'td:first-child'
             },
-            editurl: "${contextPath}${editurl}",//nothing is saved
-            caption: "${caption}",//顶上说明
-            autowidth: true,
-            //hidegrid: false
-        });
-        $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
-        //enable search/filter toolbar
-        //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
-        //jQuery(grid_selector).filterToolbar({});
-        //switch element when editing inline
-        function aceSwitch(cellvalue, options, cell) {
-            setTimeout(function () {
-                $(cell).find('input[type=checkbox]')
-                        .addClass('ace ace-switch ace-switch-5')
-                        .after('<span class="lbl"></span>');
-            }, 0);
-        }
-
-        //启用时间选择器
-        function pickDate(cellvalue, options, cell) {
-            setTimeout(function () {
-                $(cell).find('input[type=text]')
-                        .datepicker({format: 'yyyy-mm-dd', autoclose: true});
-            }, 0);
-        }
-
-
-        //navButtons
-        jQuery(grid_selector).jqGrid('navGrid', pager_selector,
-                { 	//navbar options
-                    add: true,
-                    addicon: 'ace-icon fa fa-plus-circle purple',
-                    edit: false,
-                    editicon: 'ace-icon fa fa-pencil blue',
-                    del: false,
-                    delicon: 'ace-icon fa fa-trash-o red',
-                    search: true,
-                    searchicon: 'ace-icon fa fa-search orange',
-                    refresh: true,
-                    refreshicon: 'ace-icon fa fa-refresh green',
-                    view: false,
-                    viewicon: 'ace-icon fa fa-search-plus grey',
-                },
-                {
-                    //new record form
-                    //width: 700,
-                    closeAfterAdd: true,
-                    recreateForm: true,
-                    viewPagerButtons: false,
-                    beforeShowForm: function (e) {
-                        var form = $(e[0]);
-                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-                        style_edit_form(form);
-                    }
-                },
-                {
-                    //edit record form
-                    //closeAfterEdit: true,
-                    //width: 700,
-                    recreateForm: true,
-                    beforeShowForm: function (e) {
-                        var form = $(e[0]);
-                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-                        style_edit_form(form);
-                    }
-                },
-                {
-                    //delete record form
-                    recreateForm: true,
-                    beforeShowForm: function (e) {
-                        var form = $(e[0]);
-                        if (form.data('styled')) return false;
-                        form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-                        style_delete_form(form);
-                        form.data('styled', true);
-                    },
-                    onClick: function (e) {
-                        //alert(1);
-                    }
-                },
-                {
-                    //search form
-                    recreateForm: true,
-                    caption: "查询",
-                    Find: "查找",
-                    Reset: "重置",
-                    odata: [{oper: 'eq', text: '等于'}, {oper: 'ne', text: '不等'}, {oper: 'lt', text: '小于'}, {
-                        oper: 'le',
-                        text: '小于等于'
-                    }, {oper: 'gt', text: '大于'}, {oper: 'ge', text: '大于等于'}, {oper: 'bw', text: '开始于'}, {
-                        oper: 'bn',
-                        text: '不开始于'
-                    }, {oper: 'in', text: '包含'}, {oper: 'ni', text: '不包含'}, {oper: 'ew', text: '结束于'}, {
-                        oper: 'en',
-                        text: '不结束于'
-                    }, {oper: 'cn', text: '包含'}, {oper: 'nc', text: '不包含'}, {oper: 'nu', text: '空值'}, {
-                        oper: 'nn',
-                        text: '非空值'
-                    }],
-                    groupOps: [{op: "AND", text: "所有"}, {op: "OR", text: "任一"}],
-                    afterShowSearch: function (e) {
-                        var form = $(e[0]);
-                        form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-                        style_search_form(form);
-                    },
-                    afterRedraw: function () {
-                        style_search_filters($(this));
-                    }
-                    ,
-                    multipleSearch: true,
-                },
-                {
-                    recreateForm: true,
-                    beforeShowForm: function (e) {
-                        var form = $(e[0]);
-                        form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
-                    }
+            "sScrollY": "390px",
+            "sPaginationType": "full_numbers", //分页风格，full_number会把所有页码显示出来（大概是，自己尝试）
+            "aLengthMenu": [[10, 15, 20], [10, 15, 20]],
+            "iDisplayLength": 10,//每页显示10条数据
+            "bAutoWidth": true,//宽度是否自动
+            "bLengthChange": true,
+            "bFilter": false,
+            "oLanguage": {
+                "sProcessing": "正在加载数据...",
+                "sLengthMenu": "显示_MENU_条 ",
+                "sZeroRecords": "没有您要搜索的内容",
+                "sInfo": "从_START_ 到 _END_ 条记录——总记录数为 _TOTAL_ 条",
+                "sInfoEmpty": "没有数据",
+                "sInfoFiltered": "(全部记录数 _MAX_  条)",
+                "sInfoPostFix": "",
+                "sSearch": "搜索",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "第一页",
+                    "sPrevious": " 上一页 ",
+                    "sNext": " 下一页 ",
+                    "sLast": " 最后一页 "
                 }
-        )
+            },
+            "bProcessing": true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
+            "bServerSide": true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值。
+            "sAjaxSource": "${contextPath}${queryUrl}", //给服务器发请求的url
+            "sServerMethod": "POST",
+            "aoColumns": [ //这个属性下的设置会应用到所有列，按顺序没有是空
+            ${columnName}
+                , {'sDefaultContent': ''}
 
-        //修改表单界面的样式设置
-        function style_edit_form(form) {
-            //日期类型需要从tag中传入
-            /*判断是否需要格式化样式*/
-        <#if columnformat?exists>
-            var format = ${columnformat};
-            for (var i = 0; i < format.length; i++) {
-                switch (format[i].type) {
-                    case 'date':
-                        form.find('input[name=' + format[i].name + ']').datepicker({
-                            format: 'yyyy-mm-dd',
-                            autoclose: true
-                        });
-                        break;
-                    case 'checkbox':
-                        form.find('input[name=' + format[i].name + ']').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
-                        break;
-                }
+                // sDefaultContent 如果这一列不需要填充数据用这个属性，值可以不写，起占位作用
+//              {"sDefaultContent": '', "sClass": "action"},//sClass 表示给本列加class
+            ],
+            "aoColumnDefs": [
+            <#if columnFormat?exists>${columnFormat},</#if>
+                {"aTargets": [${columnLength}+1], "mRender": operating}
+            <#--{-->
+            <#--"aTargets": [${columnlength}],-->
+            <#--"mRender": operating-->
+            <#--},-->
+                /*{"aTargets":[0],第零个,"mRender": function(){}格式化方法}*/
+
+            ],
+            "fnServerParams": function (aoData) {
+                aoData._rand = Math.random();
+            },
+            "fnDrawCallback": function () {
 
             }
-        </#if>
-            //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
-            //.addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
-
-            //修改类型按钮
-            //update buttons classes
-            var buttons = form.next().find('.EditButton .fm-button');
-            buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
-            buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
-            buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
-
-            buttons = form.next().find('.navButton a');
-            buttons.find('.ui-icon').hide();
-            buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
-            buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');
-        }
-
-        function style_delete_form(form) {
-            var buttons = form.next().find('.EditButton .fm-button');
-            buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
-            buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
-            buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
-        }
-
-        function style_search_filters(form) {
-            form.find('.delete-rule').val('X');
-            form.find('.add-rule').addClass('btn btn-xs btn-primary');
-            form.find('.add-group').addClass('btn btn-xs btn-success');
-            form.find('.delete-group').addClass('btn btn-xs btn-danger');
-        }
-
-        function style_search_form(form) {
-            var dialog = form.closest('.ui-jqdialog');
-            var buttons = dialog.find('.EditTable');
-            buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
-            buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
-            buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
-        }
-
-        function beforeDeleteCallback(e) {
-            var form = $(e[0]);
-            if (form.data('styled')) return false;
-
-            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
-            style_delete_form(form);
-
-            form.data('styled', true);
-        }
-
-        function beforeEditCallback(e) {
-            var form = $(e[0]);
-            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
-            style_edit_form(form);
-        }
-
-
-        //it causes some flicker when reloading or navigating grid
-        //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
-        //or go back to default browser checkbox styles for the grid
-        function styleCheckbox(table) {
-            /**
-             $(table).find('input:checkbox').addClass('ace')
-             .wrap('<label />')
-             .after('<span class="lbl align-top" />')
-
-
-             $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
-             .find('input.cbox[type=checkbox]').addClass('ace')
-             .wrap('<label />').after('<span class="lbl align-top" />');
-             */
-        }
-
-
-        //unlike navButtons icons, action icons in rows seem to be hard-coded
-        //you can change them like this in here if you want
-        function updateActionIcons(table) {
-            /**
-             var replacement =
-             {
-                 'ui-ace-icon fa fa-pencil' : 'ace-icon fa fa-pencil blue',
-                 'ui-ace-icon fa fa-trash-o' : 'ace-icon fa fa-trash-o red',
-                 'ui-icon-disk' : 'ace-icon fa fa-check green',
-                 'ui-icon-cancel' : 'ace-icon fa fa-times red'
-             };
-             $(table).find('.ui-pg-div span.ui-icon').each(function(){
-						var icon = $(this);
-						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-					})
-             */
-        }
-
-        //替换图标
-        function updatePagerIcons(table) {
-            var replacement =
-                    {
-                        'ui-icon-seek-first': 'ace-icon fa fa-angle-double-left bigger-140',
-                        'ui-icon-seek-prev': 'ace-icon fa fa-angle-left bigger-140',
-                        'ui-icon-seek-next': 'ace-icon fa fa-angle-right bigger-140',
-                        'ui-icon-seek-end': 'ace-icon fa fa-angle-double-right bigger-140'
-                    };
-            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function () {
-                var icon = $(this);
-                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-
-                if ($class in replacement) icon.attr('class', 'ui-icon ' + replacement[$class]);
-            })
-        }
-
-        //启用工具提示，jquery自己的方法
-        function enableTooltips(table) {
-            $('.navtable .ui-pg-button').tooltip({container: 'body'});
-            $(table).find('.ui-pg-div').tooltip({container: 'body'});
-        }
-
-        //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
-
-        //删除grid
-        $(document).one('ajaxloadstart.page', function (e) {
-            $.jgrid.gridDestroy(grid_selector);
-            $('.ui-jqdialog').remove();
+        };
+        dataTable = $("#${id}").dataTable($.dataTablesSettings);
+        $('#btn_search').click(function () {
+            //这里重新设置参数
+            $.dataTablesSettings.fnServerParams = function (aoData) {
+                aoData._rand = Math.random();
+                //search方法获取值
+                aoData.push(
+                        {"name": "name", "value": $('#name').val()}
+                );
+            };
+            //搜索就是设置参数，然后销毁datatable重新再建一个
+            dataTable.fnDestroy(false);
+            dataTable = $("#${id}").dataTable($.dataTablesSettings);
+            //搜索后跳转到第一页
+            dataTable.fnPageChange(0);
         });
-    });
-</script>
-<table id="${id}-table" class="table table-striped table-bordered table-hover"></table>
-<div id="${id}-pager"></div>
 
+
+        $('#btn_clear_search').click(function () {
+            //这里重新设置参数
+            $.dataTablesSettings.fnServerParams = function (aoData) {
+                aoData._rand = Math.random();
+                //search方法获取值
+                aoData.push(
+
+                );
+            };
+            //搜索就是设置参数，然后销毁datatable重新再建一个
+            dataTable.fnDestroy(false);
+            dataTable = $("#${id}").dataTable($.dataTablesSettings);
+            //搜索后跳转到第一页
+            dataTable.fnPageChange(0);
+        });
+        $("body").delegate(".update", "click", function () {
+            //获取当前选择的参数,填入updata的数据中
+            var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
+
+
+            var $update_dialog = $("#dialog-confirm").removeClass("hide");
+
+            $update_dialog.dialog({
+                resizable: false,
+                width: 500,
+                modal: true,
+                title_html: true,
+                buttons: [
+                    {
+                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>保存",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            var This = this;
+                            $update_dialog.find('from').ajaxSubmit({
+                                type: "POST",
+                                url: "${contextPath}${editUrl}",
+                                dataType: "json",
+                                type: "post",
+                                success: function (data, textStatus, jqXHR) {
+                                    $('#btn_search').click();
+                                    $(This).dialog("close");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
+                                },
+                                // capture the request before it was sent to server
+                                beforeSend: function (jqXHR, settings) {
+                                    $("#loading").show();
+                                },
+                                complete: function (jqXHR, textStatus) {
+                                    $("#loading").hide();
+                                }
+                            }).resetForm();
+                        }
+                    }, {
+                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            $update_dialog.find('form').resetForm();
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            //单文件上传
+            $update_dialog.find('input[type=file]').ace_file_input({
+                style: 'well',
+                btn_choose: '点击上传',
+                btn_change: null,
+                no_icon: 'ace-icon fa fa-cloud-upload',
+                droppable: true,
+                thumbnail: 'small'
+            });
+            Util.setFormInput('#dialog-confirm', data);
+
+        });
+
+        $("body").delegate(".delete", "click", function () {
+            var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
+            var ${key} =
+            data.${key};
+            $("#delete").removeClass("hide").dialog({
+                resizable: false,
+                width: 500,
+                modal: true,
+                title_html: true,
+                buttons: [
+                    {
+                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>删除",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            ///
+                            var This = this;
+                            $.ajax({
+                                type: "POST",
+                                url: "${contextPath}${deleteUrl}",
+                                data: {"${key}": ${key}},
+                                dataType: "json",
+                                type: "post",
+                                success: function (data, textStatus, jqXHR) {
+                                    $('#btn_search').click();
+                                    $(This).dialog("close");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
+                                },
+                                // capture the request before it was sent to server
+                                beforeSend: function (jqXHR, settings) {
+                                    $("#loading").show();
+                                },
+                                complete: function (jqXHR, textStatus) {
+                                    $("#loading").hide();
+                                }
+                            });
+                            //搜索就是设置参数，然后销毁datatable重新再建一个
+                        }
+                    }, {
+                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+        });
+
+
+        $("body").delegate("#add", "click", function () {
+            var $add_dialog = $("#dialog-confirm").removeClass("hide");
+            //单文件上传
+            $add_dialog.find('input[type=file]').ace_file_input({
+                style: 'well',
+                btn_choose: '点击上传',
+                btn_change: null,
+                no_icon: 'ace-icon fa fa-cloud-upload',
+                droppable: true,
+                thumbnail: 'small'
+            });
+
+            $add_dialog.dialog({
+                resizable: false,
+                width: 500,
+//                modal: true,
+                title_html: true,
+                buttons: [
+                    {
+                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>保存",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            var This = this;
+                            $add_dialog.find('form').ajaxSubmit({
+                                type: "POST",
+                                url: "${contextPath}${addUrl}",
+                                dataType: "json",
+                                type: "post",
+                                success: function (data, textStatus, jqXHR) {
+                                    $('#btn_search').click();
+                                    $(This).dialog("close");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
+                                },
+                                // capture the request before it was sent to server
+                                beforeSend: function (jqXHR, settings) {
+                                    $("#loading").show();
+                                },
+                                complete: function (jqXHR, textStatus) {
+                                    $("#loading").hide();
+                                }
+                            }).resetForm();
+                        }
+                    }, {
+                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            $add_dialog.find('form').resetForm();
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+
+        });
+
+
+    });
+
+    /*
+    * 生成操作列*/
+    function operating(data, type, full) {
+        var result = "<div class='hidden-sm hidden-xs action-buttons'>";
+    <#if defaultOperation?exists>
+        result += "<a class='green update' href='#'> <i class='ace-icon fa fa-pencil bigger-130'></i> </a> <a class='red delete' href='#'> <i class='ace-icon fa fa-trash-o bigger-130'></i> </a>";
+    </#if>
+    <#if customOperation?exists>
+        var customOperation = ${customOperation};
+        result += customOperation;
+    </#if>
+        result += "</div>"
+        return result;
+    };
+</script>
+
+
+<table id="${id}" class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+    <#list columnTitle as ct>
+        <th>${ct}</th>
+    </#list>
+        <th>操作</th>
+    </thead>
+    <tbody>
+    </tbody>
+</table>

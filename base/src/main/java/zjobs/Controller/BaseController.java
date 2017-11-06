@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import zjobs.common.utils.JsonUtil;
+import zjobs.entity.BaseEntity;
+import zjobs.entity.DataTablePage;
 import zjobs.entity.Page;
 import zjobs.entity.UserAccount;
+import zjobs.service.QiNiuService;
 import zjobs.service.SequenceService;
+import zjobs.utils.JsonUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,10 +18,10 @@ import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
- * Created by ZhangJie on 2016/2/14.
+ * @author ZhangJie by  on 2016/2/14.
  */
 @Controller
-public class BaseController<T, E extends Exception> {
+public class BaseController<T extends BaseEntity, E extends Exception> {
     private HttpServletRequest request;
     private HttpServletResponse response;
     private HttpSession session;
@@ -26,6 +29,9 @@ public class BaseController<T, E extends Exception> {
     @Autowired
     @Qualifier("snowflakeSequenceImpl")
     protected SequenceService sequenceService;
+
+    @Autowired
+    protected QiNiuService qiNiuService;
 
     @ModelAttribute
     protected void setReqAndResAndSes(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -49,13 +55,26 @@ public class BaseController<T, E extends Exception> {
         return page;
     }
 
+    protected DataTablePage<T> createDataTablePage(T parameter) {
+        DataTablePage<T> page = new DataTablePage<T>();
+        int sEcho = Integer.valueOf(getParameterInt("sEcho", 1));
+        int iDisplayStart = Integer.valueOf(getParameterInt("iDisplayStart", 1));
+        int iDisplayLength = Integer.valueOf(getParameterInt("iDisplayLength", 10));
+        page.setsEcho(sEcho);
+        page.setiDisplayStart(iDisplayStart);
+        page.setiDisplayLength(iDisplayLength);
+        page.setParams(parameter.toMap());
+        return page;
+    }
+
+
     protected int getParameterInt(String name) {
         return getParameterInt(name, 0);
     }
 
     protected int getParameterInt(String name, int defaultValue) {
         String parameter = getRequest().getParameter(name);
-        return parameter == null || parameter.equals("") ? defaultValue
+        return parameter == null || "".equals(parameter) ? defaultValue
                 : Integer.valueOf(parameter);
     }
 

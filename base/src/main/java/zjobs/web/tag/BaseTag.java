@@ -26,6 +26,8 @@ public abstract class BaseTag extends BodyTagSupport {
         }
     }
 
+
+
     public HttpServletRequest getRequest() {
         HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
         return request;

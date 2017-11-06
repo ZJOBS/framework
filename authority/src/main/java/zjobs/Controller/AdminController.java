@@ -1,12 +1,17 @@
 package zjobs.Controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import zjobs.Constant.Oper;
+import zjobs.entity.DataTablePage;
 import zjobs.entity.Page;
 import zjobs.entity.UAI;
 import zjobs.entity.db.Admin;
@@ -22,6 +27,7 @@ import javax.servlet.http.HttpSession;
 @SuppressWarnings("rawtypes")
 @Controller
 public class AdminController extends BaseController {
+    private final static Logger logger = LoggerFactory.getLogger(AdminController.class);
 
     @Autowired
     private AdminService adminService;
@@ -53,6 +59,9 @@ public class AdminController extends BaseController {
     @RequestMapping(value = "loginAction")
     public ModelAndView loginAction(HttpSession session, Admin admin) {
         ModelAndView modelAndView = new ModelAndView();
+        logger.info("logback 成功了");
+        logger.error("logback 成功了");
+        logger.debug("logback 成功了");
         try {
             admin = adminService.login(admin);
             if (admin == null) {
@@ -86,10 +95,10 @@ public class AdminController extends BaseController {
 
     @RequestMapping(value = "queryAdmin")
     @ResponseBody
-    public Page<Admin> pageQueryAdmin(Admin admin, HttpServletRequest request) {
-        Page<Admin> page = null;
+    public DataTablePage<Admin> pageQueryAdmin(Admin admin, HttpServletRequest request) {
+        DataTablePage<Admin> page = null;
         try {
-            page = adminService.queryPage(admin.toMap(), createPage());
+            page = adminService.queryPage(admin.toMap(), createDataTablePage(admin));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,21 +106,46 @@ public class AdminController extends BaseController {
         return page;
     }
 
-    @RequestMapping(value = "updateOrDeleteAdmin")
+    @RequestMapping(value = "addAdmin")
     @ResponseBody
-    public int updateOrDeleteAdmin(@RequestParam("oper") Oper oper, Admin admin) {
+    public int addAdmin(Admin admin, MultipartFile file) {
         int flag = 0;
         try {
-            switch (oper) {
-                case add:
-                    flag = adminService.createEntity(admin);
-                    break;
-                case del:
-                    flag = adminService.removeEntity(admin);
-                    break;
-                case edit:
-                    flag = adminService.modifyEntity(admin);
+            if (file != null) {
+                long imgId = qiNiuService.uploadFile(file);
+                admin.setAvatar(String.valueOf(imgId));
             }
+            flag = adminService.createEntity(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    @RequestMapping(value = "deleteAdmin")
+    @ResponseBody
+    public int deleteAdmin(Admin admin) {
+        int flag = 0;
+        try {
+            flag = adminService.removeEntity(admin);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    @RequestMapping(value = "updateAdmin")
+    @ResponseBody
+    public int updateAdmin(Admin admin, MultipartFile avatar) {
+        int flag = 0;
+        try {
+            if (avatar != null) {
+                long imgId = qiNiuService.uploadFile(avatar);
+                admin.setAvatar(String.valueOf(imgId));
+            }
+            flag = adminService.modifyEntity(admin);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,4 +1,4 @@
-package zjobs.common.utils;
+package zjobs.utils;
 
 import java.io.IOException;
 import java.io.InputStream;

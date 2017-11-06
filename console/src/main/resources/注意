@@ -1,4 +1,3 @@
-jqGrid  navGrid 自定义添加按钮方法（解决办法）
 1、查看原方法是否有效，排查缺少表单的原因
 2、用以下方法，重新写一份添加和修改的div提，用dialog方法打开，并设置相应数据
 http://blog.csdn.net/chenjunjun79/article/details/51891611
@@ -68,7 +67,7 @@ http://blog.csdn.net/chenjunjun79/article/details/51891611
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
+			<artifactId>spring-CyclicBarrier</artifactId>
 			<version>${version.spring}</version>
 		</dependency>
 		<!-- springframe support end -->
@@ -252,7 +251,7 @@ http://blog.csdn.net/chenjunjun79/article/details/51891611
 			<version>1.1.2</version>
 		</dependency>
 
-		<!-- unit test start -->
+		<!-- unit CyclicBarrier start -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -268,7 +267,7 @@ http://blog.csdn.net/chenjunjun79/article/details/51891611
 			<artifactId>quartz</artifactId>
 			<version>1.8.0</version>
 		</dependency>
-		<!-- unit test end -->
+		<!-- unit CyclicBarrier end -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>

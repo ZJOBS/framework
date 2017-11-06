@@ -1,4 +1,4 @@
 package zjobs.Controller;
 
-public class LicenseController {
+public class LicenseController extends BaseController {
 }

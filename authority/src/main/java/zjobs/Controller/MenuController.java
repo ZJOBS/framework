@@ -1,14 +1,18 @@
 package zjobs.Controller;
 
+import com.alibaba.fastjson.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import zjobs.Constant.Oper;
+import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Menu;
 import zjobs.entity.Page;
 import zjobs.service.MenuService;
+import zjobs.service.RedisService;
+
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -21,6 +25,9 @@ public class MenuController extends BaseController {
     @Autowired
     private MenuService menuService;
 
+    @Autowired
+    private RedisService redisService;
+
     @RequestMapping(value = "menuIndex")
     public String menu() {
         return "menu/index";
@@ -28,10 +35,10 @@ public class MenuController extends BaseController {
 
     @RequestMapping(value = "queryMenu")
     @ResponseBody
-    public Page<Menu> pageQueryMenu(Menu menu, HttpServletRequest request) {
-        Page<Menu> page = null;
+    public DataTablePage<Menu> pageQueryMenu(Menu menu, HttpServletRequest request) {
+        DataTablePage<Menu> page = null;
         try {
-            page = menuService.queryPage(menu.toMap(), createPage());
+            page = menuService.queryPage(menu.toMap(), createDataTablePage(menu));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -39,22 +46,44 @@ public class MenuController extends BaseController {
         return page;
     }
 
-    @RequestMapping(value = "updateOrDeleteMenu")
+    @RequestMapping(value = "addMenu")
     @ResponseBody
-    public int updateOrDelete(@RequestParam("oper") Oper oper, Menu menu) {
+    public int addMenu(Menu menu) {
         int flag = 0;
         try {
-            switch (oper) {
-                case add:
-                    menu.setId(String.valueOf(sequenceService.getSequence()));//各个对象ID的名称不一样
-                    flag = menuService.createEntity(menu);
-                    break;
-                case del:
-                    flag = menuService.removeEntity(menu);
-                    break;
-                case edit:
-                    flag = menuService.modifyEntity(menu);
-            }
+            flag = menuService.createEntity(menu);
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    @RequestMapping(value = "deleteMenu")
+    @ResponseBody
+    public int deleteMenu(Menu menu) {
+        int flag = 0;
+        try {
+            flag = menuService.removeEntity(menu);
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return flag;
+    }
+
+
+    @RequestMapping(value = "updateMenu")
+    @ResponseBody
+    public int updateMenu(Menu menu) {
+        int flag = 0;
+        try {
+            flag = menuService.modifyEntity(menu);
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
         } catch (Exception e) {
             e.printStackTrace();
         }

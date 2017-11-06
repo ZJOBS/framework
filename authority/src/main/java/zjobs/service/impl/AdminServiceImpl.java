@@ -1,11 +1,15 @@
 package zjobs.service.impl;
 
 import org.springframework.stereotype.Service;
-import zjobs.common.utils.EncryptAndDecryptUtil;
 import zjobs.dao.AdminDao;
+import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Admin;
 import zjobs.service.AbstractService;
 import zjobs.service.AdminService;
+import zjobs.utils.EncryptAndDecryptUtil;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 管理员方法
@@ -41,5 +45,13 @@ public class AdminServiceImpl extends AbstractService<Admin, AdminDao> implement
             admin.setPassword(null);
         }
         return admin;
+    }
+
+    @Override
+    public DataTablePage queryPage(Map parameters, DataTablePage page) throws Exception {
+        page.setParams(parameters);
+        List<Admin> list = dao.queryDataTablePage(page);
+        page.setAaData(list);
+        return page;
     }
 }

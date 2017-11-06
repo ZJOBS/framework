@@ -21,7 +21,7 @@ public class QiNiuUtils {
     String key = "1111";    //上传的图片名
 
     /*上传图片到七牛云*/
-    public void put64image(File file, String FileType) throws Exception {
+    public void put64image(File file, String fileType) throws Exception {
         String bucketname = "image";    //空间名
         FileInputStream fis = null;
         int l = (int) (file.length());

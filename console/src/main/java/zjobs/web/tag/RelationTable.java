@@ -1,19 +1,25 @@
 package zjobs.web.tag;
 
+import com.alibaba.fastjson.JSONArray;
+
 import javax.servlet.jsp.JspException;
 import java.util.Map;
 
 /**
  * Created by jiezhang on 2017/7/12.
  */
-public class RelationTable extends WebUiTag {
+public class RelationTable extends AbstractWebUiTag {
     protected String caption;
-    protected String queryurl;
-    protected String columntitle;
-    protected String columnname;
+    protected String queryUrl;
+    protected String columnTitle;
+    protected String columnName;
+    protected String columnFormat;
     protected String relation;
-    protected String height;
-    protected String rowList;//一页显示几行
+    protected String width;
+    /**
+     * 一页显示几行
+     */
+    protected String rowList;
 
     public String getCaption() {
         return caption;
@@ -23,30 +29,37 @@ public class RelationTable extends WebUiTag {
         this.caption = caption;
     }
 
-    public String getQueryurl() {
-        return queryurl;
+    public String getQueryUrl() {
+        return queryUrl;
     }
 
-    public void setQueryurl(String queryurl) {
-        this.queryurl = queryurl;
+    public void setQueryUrl(String queryUrl) {
+        this.queryUrl = queryUrl;
     }
 
-    public String getColumntitle() {
-        return columntitle;
+    public String getColumnTitle() {
+        return columnTitle;
     }
 
-    public void setColumntitle(String columntitle) {
-        this.columntitle = columntitle;
+    public void setColumnTitle(String columnTitle) {
+        this.columnTitle = columnTitle;
     }
 
-    public String getColumnname() {
-        return columnname;
+    public String getColumnName() {
+        return columnName;
     }
 
-    public void setColumnname(String columnname) {
-        this.columnname = columnname;
+    public void setColumnName(String columnName) {
+        this.columnName = columnName;
     }
 
+    public String getColumnFormat() {
+        return columnFormat;
+    }
+
+    public void setColumnFormat(String columnFormat) {
+        this.columnFormat = columnFormat;
+    }
 
     public String getRelation() {
         return relation;
@@ -56,12 +69,12 @@ public class RelationTable extends WebUiTag {
         this.relation = relation;
     }
 
-    public String getHeight() {
-        return height;
+    public String getWidth() {
+        return width;
     }
 
-    public void setHeight(String height) {
-        this.height = height;
+    public void setWidth(String width) {
+        this.width = width;
     }
 
     public String getRowList() {
@@ -86,12 +99,14 @@ public class RelationTable extends WebUiTag {
         data.put("id", id);
         data.put("css", css);
         data.put("props", props);
-        data.put("queryurl", queryurl);
+        data.put("queryUrl", queryUrl);
         data.put("caption", caption);
-        data.put("columntitle", columntitle);
-        data.put("columnname", columnname);
+        String[] columnTitles = columnTitle.split(",");
+        data.put("columnTitle", columnTitles);
+        data.put("columnName", columnName);
+        data.put("columnFormat", columnFormat);
         data.put("relation", relation);
-        data.put("height", height);
+        data.put("width", width);
         return data;
     }
 

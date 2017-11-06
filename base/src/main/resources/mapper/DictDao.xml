@@ -3,21 +3,21 @@
 <mapper namespace="zjobs.dao.DictDao">
     <insert id="insertEntity" parameterType="java.util.Map">
         INSERT INTO
-        <include refid="tableName"/>
+        <include refid="table_name"/>
         (dictId,code,value,activating,name,parentId)
         VALUES
         (#{dictId},#{code},#{value},#{activating},#{name},#{parentId})
     </insert>
     <delete id="deleteEntity" parameterType="java.util.Map">
         delete FROM
-        <include refid="tableName"/>
+        <include refid="table_name"/>
         where
         dictId = #{dictId}
     </delete>
 
     <update id="updateEntity" parameterType="java.util.Map">
         UPDATE
-        <include refid="tableName"/>
+        <include refid="table_name"/>
         <include refid="set"/>
         where dictId=#{dictId}
     </update>
@@ -27,20 +27,38 @@
         SELECT
         <include refid="result_base"/>
         FROM
-        <include refid="tableName"/>
+        <include refid="table_name"/>
         <include refid="where"/>
     </select>
 
-    <select id="queryPage" parameterType="zjobs.entity.Page"
-            resultType="Dict">
-        SELECT
-        <include refid="result_base"/>
-        FROM
-        <include refid="tableName"/>
+    <select id="queryDataTablePage" parameterType="DataTablePage" resultType="zjobs.entity.db.Dict">
+        SELECT * FROM
+        <include refid="table_name"/>
+        <where>
+            <if test="params.dictId !=null and params.dictId != ''">
+                dictId = #{params.dictId}
+            </if>
+            <if test="params.parentId !=null and params.parentId != ''">
+                AND parentId = #{params.parentId}
+            </if>
+            <if test="params.code !=null and params.code != ''">
+                AND code = #{params.code}
+            </if>
+            <if test="params.value !=null and params.value != ''">
+                AND value = #{params.value}
+            </if>
+            <if test="params.activating !=null and params.activating != ''">
+                AND activating = #{params.activating}
+            </if>
+            <if test="params.name !=null and params.name != ''">
+                AND name = #{params.name}
+            </if>
+        </where>
     </select>
+
     <select id="queryAll" resultType="zjobs.entity.db.Dict">
         SELECT * FROM
-        <include refid="tableName"/>
+        <include refid="table_name"/>
     </select>
 
     <sql id="result_base">
@@ -87,5 +105,5 @@
             </if>
         </set>
     </sql>
-    <sql id="tableName">system_dictionary</sql>
+    <sql id="table_name">system_dictionary</sql>
 </mapper>

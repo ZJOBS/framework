@@ -28,8 +28,9 @@ public class InitAuthorityListener implements InitializingBean, ServletContextAw
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        JSONArray jsonArray = menuService.getTreeMenu();
-        redisService.put("menu", "menu", jsonArray.toString());
+         menuService.updateRedisMenu();
+//        JSONArray jsonArray = menuService.getTreeMenu();
+//        redisService.put("menu", "menu", jsonArray.toString());
     }
 
     @Override

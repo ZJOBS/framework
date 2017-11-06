@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import zjobs.Constant.BaseConstants;
 import zjobs.dao.BaseDao;
+import zjobs.entity.DataTablePage;
 import zjobs.entity.Page;
 import zjobs.entity.BaseEntity;
 
@@ -50,6 +51,7 @@ public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T,
         this.dao = dao;
     }
 
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public int createEntity(T entity) throws Exception {
         long a = sequenceService.getSequence();
@@ -57,38 +59,46 @@ public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T,
         dao.insertEntity(entity.toMap());
         return Integer.parseInt("0");
     }
-
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public int removeEntity(T entity) throws Exception {
-        if (StringUtils.isBlank(entity.getId())) {
+        Object object = entity.gainKeyValue();
+        if (object == null) {
+            System.out.println("数据未null");
             throw new Exception("没有ID");
         }
-        entity.putIdField();
         return dao.deleteEntity(entity.toMap());
     }
-
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public int modifyEntity(T entity) throws Exception {
         return dao.updateEntity(entity.toMap());
     }
-
+    @Override
     public T findEntity(T entity) throws Exception {
         return dao.selectEntity(entity.toMap());
     }
 
-
+    @Override
     public Page queryPage(Map parameters, Page page) throws Exception {
         page.setParams(parameters);
         List<T> list = dao.queryPage(page);
         page.setRows(list);
         return page;
     }
-
+    @Override
+    public DataTablePage queryPage(Map parameters, DataTablePage page) throws Exception {
+        page.setParams(parameters);
+        List<T> list = dao.queryDataTablePage(page);
+        page.setAaData(list);
+        return page;
+    }
+    @Override
     public int disable(T entity) throws Exception {
         entity.setState(BaseConstants.DISABLE);
         return modifyEntity(entity);
     }
-
+    @Override
     public int enable(T entity) throws Exception {
         entity.setState(BaseConstants.ENABLE);
         return modifyEntity(entity);

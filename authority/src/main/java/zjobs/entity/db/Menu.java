@@ -13,6 +13,7 @@ public class Menu extends BaseEntity {
     private String parentId;
     private String name;
     private String url;
+    private String image;
     private Boolean leaf;
 
     public String getMenuId() {
@@ -23,10 +24,11 @@ public class Menu extends BaseEntity {
         this.menuId = menuId;
     }
 
+    @Override
     public String getId() {
         return id;
     }
-
+    @Override
     public void setId(String id) {
         this.id = id;
     }
@@ -55,6 +57,14 @@ public class Menu extends BaseEntity {
         this.url = url;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public Boolean getLeaf() {
         return leaf;
     }
@@ -63,7 +73,6 @@ public class Menu extends BaseEntity {
         this.leaf = leaf;
     }
 
-
     @Override
     public String toString() {
         return "Menu{" +
@@ -71,6 +80,7 @@ public class Menu extends BaseEntity {
                 ", parentId='" + parentId + '\'' +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
+                ", image='" + image + '\'' +
                 ", leaf=" + leaf +
                 ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
