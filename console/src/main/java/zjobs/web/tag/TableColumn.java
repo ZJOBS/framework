@@ -8,6 +8,7 @@ import java.util.Map;
  */
 public class TableColumn extends AbstractWebUiTag {
     protected String caption;
+    protected String search;
     protected String addUrl;
     protected String queryUrl;
     protected String editUrl;
@@ -25,6 +26,14 @@ public class TableColumn extends AbstractWebUiTag {
 
     public void setCaption(String caption) {
         this.caption = caption;
+    }
+
+    public String getSearch() {
+        return search;
+    }
+
+    public void setSearch(String search) {
+        this.search = search;
     }
 
     public String getAddUrl() {
@@ -130,6 +139,7 @@ public class TableColumn extends AbstractWebUiTag {
 //        }
 
         data.put("key", key);
+        data.put("search", search);
         data.put("addUrl", addUrl);
         data.put("queryUrl", queryUrl);
         data.put("editUrl", editUrl);

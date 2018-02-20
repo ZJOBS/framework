@@ -1,6 +1,6 @@
 <script type="text/javascript">
     jQuery(function ($) {
-        $.dataTablesSettings = {
+        $.${id}dataTablesSettings = {
             "select": {
                 "style": 'multi',
                 "selector": 'td:first-child'
@@ -23,10 +23,10 @@
                 "sSearch": "搜索",
                 "sUrl": "",
                 "oPaginate": {
-                    "sFirst": "第一页",
+                    "sFirst": "首页",
                     "sPrevious": " 上一页 ",
                     "sNext": " 下一页 ",
-                    "sLast": " 最后一页 "
+                    "sLast": " 尾页 "
                 }
             },
             "bProcessing": true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
@@ -52,51 +52,41 @@
             ],
             "fnServerParams": function (aoData) {
                 aoData._rand = Math.random();
+
+            <#if search?exists>
+                var dataSer = util.getFrom("${search}");
+                for (var key in dataSer) {
+                    aoData.push(
+                            {"name": key, "value": dataSer[key]}
+                            //添加所有搜索参数
+                    );
+                }
+            </#if>
             },
             "fnDrawCallback": function () {
 
             }
         };
-        dataTable = $("#${id}").dataTable($.dataTablesSettings);
+        main.${id}dataTable = $("#${id}").dataTable($.${id}dataTablesSettings);
         $('#btn_search').click(function () {
-            //这里重新设置参数
-            $.dataTablesSettings.fnServerParams = function (aoData) {
-                aoData._rand = Math.random();
-                //search方法获取值
-                aoData.push(
-                        {"name": "name", "value": $('#name').val()}
-                );
-            };
-            //搜索就是设置参数，然后销毁datatable重新再建一个
-            dataTable.fnDestroy(false);
-            dataTable = $("#${id}").dataTable($.dataTablesSettings);
-            //搜索后跳转到第一页
-            dataTable.fnPageChange(0);
+            var oSettings = main.${id}dataTable.fnSettings();
+            oSettings._iDisplayStart = 0;
+            main.${id}dataTable.fnDraw(oSettings);
         });
 
 
         $('#btn_clear_search').click(function () {
-            //这里重新设置参数
-            $.dataTablesSettings.fnServerParams = function (aoData) {
-                aoData._rand = Math.random();
-                //search方法获取值
-                aoData.push(
-
-                );
-            };
-            //搜索就是设置参数，然后销毁datatable重新再建一个
-            dataTable.fnDestroy(false);
-            dataTable = $("#${id}").dataTable($.dataTablesSettings);
-            //搜索后跳转到第一页
-            dataTable.fnPageChange(0);
+            //需要先清空搜索框
+            util.clearFrom('#search');
+            //需要先清空搜索框
+            var oSettings = main.${id}dataTable.fnSettings();
+            oSettings._iDisplayStart = 0;
+            main.${id}dataTable.fnDraw(oSettings);
         });
         $("body").delegate(".update", "click", function () {
             //获取当前选择的参数,填入updata的数据中
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-
-
             var $update_dialog = $("#dialog-confirm").removeClass("hide");
-
             $update_dialog.dialog({
                 resizable: false,
                 width: 500,
@@ -149,7 +139,7 @@
                 droppable: true,
                 thumbnail: 'small'
             });
-            Util.setFormInput('#dialog-confirm', data);
+            util.setFormInput('#dialog-confirm', data);
 
         });
 

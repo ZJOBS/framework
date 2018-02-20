@@ -6,7 +6,10 @@ import zjobs.entity.db.Admin;
 import java.util.List;
 
 /**
- * Created by ZhangJie on 2016/3/14.
+ * 管理员数据处理接口
+ *
+ * @author jiezhang
+ * @date 2017/3/14
  */
 public interface AdminDao extends BaseDao<Admin, Exception> {
 }

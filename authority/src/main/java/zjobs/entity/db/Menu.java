@@ -24,14 +24,14 @@ public class Menu extends BaseEntity {
         this.menuId = menuId;
     }
 
-    @Override
-    public String getId() {
-        return id;
-    }
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
+//    @Override
+//    public String getId() {
+//        return id;
+//    }
+//    @Override
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     public String getParentId() {
         return parentId;
@@ -82,7 +82,7 @@ public class Menu extends BaseEntity {
                 ", url='" + url + '\'' +
                 ", image='" + image + '\'' +
                 ", leaf=" + leaf +
-                ", id='" + id + '\'' +
+//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

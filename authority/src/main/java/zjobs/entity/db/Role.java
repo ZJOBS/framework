@@ -43,7 +43,7 @@ public class Role extends BaseEntity {
                 "roleId='" + roleId + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", id='" + id + '\'' +
+//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

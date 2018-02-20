@@ -1,62 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="zjobs.dao.AdminDao">
-    <insert id="insertEntity" parameterType="java.util.Map">
-        INSERT INTO system_admin
-        (adminId,name,activating,password,description)
-        VALUE(#{adminId},#{name},#{activating},#{password},#{description})
+<mapper namespace="zjobs.dao.AdminRoleDao">
+    <select id="queryBindDataTablePage" parameterType="DataTablePage" resultType="zjobs.entity.db.Role">
+        SELECT sr.*
+        FROM system_role sr
+        LEFT JOIN system_admin_role sar ON sr.roleId = sar.role_id
+        LEFT JOIN system_admin sa ON sa.adminId = sar.admin_id
+        <where>
+            sa.adminId = #{params.adminId}
+        </where>
+    </select>
+
+    <select id="queryNotBindDataTablePage" parameterType="DataTablePage" resultType="zjobs.entity.db.Role">
+        SELECT *
+        FROM system_role sr
+        WHERE NOT exists(
+            SELECT *
+            FROM (SELECT sr.*
+                  FROM system_role sr
+                    LEFT JOIN system_admin_role sar ON sr.roleId = sar.role_id
+                    LEFT JOIN system_admin sa ON sa.adminId = sar.admin_id
+                  WHERE sar.admin_id = #{params.adminId}) aaa
+            WHERE sr.roleId = aaa.roleId
+)
+    </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        INSERT INTO system_admin_role (admin_role_id, admin_id,role_id)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.adminRoleId}, #{item.adminId},#{item.roleId})
+        </foreach>
     </insert>
 
-    <update id="updateEntity" parameterType="java.util.Map">
-        UPDATE system_admin
-        <set>
-            <if test="name != null">name =#{name},</if>
-            <if test="password != null">password =#{password},</if>
-            <if test="activating != null">activating =#{activating},</if>
-            <if test="description != null">description =#{description}</if>
-        </set>
-        where adminId=#{adminId}
-    </update>
-
-    <select id="selectEntity" parameterType="java.util.Map" resultType="zjobs.entity.db.Admin">
-        SELECT * FROM system_admin
-        <where>
-            <if test="adminId!=null and adminId!=''">
-                adminId = #{adminId}
-            </if>
-            <if test="name!=null and name!=''">
-                AND name = #{name}
-            </if>
-            <if test="password!=null and password!=''">
-                AND password = #{password}
-            </if>
-        </where>
-    </select>
-
-    <select id="queryDataTablePage" parameterType="DataTablePage" resultType="zjobs.entity.db.Admin">
-        SELECT * FROM
-        <include refid="table_name"/>
-        <where>
-            <if test="params.adminId!=null and params.adminId!=''">
-                adminId = #{params.adminId}
-            </if>
-            <if test="params.name!=null and params.name!=''">
-                AND name = #{params.name}
-            </if>
-        </where>
-    </select>
-
-    <select id="queryPage" parameterType="Page" resultType="zjobs.entity.db.Admin">
-        SELECT * FROM
-        <include refid="table_name"/>
-    </select>
-    <delete id="deleteEntity" parameterType="java.util.Map">
-        DELETE FROM
-        <include refid="table_name"/>
-        WHERE
-        adminId = #{adminId}
+    <delete id="removeList" parameterType="java.util.Map">
+        DELETE FROM system_admin_role WHERE admin_id = #{adminId}
+        AND role_id IN
+        <foreach collection="list" item="item" index="index" separator="," open="(" close=")">
+            (#{item})
+        </foreach>
     </delete>
-    <sql id="table_name">
-          system_admin
-    </sql>
 </mapper>

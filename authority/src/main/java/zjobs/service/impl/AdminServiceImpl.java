@@ -12,8 +12,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 管理员方法
- * Created by ZJOBS on 2015/3/10.
+ * 管理员服务实现类
+ *
+ * @author jiezhang
+ * @date 2015/3/10
  */
 @Service
 public class AdminServiceImpl extends AbstractService<Admin, AdminDao> implements AdminService {

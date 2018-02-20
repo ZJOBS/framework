@@ -17,7 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 用户控制
- * Created by ZJOBS on 2015/3/10.
+ *
+ * @author ZhangJie
+ * @date 2015/3/10
  */
 @SuppressWarnings("rawtypes")
 @Controller

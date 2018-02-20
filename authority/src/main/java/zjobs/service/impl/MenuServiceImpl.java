@@ -14,9 +14,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * 管理员方法
- * Created by ZJOBS on 2015/3/10.
+ * 菜单服务实现类
+ *
+ * @author jiezhang
+ * @date 2015/3/10
  */
 @Service
 public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements MenuService {

@@ -24,10 +24,10 @@
                 "sSearch": "搜索",
                 "sUrl": "",
                 "oPaginate": {
-                    "sFirst": "第一页",
+                    "sFirst": "首页",
                     "sPrevious": " 上一页 ",
                     "sNext": " 下一页 ",
-                    "sLast": " 最后一页 "
+                    "sLast": " 尾页 "
                 }
             },
             "bProcessing": true, //开启读取服务器数据时显示正在加载中……特别是大数据量的时候，开启此功能比较好
@@ -52,8 +52,9 @@
                 );
             };
             //搜索就是设置参数，然后销毁datatable重新再建一个
-            ${id}DataTable.fnDestroy(false);
             ${id}DataTable = $("#${id}").dataTable($.${id}dataTablesSettings);
+            ${id}DataTable.fnClearTable(); //清空一下table
+            ${id}DataTable.fnDestroy(); //还原初始化了的datatable
             //搜索后跳转到第一页
             ${id}DataTable.fnPageChange(0);
         });

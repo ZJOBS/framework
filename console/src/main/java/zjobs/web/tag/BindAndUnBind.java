@@ -4,34 +4,94 @@ package zjobs.web.tag;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.jsp.JspException;
+import java.util.Map;
 
 /**
  * 一堆多，绑定与解绑模板
  *
  * @author jiezhang
- * Created by  on 2017/6/13.
+ * @date 2017/6/13
  */
 @Component
 public class BindAndUnBind extends AbstractWebUiTag {
-    private String leftId;
-    private String leftQueryUrl;
-    private String deleteUrl;
 
-    private String rightId;
+
+    /**
+     * 源表ID
+     */
+    private String sourceTableId;
+    /**
+     * 点击唤醒位置
+     */
+    private String awakenPosition;
+
+
+    /**
+     * keyName
+     */
+    private String keyName;
+
+    /**
+     * relationName
+     */
+    private String relationName;
+
+    /**
+     * 左边部分请求URL
+     */
+    private String leftQueryUrl;
+    /**
+     * 取消绑定请求URL
+     */
+    private String deleteUrl;
+    /**
+     * 右边部分请求URL
+     */
     private String rightQueryUrl;
+    /**
+     * 添加绑定请求URL
+     */
     private String addUrl;
 
+    /**
+     * Title
+     */
     protected String columnTitle;
+    /**
+     * 名称
+     */
     protected String columnName;
-    protected String columnFormat;
 
-
-    public String getLeftId() {
-        return leftId;
+    public String getSourceTableId() {
+        return sourceTableId;
     }
 
-    public void setLeftId(String leftId) {
-        this.leftId = leftId;
+    public void setSourceTableId(String sourceTableId) {
+        this.sourceTableId = sourceTableId;
+    }
+
+    public String getAwakenPosition() {
+        return awakenPosition;
+    }
+
+    public void setAwakenPosition(String awakenPosition) {
+        this.awakenPosition = awakenPosition;
+    }
+
+    public String getKeyName() {
+        return keyName;
+    }
+
+    public void setKeyName(String keyName) {
+        this.keyName = keyName;
+    }
+
+    public String getRelationName() {
+        return relationName;
+    }
+
+    public void setRelationName(String relationName) {
+        this.relationName = relationName;
     }
 
     public String getLeftQueryUrl() {
@@ -48,14 +108,6 @@ public class BindAndUnBind extends AbstractWebUiTag {
 
     public void setDeleteUrl(String deleteUrl) {
         this.deleteUrl = deleteUrl;
-    }
-
-    public String getRightId() {
-        return rightId;
-    }
-
-    public void setRightId(String rightId) {
-        this.rightId = rightId;
     }
 
     public String getRightQueryUrl() {
@@ -90,14 +142,31 @@ public class BindAndUnBind extends AbstractWebUiTag {
         this.columnName = columnName;
     }
 
-    public String getColumnFormat() {
-        return columnFormat;
-    }
 
-    public void setColumnFormat(String columnFormat) {
-        this.columnFormat = columnFormat;
-    }
+    @Override
+    public Map<String, Object> getData() {
+        Map<String, Object> data = super.getData();
 
+        data.put("id", id);
+        data.put("css", css);
+        data.put("props", props);
+
+
+        data.put("sourceTableId", sourceTableId);
+        data.put("awakenPosition", awakenPosition);
+        data.put("keyName", keyName);
+        data.put("relationName", relationName);
+        data.put("leftQueryUrl", leftQueryUrl);
+        data.put("deleteUrl", deleteUrl);
+        data.put("rightQueryUrl", rightQueryUrl);
+        data.put("addUrl", addUrl);
+        String[] columnTitles = columnTitle.split(",");
+        data.put("columnTitle", columnTitles);
+        data.put("columnName", columnName);
+        data.put("columnLength", columnTitles.length - 1);
+        data.put("columnName", columnName);
+        return data;
+    }
 
     @Override
     public String getStartTemplate() {

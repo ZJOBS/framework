@@ -61,7 +61,7 @@ public class Dict extends BaseEntity {
                 ", code='" + code + '\'' +
                 ", value='" + value + '\'' +
                 ", name='" + name + '\'' +
-                ", id='" + id + '\'' +
+//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

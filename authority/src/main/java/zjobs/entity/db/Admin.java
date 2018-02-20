@@ -66,7 +66,7 @@ public class Admin extends BaseEntity {
                 ", avatar='" + avatar + '\'' +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
-                ", id='" + id + '\'' +
+//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

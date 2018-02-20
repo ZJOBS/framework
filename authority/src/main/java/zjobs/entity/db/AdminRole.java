@@ -1,13 +1,33 @@
 package zjobs.entity.db;
 
+import zjobs.annotation.ForeignTableId;
+import zjobs.annotation.PrimaryTableId;
 import zjobs.entity.BaseEntity;
 
+import javax.persistence.Id;
+
+
 /**
- * Created by jiezhang on 2017/6/21.
+ * 角色用户表实体类
+ *
+ * @author ZhangJie
+ * @date 2017/6/21
  */
 public class AdminRole extends BaseEntity {
+    @Id
+    private String adminRoleId;
+    @PrimaryTableId
     private String adminId;
+    @ForeignTableId
     private String roleId;
+
+    public String getAdminRoleId() {
+        return adminRoleId;
+    }
+
+    public void setAdminRoleId(String adminRoleId) {
+        this.adminRoleId = adminRoleId;
+    }
 
     public String getAdminId() {
         return adminId;
@@ -28,7 +48,9 @@ public class AdminRole extends BaseEntity {
     @Override
     public String toString() {
         return "AdminRole{" +
-                "roleId='" + roleId + '\'' +
+                "adminId='" + adminId + '\'' +
+                ", roleId='" + roleId + '\'' +
+//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +
@@ -36,7 +58,7 @@ public class AdminRole extends BaseEntity {
                 ", sequence=" + sequence +
                 ", createDateStr='" + createDateStr + '\'' +
                 ", updateDateStr='" + updateDateStr + '\'' +
-                ", state=" + state +
+                ", state='" + state + '\'' +
                 ", activating=" + activating +
                 '}';
     }

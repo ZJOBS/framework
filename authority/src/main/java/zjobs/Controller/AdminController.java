@@ -15,6 +15,7 @@ import zjobs.entity.DataTablePage;
 import zjobs.entity.Page;
 import zjobs.entity.UAI;
 import zjobs.entity.db.Admin;
+import zjobs.entity.db.Dict;
 import zjobs.service.AdminService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -83,8 +84,8 @@ public class AdminController extends BaseController {
     public ModelAndView adminIndex(Admin admin, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView();
         try {
-            Page<Admin> page = null;
-            page = adminService.queryPage(admin.toMap(), createPage());
+            DataTablePage<Admin> page = null;
+            page = adminService.queryPage(admin.toMap(), createDataTablePage(admin));
             modelAndView.addObject("page", page);
             modelAndView.setViewName("forward:/admin.do");
         } catch (Exception e) {

@@ -50,7 +50,7 @@ public class Product extends BaseEntity {
                 ", name='" + name + '\'' +
                 ", type='" + type + '\'' +
                 ", image='" + image + '\'' +
-                ", id='" + id + '\'' +
+//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

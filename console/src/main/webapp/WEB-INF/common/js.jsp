@@ -58,6 +58,17 @@
 <script src="${pageContext.request.contextPath}/component/assets/js/ace-elements.min.js"></script>
 <script src="${pageContext.request.contextPath}/component/assets/js/ace.min.js"></script>
 <script src="${pageContext.request.contextPath}/component/Util.js"></script>
+<script src="${pageContext.request.contextPath}/component/Main.js"></script>
+
+
 <script type="text/javascript">
-    var Util = $.createUtil();
+    /**
+     * 工具对象
+     */
+    var util = $.createUtil();
+
+    /**
+     * 主控对象，需要改名，叫Main不好
+     */
+    var main = $.createMain();
 </script>

@@ -1,5 +1,6 @@
 package zjobs.entity;
 
+import zjobs.annotation.PrimaryTableId;
 import zjobs.utils.DataConversionUtil;
 
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ import java.util.Map;
  * Created by Administrator on 2015/2/12.
  */
 public class BaseEntity {
-    protected String id;
+//    protected String id;
 
     protected String createUserName;
 
@@ -41,13 +42,13 @@ public class BaseEntity {
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+//    public String getId() {
+//        return id;
+//    }
+//
+//    public void setId(String id) {
+//        this.id = id;
+//    }
 
     public String getCreateUserName() {
         return createUserName;
@@ -161,7 +162,9 @@ public class BaseEntity {
     }
 
 
-    //    /*获取数据库主键字段的Field*/
+    /**
+     * 获取数据库主键字段的Field,通过@ID标记
+     */
     private Field gainIdField() {
         Field[] fields = this.getClass().getDeclaredFields();
         for (Field field : this.getClass().getDeclaredFields()) {
@@ -172,25 +175,26 @@ public class BaseEntity {
         throw new RuntimeException("undefine POJO @Id");
     }
 
-    public void putIdField() {
-        Field idField = gainIdField();
-        String name = idField.getName();
-        String methodName = "set" + name.toUpperCase().charAt(0) + name.substring(1);
-        Method method = null;
-        try {
-            method = this.getClass().getDeclaredMethod(methodName, String.class);
-            method.invoke(this, new Object[]{getId()});
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            throw new RuntimeException("获取method方法失败。");
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            throw new RuntimeException("设置ID的值失败。");
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-            throw new RuntimeException("设置ID的值失败。");
-        }
-    }
+
+//    public void putIdField() {
+//        Field idField = gainIdField();
+//        String name = idField.getName();
+//        String methodName = "set" + name.toUpperCase().charAt(0) + name.substring(1);
+//        Method method = null;
+//        try {
+//            method = this.getClass().getDeclaredMethod(methodName, String.class);
+//            method.invoke(this, new Object[]{getId()});
+//        } catch (NoSuchMethodException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("获取method方法失败。");
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("设置ID的值失败。");
+//        } catch (InvocationTargetException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("设置ID的值失败。");
+//        }
+//    }
 
     /*获取ID数据*/
     public Object gainKeyValue() {
@@ -234,6 +238,22 @@ public class BaseEntity {
             e.printStackTrace();
             throw new RuntimeException("设置ID的值失败。");
         }
+    }
+
+
+    /**
+     * 获取关联
+     *
+     * @return
+     */
+    private Field gainPrimaryTableIdField() {
+        Field[] fields = this.getClass().getDeclaredFields();
+        for (Field field : this.getClass().getDeclaredFields()) {
+            if (field.isAnnotationPresent(PrimaryTableId.class)) {
+                return field;
+            }
+        }
+        throw new RuntimeException("undefine POJO @Id");
     }
 }
 

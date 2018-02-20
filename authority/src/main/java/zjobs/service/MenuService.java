@@ -7,7 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ZJOBS on 2015/3/10.
+ * 菜单服务接口
+ *
+ * @author jiezhang
+ * @date 2015/3/10
  */
 public interface MenuService extends BaseService<Menu, Exception> {
 

@@ -15,7 +15,7 @@
         /*是否可以变为调用数据字典生成此方法*/
         function formatActivating(data, type, full) {
             return data == 0 ? '禁用' : '启用';
-        };
+        }
     </script>
 </head>
 
@@ -39,20 +39,16 @@
                                 </div>
                                 <div>
                                     <div id="search" class="ibox-tools">
-                                        <input placeholder="名称" id="name" type="text" name="name"
-                                               class="col-xs-10 col-sm-1"/>
-                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                                class="fa fa-search"></i>搜索</a>
-                                        <a id="btn_clear_search" class="btn btn-primary btn-sm"
-                                           href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
-                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                                class="fa fa-plus"></i>添加</a>
+                                        <input placeholder="编号" id="id" type="text" name="id" class="col-xs-10 col-sm-1"/>
+                                        <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
+                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
+                                        <a id="btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
                                     </div>
                                     <%--dynamic-table--%>
 
-
-
-                                    <zj:tableColumn id="dict-table" key="dictId" defaultOperation="YES"
+                                    <zj:tableColumn id="dict" key="dictId" defaultOperation="YES"
+                                                    search="#search"
                                                     queryUrl="/queryDict.do"
                                                     addUrl="/addDict.do"
                                                     editUrl="/updateDict.do"
@@ -62,12 +58,11 @@
                                                     columnName="{'mData': 'dictId'},{'mData': 'parentId'},{'mData': 'code'},{'mData': 'name'},{'mData': 'value'},{'mData': 'activating'}"
                                     />
 
-                                    <zj:irelationtable id="parentMenu" queryUrl="/queryDict.do"
+                                    <zj:irelationtable id="parentDict" queryUrl="/queryDict.do"
                                                        columnTitle="编号,父编号,编码,名称,值,是否启用"
                                                        columnName="{'mData': 'dictId'},{'mData': 'parentId'},{'mData': 'code'},{'mData': 'name'},{'mData': 'value'},{'mData': 'activating'}"
                                                        relation="['dictId','parentId']"
-                                                       width="1000"
-                                    />
+                                                       width="1000"/>
                                 </div>
                             </div>
                         </div>
@@ -86,6 +81,6 @@
 <div id="dialog-confirm" class="hide">
     <jsp:include page="/WEB-INF/dict/form.jsp"/>
 </div>
-</div><!-- /.main-container -->
+<!-- /.main-container -->
 </body>
 </html>

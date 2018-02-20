@@ -57,7 +57,7 @@
                                     </div>
                                     <%--dynamic-table--%>
 
-                                    <zj:tableColumn id="product-table" key="productId" defaultOperation="YES"
+                                    <zj:tableColumn id="product" key="productId" defaultOperation="YES"
                                                     queryUrl="/queryProduct.do"
                                                     addUrl="/addProduct.do"
                                                     editUrl="/updateProduct.do"

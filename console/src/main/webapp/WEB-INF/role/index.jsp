@@ -41,17 +41,13 @@
                                 </div>
                                 <div>
                                     <div id="search" class="ibox-tools">
-                                        <input placeholder="名称" id="name" type="text" name="name"
-                                               class="col-xs-10 col-sm-1"/>
-                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                                class="fa fa-search"></i>搜索</a>
-                                        <a id="btn_clear_search" class="btn btn-primary btn-sm"
-                                           href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
-                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
-                                                class="fa fa-plus"></i>添加</a>
+                                        <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
+                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
+                                        <a id="btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
                                     </div>
 
-                                    <zj:tableColumn id="role-table" key="roleId" defaultOperation="YES"
+                                    <zj:tableColumn id="role" key="roleId" defaultOperation="YES"
                                                     queryUrl="/queryRole.do"
                                                     addUrl="/addRole.do"
                                                     editUrl="/updateRole.do"
@@ -85,10 +81,6 @@
         <jsp:include page="/WEB-INF/role/form.jsp"/>
     </div>
 
-    <div id="dialog-bindAndUnbind" class="hide">
-        <zj:iBindAndUnbind leftId="11" leftQueryUrl="22" deleteUrl="33" rightId="44" rightQueryUrl="55" addUrl="66" columnName="77"
-                           columnTitle="88"></zj:iBindAndUnbind>
-    </div>
 </div><!-- /.main-container -->
 </body>
 </html>

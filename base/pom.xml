@@ -118,9 +118,9 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>zjobs</groupId>-->
-            <!--<artifactId>common</artifactId>-->
-            <!--<version>1.0-SNAPSHOT</version>-->
+        <!--<groupId>zjobs</groupId>-->
+        <!--<artifactId>common</artifactId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
         <!--</dependency>-->
 
         <!--mybatis start  注意 高版本 mybatis不支持DefaultParameterHandler 类-->
@@ -202,10 +202,6 @@
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
         <!--redis end-->
-
-
-
-
 
 
         <!-- JACKSON START-->
@@ -292,6 +288,14 @@
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <!-- tomcat jstl、jsp 等类库 start-->
+
+        <!--netty start-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+        <!--netty end-->
+
 
         <!--logback日志 START-->
         <dependency>

@@ -17,7 +17,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by ZhangJie on 2016/2/14.
+ * 抽象公共服务
+ *
+ * @author jiezhang
+ * @date 2016/2/14
  */
 public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T, Exception>> implements BaseService<T, Exception> {
     @Autowired
@@ -59,6 +62,7 @@ public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T,
         dao.insertEntity(entity.toMap());
         return Integer.parseInt("0");
     }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public int removeEntity(T entity) throws Exception {
@@ -69,23 +73,18 @@ public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T,
         }
         return dao.deleteEntity(entity.toMap());
     }
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public int modifyEntity(T entity) throws Exception {
         return dao.updateEntity(entity.toMap());
     }
+
     @Override
     public T findEntity(T entity) throws Exception {
         return dao.selectEntity(entity.toMap());
     }
 
-    @Override
-    public Page queryPage(Map parameters, Page page) throws Exception {
-        page.setParams(parameters);
-        List<T> list = dao.queryPage(page);
-        page.setRows(list);
-        return page;
-    }
     @Override
     public DataTablePage queryPage(Map parameters, DataTablePage page) throws Exception {
         page.setParams(parameters);
@@ -93,11 +92,13 @@ public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T,
         page.setAaData(list);
         return page;
     }
+
     @Override
     public int disable(T entity) throws Exception {
         entity.setState(BaseConstants.DISABLE);
         return modifyEntity(entity);
     }
+
     @Override
     public int enable(T entity) throws Exception {
         entity.setState(BaseConstants.ENABLE);

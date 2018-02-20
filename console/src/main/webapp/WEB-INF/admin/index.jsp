@@ -21,6 +21,10 @@
             var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
             return "<img src='" + URL + "' height='50' width='50'/>"
         };
+
+        function showRole() {
+            return "<a class='green showRole' href='#'> <i class='ace-icon fa fa-user bigger-130'></i> </a>";
+        };
     </script>
 </head>
 
@@ -45,20 +49,24 @@
                                 </div>
                                 <div>
                                     <div id="search" class="ibox-tools">
-                                        <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
-
-                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
-                                        <a id="btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
-                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
+                                        <input placeholder="名称" id="name" type="text" name="name"
+                                               class="col-xs-10 col-sm-1"/>
+                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                class="fa fa-search"></i>搜索</a>
+                                        <a id="btn_clear_search" class="btn btn-primary btn-sm"
+                                           href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                class="fa fa-plus"></i>添加</a>
                                     </div>
 
-                                    <zj:tableColumn id="admin-table" key="adminId" defaultOperation="YES"
+                                    <zj:tableColumn id="admin" key="adminId" defaultOperation="YES"
                                                     queryUrl="/queryAdmin.do"
                                                     addUrl="/addAdmin.do"
                                                     editUrl="/updateAdmin.do"
                                                     deleteUrl="/deleteAdmin.do"
                                                     columnTitle="编号,姓名,头像,是否激活,描述"
                                                     columnName="{'mData': 'adminId'},{'mData': 'name'},{'mData': 'avatar'},{'mData': 'activating'},{'mData': 'description'}"
+                                                    customOperation="showRole()"
                                     />
                                 </div>
                             </div>
@@ -71,7 +79,7 @@
     </div><!-- /.main-content -->
 
     <%--<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">--%>
-        <%--<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>--%>
+    <%--<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>--%>
     <%--</a>--%>
 
 
@@ -82,6 +90,20 @@
     </div>
     <div id="dialog-confirm" class="hide">
         <jsp:include page="/WEB-INF/admin/form.jsp"/>
+    </div>
+    <div id="dialog-bindAndUnbind">
+        <zj:iBindAndUnbind id="adminBindRole"
+                           sourceTableId="admin"
+                           awakenPosition=".showRole"
+                           keyName="adminId"
+                           relationName="roleId"
+                           leftQueryUrl="/queryAdminBindRole.do"
+                           deleteUrl="/unbindAdminRole.do"
+                           rightQueryUrl="/queryAdminNotBindRole.do"
+                           addUrl="/bindAdminRole.do"
+                           columnTitle="编号,名称,是否启用"
+                           columnName="{'mData': 'roleId'},{'mData': 'name'},{'mData': 'activating'}"
+        />
     </div>
 </div><!-- /.main-container -->
 </body>
