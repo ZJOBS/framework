@@ -242,6 +242,14 @@
                 <version>1.1</version>
             </dependency>
 
+            <!--netty start-->
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-all</artifactId>
+                <version>4.1.19.Final</version>
+            </dependency>
+            <!--netty end-->
+
 
             <dependency>
                 <groupId>junit</groupId>

@@ -10,7 +10,7 @@
 <body>
 <form class="form-horizontal" role="form" enctype="multipart/form-data">
     <div class="form-group hide">
-        <label class="col-sm-3 control-label no-padding-right">父编号</label>
+        <label class="col-sm-3 control-label no-padding-right">编号</label>
         <div class="col-sm-9">
             <input name="dictId" type="text" class="col-xs-10 col-sm-5">
         </div>

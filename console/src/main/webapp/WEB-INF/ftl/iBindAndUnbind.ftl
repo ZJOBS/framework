@@ -163,15 +163,12 @@
             $.ajax({
                 url: "${contextPath}${addUrl}",
                 type: 'post',
-                data: {${relationName}s: ids.join(","),${keyName}:
-            ${keyName}Bind
-        },
-            success: function (result) {
-                ${id}LeftDataTable.api().ajax.reload();
-                ${id}RightDataTable.api().ajax.reload();
-            }
-        })
-            ;
+                data: {${relationName}s: ids.join(","),${keyName}:${keyName}Bind},
+                success: function (result) {
+                    ${id}LeftDataTable.api().ajax.reload();
+                    ${id}RightDataTable.api().ajax.reload();
+                }
+            });
         });
 
 
@@ -254,7 +251,6 @@
         <span class="info-container">
             <span class="info">未绑定</span>
         </span>
-        <input class="filter form-control" type="text" placeholder="Filter">
         <div id="${id}RightSearch" class="ibox-tools">
             <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
             <a id="${id}Right_btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>

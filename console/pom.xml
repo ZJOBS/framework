@@ -135,7 +135,6 @@
     </dependencies>
     <build>
         <finalName>console</finalName>
-
         <sourceDirectory>src/main/java</sourceDirectory>
         <resources>
             <resource>

@@ -145,8 +145,7 @@
 
         $("body").delegate(".delete", "click", function () {
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-            var ${key} =
-            data.${key};
+            var ${key} = data.${key};
             $("#delete").removeClass("hide").dialog({
                 resizable: false,
                 width: 500,

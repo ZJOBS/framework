@@ -4,6 +4,11 @@ import zjobs.entity.BaseEntity;
 
 import javax.persistence.Id;
 
+/**
+ * 字典对象
+ *
+ * @author jiezhang
+ */
 public class Dict extends BaseEntity {
     public static String STATE_DEFAULT = "0";
     @Id

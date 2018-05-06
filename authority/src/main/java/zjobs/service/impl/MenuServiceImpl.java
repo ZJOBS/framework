@@ -28,6 +28,9 @@ public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements M
 
     @Override
     public void updateRedisMenu() throws Exception {
+
+        //获取用户信息
+
         JSONArray jsonArray = getTreeMenu();
         redisService.put("menu", "menu", jsonArray.toString());
     }

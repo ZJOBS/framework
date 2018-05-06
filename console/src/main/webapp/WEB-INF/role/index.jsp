@@ -18,7 +18,7 @@
         };
 
         function showUser() {
-            return "<a class='green showUser' href='#'> <i class='ace-icon fa fa-user bigger-130'></i> </a>";
+            return "<a class='green showUser' href='#' > <i class='ace-icon fa fa-bars bigger-130'></i> </a>";
         }
     </script>
 </head>

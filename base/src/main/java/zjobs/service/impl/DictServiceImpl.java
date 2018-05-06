@@ -14,14 +14,15 @@ import zjobs.service.AbstractService;
 import zjobs.service.DictService;
 
 /**
- * Created by Administrator on 2015/3/9.
+ * @author Administrator
+ * @date 2015/3/9
  */
 @Service
-public class DictServiceImpl  extends AbstractService<Dict,DictDao> implements DictService {
+public class DictServiceImpl extends AbstractService<Dict, DictDao> implements DictService {
 
     @Override
     public void injectionDictMap() {
-
+        
     }
 
 }
