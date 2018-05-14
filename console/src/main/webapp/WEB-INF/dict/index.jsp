@@ -55,7 +55,7 @@
                                                     deleteUrl="/deleteDict.do"
                                                     columnTitle="编号,父编号,编码,名称,值,是否启用"
                                                     columnFormat="{'aTargets': 5, 'mRender': formatActivating}"
-                                                    columnName="{'mData': 'dictId'},{'mData': 'parentId'},{'mData': 'code'},{'mData': 'name'},{'mData': 'value'},{'mData': 'activating'}"
+                                                    columnName="{'mData': 'dictId'},{'mData': 'parentId'},{'mData': 'code'},{'mData': 'name'},{'mData': 'value'},{'mData': 'activating','type':'checkbox'}"
                                     />
 
                                     <zj:irelationtable id="parentDict" queryUrl="/queryDict.do"

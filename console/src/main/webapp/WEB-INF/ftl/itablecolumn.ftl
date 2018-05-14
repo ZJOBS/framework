@@ -85,8 +85,12 @@
         });
         $("body").delegate(".update", "click", function () {
             //获取当前选择的参数,填入updata的数据中
+
+
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-            var $update_dialog = $("#dialog-confirm").removeClass("hide");
+            var $update_dialog = $("#dialog-confirm").clone(true).removeClass("hide");
+            $update_dialog.attr('id', '#dialog-confirm2');
+
             $update_dialog.dialog({
                 resizable: false,
                 width: 500,
@@ -139,13 +143,23 @@
                 droppable: true,
                 thumbnail: 'small'
             });
-            util.setFormInput('#dialog-confirm', data);
+            util.setFormInputByJquery($update_dialog, data);
 
+
+            //checkBox启动功能,当数据为1时，checked为switch按钮显示ON状态
+            var columnNames = [${columnName}];
+            for (var i = 0; i < columnNames.length; i++) {
+                //包含类别的时候
+                if ('type' in columnNames[i] && data[columnNames[i].mData] == 1) {
+                    $update_dialog.find('input[name=' + columnNames[i].mData + ']').attr('checked', 'checked');
+                }
+            }
         });
 
         $("body").delegate(".delete", "click", function () {
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-            var ${key} = data.${key};
+            var ${key} =
+            data.${key};
             $("#delete").removeClass("hide").dialog({
                 resizable: false,
                 width: 500,

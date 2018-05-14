@@ -29,6 +29,23 @@ Util.prototype = {
             }
         }
     },
+    setFormInputByJquery: function ($div, data) {
+        var $inputs = $div.find("input," + "textarea", "select");
+        for (var i = 0; i < $inputs.length; i++) {
+            var name = $inputs.eq(i).attr("name");
+            if (!name) {
+                continue;
+            }
+            var value = data[name];
+            $inputs.eq(i).val(value);
+            //如果是select类型 设置默认值
+            if ("SELECT" == $inputs.eq(i)[0].tagName) {
+                $inputs.find(" option[value=" + value + "]").attr("selected", true)
+            }
+        }
+    }
+    ,
+
     /**
      * 获取表单中的数据
      * @param id 标签属性
@@ -49,7 +66,9 @@ Util.prototype = {
             obj[name] = value;
         }
         return obj;
-    }, getFromContainNull: function (id) {
+    }
+    ,
+    getFromContainNull: function (id) {
         var obj = {};
         var $inputs = $(id + " input," + id + " textarea," + id + " select");
         for (var i = 0; i < $inputs.length; i++) {
@@ -67,7 +86,8 @@ Util.prototype = {
             obj[name] = value;
         }
         return obj;
-    },
+    }
+    ,
     /**
      * 清空表单中的数据
      * @param id  标签属性
@@ -81,7 +101,8 @@ Util.prototype = {
             }
             $inputs.eq(i).val("");
         }
-    },
+    }
+    ,
     /**
      * 生成不重复UUID算法
      * @returns {string}
@@ -98,7 +119,8 @@ Util.prototype = {
 
         var uuid = s.join("");
         return uuid;
-    },
+    }
+    ,
     setTable: function (array, $tbody, $TrTemp) {
         $tbody.html("");
         for (var i = 0; i < array.length; i++) {
@@ -107,13 +129,15 @@ Util.prototype = {
             setTr(data, $tr);
             $tbody.append($tr);
         }
-    },
+    }
+    ,
     setTr: function (data, $tr) {
         $tr.data(data);
         for (key in data) {
             $tr.find('.' + key).html(data[key] + "");
         }
-    },
+    }
+    ,
     /**
      * 只要包含小数就进位
      * @param 数字类型 v
@@ -126,7 +150,8 @@ Util.prototype = {
         }
         return v;
     }
-};
+}
+;
 jQuery.extend({
     createUtil: function () {
         return new Util();

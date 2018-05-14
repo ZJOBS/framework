@@ -53,7 +53,7 @@
                                                     editUrl="/updateRole.do"
                                                     deleteUrl="/deleteRole.do"
                                                     columnTitle="编号,名称,是否启用"
-                                                    columnName="{'mData': 'roleId'},{'mData': 'name'},{'mData': 'activating'}"
+                                                    columnName="{'mData': 'roleId'},{'mData': 'name'},{'mData': 'activating','type':'checkbox'}"
                                                     columnFormat="{'aTargets': 2, 'mRender': formatActivating}"
                                                     customOperation="showUser()"
                                     />

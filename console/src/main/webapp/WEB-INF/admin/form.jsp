@@ -27,19 +27,19 @@
 
     <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right">激活</label>
- <%--       <div class="col-xs-3">
-            <label>
-                <input name="activating" class="ace ace-switch ace-switch-4" type="checkbox">
-                <span class="lbl"></span>
-            </label>
-        </div>--%>
-
         <div class="col-xs-3">
             <label>
                 <input name="activating" class="ace ace-switch ace-switch-4" type="checkbox">
                 <span class="lbl"></span>
             </label>
         </div>
+
+        <%--<div class="col-xs-3">--%>
+            <%--<label>--%>
+                <%--<input name="activating" class="ace ace-switch ace-switch-4" type="checkbox">--%>
+                <%--<span class="lbl"></span>--%>
+            <%--</label>--%>
+        <%--</div>--%>
     </div>
 
 
