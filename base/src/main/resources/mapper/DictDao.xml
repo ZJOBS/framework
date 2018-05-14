@@ -56,7 +56,7 @@
         </where>
     </select>
 
-    <select id="queryAll" resultType="zjobs.entity.db.Dict">
+    <select id="selectAll" resultType="zjobs.entity.db.Dict">
         SELECT * FROM
         <include refid="table_name"/>
     </select>

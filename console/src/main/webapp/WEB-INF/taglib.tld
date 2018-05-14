@@ -196,4 +196,24 @@
         </attribute>
 
     </tag>
+
+    <!--select-->
+    <tag>
+        <description>select</description>
+        <name>iselect</name>
+        <tag-class>zjobs.web.tag.Select</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>code</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>template</name>
+            <required>false</required>
+        </attribute>
+    </tag>
 </taglib>

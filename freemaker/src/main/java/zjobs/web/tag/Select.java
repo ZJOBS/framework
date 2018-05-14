@@ -1,9 +1,15 @@
 package zjobs.web.tag;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.google.gson.JsonArray;
+import zjobs.Constant.RedisConstants;
 import zjobs.context.SpringContext;
 import zjobs.service.MenuService;
 
 import javax.servlet.jsp.JspException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -43,12 +49,15 @@ public class Select extends AbstractWebUiTag {
     public Map<String, Object> getData() {
         try {
             Map<String, Object> data = super.getData();
-            MenuService menuService = SpringContext.getBean("dictServiceImpl");
+            //form表单名称
+            data.put("name", name);
 
-            //获取对应的数据
-//            JSONArray jsonArray = menuService.getTreeMenu();
-//            data.put("treeMenu", jsonArray);
-//            data.put("id", id);
+            JSONObject selectJson = JSONObject.parseObject(redisService.get(RedisConstants.DICT, code).toString());
+            //整个select的名称
+            data.put("label", selectJson.get("name"));
+            List<Map<String, String>> list = new LinkedList<Map<String, String>>();
+            JSONArray array = selectJson.getJSONArray("value");
+            data.put("options", array);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -11,18 +11,20 @@ import zjobs.service.RedisService;
 import javax.servlet.ServletContext;
 
 /**
- * Created by jiezhang on 2017/6/15.
+ * 数据字典初始化器
+ *
+ * @author jiezhang
+ * @date 2017/6/15
  */
 @Component
 public class InitDictListener implements InitializingBean, ServletContextAware {
     @Autowired
     private DictService dictService;
-    @Autowired
-    private RedisService redisService;
+
 
     @Override
     public void afterPropertiesSet() throws Exception {
-
+        dictService.resetRedisDict();
     }
 
     @Override

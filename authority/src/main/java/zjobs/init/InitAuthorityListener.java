@@ -17,7 +17,9 @@ import java.util.List;
 
 /**
  * 随系统启动
- * Created by ZJOBS on 2015/2/22.
+ *
+ * @author ZJOBS
+ * @date 2015/2/22
  */
 @Component
 public class InitAuthorityListener implements InitializingBean, ServletContextAware {
@@ -28,9 +30,7 @@ public class InitAuthorityListener implements InitializingBean, ServletContextAw
 
     @Override
     public void afterPropertiesSet() throws Exception {
-         menuService.updateRedisMenu();
-//        JSONArray jsonArray = menuService.getTreeMenu();
-//        redisService.put("menu", "menu", jsonArray.toString());
+        menuService.updateRedisMenu();
     }
 
     @Override

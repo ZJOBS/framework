@@ -1,12 +1,22 @@
 package zjobs.service;
 
 import zjobs.entity.db.Dict;
+
+
 /**
- * Created by ZJOBS on 2015/2/22.
+ * 数据字典服务
+ *
+ * @author jiezhang
  */
-public interface DictService extends BaseService<Dict,Exception> {
+public interface DictService extends BaseService<Dict, Exception> {
     /**
-     * 注入字典
+     * 重置redis中的数据字典
      */
-    public void injectionDictMap();
+    public void resetRedisDict() throws Exception;
+
+
+    /**
+     * 更新redis中的数据字典
+     */
+    public void updateRedisDict() throws Exception;
 }

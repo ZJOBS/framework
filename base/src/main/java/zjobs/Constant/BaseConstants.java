@@ -2,7 +2,8 @@ package zjobs.Constant;
 
 /**
  * 常量
- * Created by Administrator on 2015/3/10.
+ *
+ * @author jiezhang
  */
 public class BaseConstants {
     /**

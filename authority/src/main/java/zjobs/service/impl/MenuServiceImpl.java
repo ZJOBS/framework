@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import zjobs.Constant.RedisConstants;
 import zjobs.dao.MenuDao;
 import zjobs.entity.db.Menu;
 import zjobs.service.AbstractService;
@@ -28,11 +29,9 @@ public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements M
 
     @Override
     public void updateRedisMenu() throws Exception {
-
         //获取用户信息
-
         JSONArray jsonArray = getTreeMenu();
-        redisService.put("menu", "menu", jsonArray.toString());
+        redisService.put(RedisConstants.MENU, RedisConstants.MENU, jsonArray.toString());
     }
 
     @Override

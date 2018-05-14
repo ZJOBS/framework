@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="zj" uri="http://www.zjobs.cn/jsp/jstl" %>
 <html>
 <body>
 
@@ -35,10 +36,10 @@
         </div>
 
         <%--<div class="col-xs-3">--%>
-            <%--<label>--%>
-                <%--<input name="activating" class="ace ace-switch ace-switch-4" type="checkbox">--%>
-                <%--<span class="lbl"></span>--%>
-            <%--</label>--%>
+        <%--<label>--%>
+        <%--<input name="activating" class="ace ace-switch ace-switch-4" type="checkbox">--%>
+        <%--<span class="lbl"></span>--%>
+        <%--</label>--%>
         <%--</div>--%>
     </div>
 
@@ -54,6 +55,14 @@
         <label class="col-sm-3 control-label no-padding-right">描述</label>
         <div class="col-xs-12 col-sm-5">
             <textarea name="description" class="form-control" rows="3"></textarea>
+        </div>
+    </div>
+
+    <%--测试select--%>
+    <div class="form-group">
+        <label class="col-sm-3 control-label no-padding-right">测试</label>
+        <div class="col-xs-12 col-sm-5">
+            <zj:iselect name="test" code="Gander"></zj:iselect>
         </div>
     </div>
 </form>

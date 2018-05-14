@@ -48,6 +48,7 @@
                                     </div>
 
                                     <zj:tableColumn id="role" key="roleId" defaultOperation="YES"
+                                                    search="#search"
                                                     queryUrl="/queryRole.do"
                                                     addUrl="/addRole.do"
                                                     editUrl="/updateRole.do"

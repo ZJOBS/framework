@@ -64,7 +64,8 @@
                                                     deleteUrl="/deleteProduct.do"
                                                     columnTitle="产品编号,产品名称,类型,图片,状态"
                                                     columnFormat="{'aTargets': 4, 'mRender': formatState},{'aTargets': 3, 'mRender': formatImage}"
-                                                    columnName="{'mData': 'productId'},{'mData': 'name'},{'mData': 'type'},{'mData': 'image'},{'mData': 'state'}"
+                                                    columnName="{'mData': 'productId'},{'mData': 'name'},{'mData': 'type'},{'mData': 'image'},{'mData': 'state','type':'checkbox'}"
+                                                    formId="dialog-confirm"
                                                     />
 
 
