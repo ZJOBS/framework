@@ -67,6 +67,7 @@
                                                     columnTitle="编号,姓名,头像,是否激活,描述"
                                                     columnName="{'mData': 'adminId'},{'mData': 'name'},{'mData': 'avatar'},{'mData': 'activating','type':'checkbox'},{'mData': 'description'}"
                                                     customOperation="showRole()"
+                                                    formId="dialog-confirm"
                                     />
                                 </div>
                             </div>

@@ -63,6 +63,7 @@
                                                     deleteUrl="/deleteMenu.do"
                                                     columnTitle="编号,父编号,名称,地址,图片,是否启用,是否子节点"
                                                     columnName="{'mData': 'menuId'},{'mData': 'parentId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'image'},{'mData': 'activating','type':'checkbox'},{'mData': 'leaf','type':'checkbox'}"
+                                                    formId="dialog-confirm"
                                     />
 
                                     <zj:irelationtable id="parentMenu" queryUrl="/queryMenu.do"

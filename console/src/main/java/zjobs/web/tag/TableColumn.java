@@ -19,6 +19,10 @@ public class TableColumn extends AbstractWebUiTag {
     protected String defaultOperation;
     protected String customOperation;
     protected String key;
+    /**
+     * form 表单ID
+     */
+    protected String formId;
 
     public String getCaption() {
         return caption;
@@ -116,6 +120,15 @@ public class TableColumn extends AbstractWebUiTag {
         this.key = key;
     }
 
+
+    public String getFormId() {
+        return formId;
+    }
+
+    public void setFormId(String formId) {
+        this.formId = formId;
+    }
+
     @Override
     public String getStartTemplate() {
         if (template != null && !template.equals("")) {
@@ -152,6 +165,7 @@ public class TableColumn extends AbstractWebUiTag {
         data.put("columnFormat", columnFormat);
         data.put("defaultOperation", defaultOperation);
         data.put("customOperation", customOperation);
+        data.put("formId", formId);
         return data;
     }
 

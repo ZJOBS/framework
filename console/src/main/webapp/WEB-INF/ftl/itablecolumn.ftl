@@ -83,13 +83,15 @@
             oSettings._iDisplayStart = 0;
             main.${id}dataTable.fnDraw(oSettings);
         });
+
+
+        <#if editUrl?exists>
         $("body").delegate(".update", "click", function () {
             //获取当前选择的参数,填入updata的数据中
 
 
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-            var $update_dialog = $("#dialog-confirm").clone(true).removeClass("hide");
-            $update_dialog.attr('id', '#dialog-confirm2');
+            var $update_dialog = $("#${formId}").clone(true).removeClass("hide");
 
             $update_dialog.dialog({
                 resizable: false,
@@ -155,7 +157,9 @@
                 }
             }
         });
+        </#if>
 
+        <#if deleteUrl?exists>
         $("body").delegate(".delete", "click", function () {
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
             var ${key} =
@@ -205,10 +209,11 @@
                 ]
             });
         });
+        </#if>
 
-
+        <#if addUrl?exists>
         $("body").delegate("#add", "click", function () {
-            var $add_dialog = $("#dialog-confirm").removeClass("hide");
+            var $add_dialog = $("#${formId}").removeClass("hide");
             //单文件上传
             $add_dialog.find('input[type=file]').ace_file_input({
                 style: 'well',
@@ -264,7 +269,7 @@
 
 
         });
-
+        </#if>
 
     });
 

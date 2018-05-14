@@ -56,6 +56,7 @@
                                                     columnName="{'mData': 'roleId'},{'mData': 'name'},{'mData': 'activating','type':'checkbox'}"
                                                     columnFormat="{'aTargets': 2, 'mRender': formatActivating}"
                                                     customOperation="showUser()"
+                                                    formId="dialog-confirm"
                                     />
                                 </div>
                             </div>
