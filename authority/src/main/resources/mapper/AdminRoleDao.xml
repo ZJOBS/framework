@@ -5,9 +5,9 @@
         SELECT sr.*
         FROM system_role sr
         LEFT JOIN system_admin_role sar ON sr.roleId = sar.role_id
-        LEFT JOIN system_admin sa ON sa.adminId = sar.admin_id
+        LEFT JOIN system_admin sa ON sa.admin_id = sar.admin_id
         <where>
-            sa.adminId = #{params.adminId}
+            sa.admin_id = #{params.adminId}
         </where>
     </select>
 
@@ -18,10 +18,10 @@
             SELECT *
             FROM (SELECT sr.*
                   FROM system_role sr
-                    LEFT JOIN system_admin_role sar ON sr.roleId = sar.role_id
-                    LEFT JOIN system_admin sa ON sa.adminId = sar.admin_id
+                    LEFT JOIN system_admin_role sar ON sr.role_id = sar.role_id
+                    LEFT JOIN system_admin sa ON sa.admin_id = sar.admin_id
                   WHERE sar.admin_id = #{params.adminId}) aaa
-            WHERE sr.roleId = aaa.roleId
+            WHERE sr.role_id = aaa.role_id
 )
     </select>
 

@@ -8,13 +8,49 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * Created by Administrator on 2015/6/12.
+ * 日期工具类
+ *
+ * @author ZhangJie
+ * @date 2015/6/12
  */
 public class DateUtil {
+
     /**
-     * 获取日期
+     * 时间格式(yyyyMMdd)
+     */
+    public final static String DATE_PATTERN = "yyyyMMdd";
+
+    /**
+     * 时间格式(yyyy年MM月dd日)
+     */
+    public final static String DATE_CH_PATTERN = "yyyy年MM月dd日";
+
+
+    /**
+     * 时间格式(yyyy年MM月dd日 HH时mm分ss秒)
+     */
+    public final static String DATE_TIME_CH_PATTERN = "yyyy年MM月dd日 HH时mm分ss秒";
+
+
+    /**
+     * 时间格式去除特殊字符
+     *
+     * @param sDate
+     * @return
+     */
+    public static String matchSEDate(String sDate) {
+        String regEx = "[`~!@#$%^&*()+=|{}':;',//[//].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？-]";
+        Pattern p = Pattern.compile(regEx);
+        Matcher m = p.matcher(sDate);
+        return m.replaceAll("").replaceAll(" ", "");
+    }
+
+    /**
+     * 获取距离当前日期多少天的日期
      *
      * @param format 日期格式
      * @param op     +1 加1  -1 减1
@@ -41,19 +77,6 @@ public class DateUtil {
         Date date = sdf.parse(dateStr);
         calendar.setTime(date);
         return sdf.format(calendar.getTime());
-    }
-
-    public static String datetrans(XMLGregorianCalendar calendar) {
-        DateFormat d = new SimpleDateFormat("yyyyMMddHHmmss");
-        return d.format(calendar.toGregorianCalendar().getTime());
-
-    }
-
-
-    public static String datetrans1(XMLGregorianCalendar calendar) {
-        DateFormat d = new SimpleDateFormat("yyyy年MM月dd日HH点mm分");
-        return d.format(calendar.toGregorianCalendar().getTime());
-
     }
 
     /**
@@ -96,18 +119,36 @@ public class DateUtil {
         return "";
     }
 
-    //写个两种格式互相转换
-    public static void main(String[] args) {
+    /**
+     * 推算距离date多少时间的一个日期，以前负数，将来正数,
+     *
+     * @param dateStr 指标日期
+     * @param yy      年
+     * @param mm      月
+     * @param dd      日
+     * @return 日期 yyyyMMdd
+     */
+    public static String calculation(String dateStr, int yy, int mm, int dd) {
+        SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+        Date date = null;
         try {
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-            SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date date = formatter.parse("20150311152010");
-            System.out.println(date.toString());
-            String d = formatter2.format(date);
-            System.out.println(d);
+            date = formatter.parse(dateStr);
         } catch (ParseException e) {
+            //保证传入参数dateStr为时间格式包含年月日 parse方法不会抛异常
             e.printStackTrace();
         }
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.YEAR, yy);
+        calendar.add(Calendar.MONTH, mm);
+        calendar.add(Calendar.DAY_OF_YEAR, dd);
+        return formatter.format(calendar.getTime());
     }
+
+
+    public static String getTodayDate() {
+        return new SimpleDateFormat(DATE_PATTERN).format(new Date());
+    }
+
 }
 

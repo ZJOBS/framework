@@ -24,15 +24,6 @@ public class Menu extends BaseEntity {
         this.menuId = menuId;
     }
 
-//    @Override
-//    public String getId() {
-//        return id;
-//    }
-//    @Override
-//    public void setId(String id) {
-//        this.id = id;
-//    }
-
     public String getParentId() {
         return parentId;
     }

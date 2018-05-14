@@ -1,6 +1,7 @@
 package zjobs.web.tag;
+
+
 import org.springframework.stereotype.Component;
-import zjobs.web.tag.AbstractWebUiTag;
 
 import javax.servlet.jsp.JspException;
 import java.util.Map;

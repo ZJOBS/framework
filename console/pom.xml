@@ -16,6 +16,12 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>zjobs</groupId>
+            <artifactId>freemaker</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!-- data source start -->
         <dependency>
             <groupId>mysql</groupId>
@@ -24,9 +30,9 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>com.alibaba</groupId>-->
-            <!--<artifactId>druid</artifactId>-->
-            <!--<version>1.0.4</version>-->
+        <!--<groupId>com.alibaba</groupId>-->
+        <!--<artifactId>druid</artifactId>-->
+        <!--<version>1.0.4</version>-->
         <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
         <dependency>
@@ -129,9 +135,6 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
         </dependency>
-
-
-
     </dependencies>
     <build>
         <finalName>console</finalName>

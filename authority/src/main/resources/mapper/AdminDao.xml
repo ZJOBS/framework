@@ -3,7 +3,7 @@
 <mapper namespace="zjobs.dao.AdminDao">
     <insert id="insertEntity" parameterType="java.util.Map">
         INSERT INTO system_admin
-        (adminId,name,activating,password,description)
+        (admin_id,name,activating,password,description)
         VALUE(#{adminId},#{name},#{activating},#{password},#{description})
     </insert>
 
@@ -15,14 +15,14 @@
             <if test="activating != null">activating =#{activating},</if>
             <if test="description != null">description =#{description}</if>
         </set>
-        where adminId=#{adminId}
+        where admin_id=#{adminId}
     </update>
 
     <select id="selectEntity" parameterType="java.util.Map" resultType="zjobs.entity.db.Admin">
         SELECT * FROM system_admin
         <where>
             <if test="adminId!=null and adminId!=''">
-                adminId = #{adminId}
+                admin_id = #{adminId}
             </if>
             <if test="name!=null and name!=''">
                 AND name = #{name}
@@ -38,7 +38,7 @@
         <include refid="table_name"/>
         <where>
             <if test="params.adminId!=null and params.adminId!=''">
-                adminId = #{params.adminId}
+                admin_id = #{params.adminId}
             </if>
             <if test="params.name!=null and params.name!=''">
                 AND name = #{params.name}
@@ -54,7 +54,7 @@
         DELETE FROM
         <include refid="table_name"/>
         WHERE
-        adminId = #{adminId}
+        admin_id = #{adminId}
     </delete>
     <sql id="table_name">
           system_admin

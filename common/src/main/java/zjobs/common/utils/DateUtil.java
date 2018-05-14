@@ -14,7 +14,7 @@ import java.util.Date;
  */
 public class DateUtil {
     /**
-     * 获取日期
+     * 获取距离当前日期多少天的日期
      *
      * @param format 日期格式
      * @param op     +1 加1  -1 减1

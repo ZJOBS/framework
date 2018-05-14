@@ -1,16 +1,18 @@
 package zjobs.web.tag;
+
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.stereotype.Component;
 import zjobs.context.SpringContext;
 import zjobs.service.MenuService;
-import zjobs.web.tag.AbstractWebUiTag;
 
 import javax.servlet.jsp.JspException;
 import java.util.Map;
 
 /**
  * 手风琴菜单
- * Created by jiezhang on 2017/6/13.
+ *
+ * @author jiezhang
+ * @date 2017/6/13
  */
 @Component
 public class Accordion extends AbstractWebUiTag {

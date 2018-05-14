@@ -49,13 +49,16 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
     <!--<bean id="paginationInterceptor" name="paginationInterceptor" class="zjobs.filter.PaginationInterceptor"></bean>-->
-    <bean id="paginationInterceptor" name="paginationInterceptor" class="zjobs.filter.DataTablePaginationInterceptor"></bean>
+    <bean id="paginationInterceptor" name="paginationInterceptor"
+          class="zjobs.filter.DataTablePaginationInterceptor"></bean>
     <!-- zjobs.dao -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <!---->
         <property name="typeAliasesPackage" value="zjobs.entity"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+
         <property name="plugins">
             <list>
                 <ref bean="paginationInterceptor"/>

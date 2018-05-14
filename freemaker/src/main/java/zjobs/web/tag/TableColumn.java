@@ -1,5 +1,4 @@
 package zjobs.web.tag;
-import zjobs.web.tag.AbstractWebUiTag;
 
 import javax.servlet.jsp.JspException;
 import java.util.Map;

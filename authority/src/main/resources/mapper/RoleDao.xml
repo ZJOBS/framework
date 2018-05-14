@@ -4,7 +4,7 @@
     <insert id="insertEntity" parameterType="java.util.Map">
         INSERT INTO
         <include refid="table_name"/>
-        (roleId,name,activating,description)
+        (role_id,name,activating,description)
         VALUE(#{roleId},#{name},#{activating},#{description})
     </insert>
 
@@ -16,7 +16,7 @@
             <if test="activating != null">activating =#{activating},</if>
             <if test="description != null">description =#{description}</if>
         </set>
-        where roleId=#{roleId}
+        where role_id=#{roleId}
     </update>
 
     <select id="selectEntity" parameterType="java.util.Map" resultType="zjobs.entity.db.Role">
@@ -24,7 +24,7 @@
         <include refid="table_name"/>
         <where>
             <if test="roleId!=null and roleId!=''">
-                roleId = #{roleId}
+                role_id = #{roleId}
             </if>
             <if test="name!=null and name!=''">
                 AND name = #{name}
@@ -38,10 +38,10 @@
         <include refid="table_name"/>
         <where>
             <if test="params.menuId!=null and params.menuId!=''">
-                menuId = #{params.menuId}
+                menu_id = #{params.menuId}
             </if>
             <if test="params.parentId!=null and params.parentId!=''">
-                AND parentId = #{params.parentId}
+                AND parent_id = #{params.parentId}
             </if>
             <if test="params.name!=null and params.name!=''">
                 AND name = #{params.name}
@@ -67,7 +67,7 @@
         DELETE FROM
         <include refid="table_name"/>
         WHERE
-        roleId = #{roleId}
+        role_id = #{roleId}
     </delete>
     <sql id="table_name">
           system_role

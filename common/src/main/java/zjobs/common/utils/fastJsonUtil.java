@@ -7,10 +7,10 @@ import java.util.Map;
  */
 public class fastJsonUtil {
 
-   // private static final Logger logger = LoggerFactory.getLogger(fastJsonUtil.class);
+    // private static final Logger logger = LoggerFactory.getLogger(fastJsonUtil.class);
 
 
-        public static Map<String, Object> jsonToMap(String json) {
+    public static Map<String, Object> jsonToMap(String json) {
         return null;//objectFromJson(json, Map.class);
 
 
