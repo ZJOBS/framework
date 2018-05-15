@@ -2,10 +2,10 @@ package zjobs.entity;
 
 import zjobs.annotation.PrimaryTableId;
 import zjobs.utils.DataConversionUtil;
+import zjobs.utils.JsonUtil;
 
 import javax.persistence.Id;
 import java.io.Serializable;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,9 +15,11 @@ import java.util.Map;
 
 /**
  * 基类
- * Created by Administrator on 2015/2/12.
+ *
+ * @author Administrator
+ * @date 2015/2/12
  */
-public class BaseEntity {
+public class BaseEntity implements Serializable {
 //    protected String id;
 
     protected String createUserName;
@@ -136,6 +138,16 @@ public class BaseEntity {
      */
     public Map<String, Object> toMap() {
         return DataConversionUtil.toMap(this);
+    }
+
+
+    /**
+     * 将对象转为JSON
+     *
+     * @return
+     */
+    public String toJSON() {
+        return JsonUtil.mapToJson(toMap());
     }
 
     /**

@@ -58,13 +58,6 @@
         </div>
     </div>
 
-    <%--测试select--%>
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right">测试</label>
-        <div class="col-xs-12 col-sm-5">
-            <zj:iselect name="test" code="Gander"></zj:iselect>
-        </div>
-    </div>
 </form>
 </body>
 </html>

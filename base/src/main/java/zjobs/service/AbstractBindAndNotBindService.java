@@ -1,12 +1,15 @@
 package zjobs.service;
 
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import zjobs.dao.BaseBindAndNotBindDao;
 import zjobs.entity.BaseEntity;
 import zjobs.entity.DataTablePage;
+import zjobs.utils.JsonUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +57,7 @@ public abstract class AbstractBindAndNotBindService<F extends BaseEntity, T exte
 
     @Override
     public int bind(List<T> list) throws Exception {
+        List<T> insertList = new ArrayList<>(list.size());
         for (T entity : list) {
             entity.putIdField(String.valueOf(sequenceService.getSequence()));
         }

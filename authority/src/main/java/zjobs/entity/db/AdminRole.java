@@ -48,9 +48,9 @@ public class AdminRole extends BaseEntity {
     @Override
     public String toString() {
         return "AdminRole{" +
-                "adminId='" + adminId + '\'' +
+                "adminRoleId='" + adminRoleId + '\'' +
+                ", adminId='" + adminId + '\'' +
                 ", roleId='" + roleId + '\'' +
-//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

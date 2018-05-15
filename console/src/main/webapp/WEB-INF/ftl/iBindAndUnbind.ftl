@@ -38,6 +38,15 @@
             "aoColumnDefs": [<#if columnFormat?exists>${columnFormat}</#if>],
             "fnServerParams": function (aoData) {
                 aoData._rand = Math.random();
+                <#if search?exists>
+                var dataSer = util.getFrom("${search}");
+                for (var key in dataSer) {
+                    aoData.push(
+                            {"name": key, "value": dataSer[key]}
+                            //添加所有搜索参数
+                    );
+                }
+                </#if>
             },
             "fnDrawCallback": function () {
 
@@ -208,8 +217,7 @@
             oSettings._iDisplayStart = 0;
             dataTable.fnDraw(oSettings);
         });
-    })
-    ;
+    });
 </script>
 
 

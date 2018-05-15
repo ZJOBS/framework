@@ -63,8 +63,9 @@ public class AdminRoleController extends BaseController {
         try {
             List<AdminRole> adminRoleList = new ArrayList<AdminRole>();
             String[] ids = roleIds.split(",");
-            AdminRole adminRole = new AdminRole();
+            AdminRole adminRole;
             for (String id : ids) {
+                adminRole = new AdminRole();
                 adminRole.setRoleId(id);
                 adminRole.setAdminId(adminId);
                 adminRoleList.add(adminRole);

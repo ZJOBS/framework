@@ -1,5 +1,4 @@
 <script type="text/javascript">
-
     jQuery(function ($) {
         $.${id}dataTablesSettings = {
             "select": {

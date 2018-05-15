@@ -20,6 +20,7 @@
                 <value>classpath:jdbc.properties</value>
                 <value>classpath:redis.properties</value>
                 <value>classpath:qi_niu.properties</value>
+                <value>classpath:machine.properties</value>
             </list>
         </property>
     </bean>
