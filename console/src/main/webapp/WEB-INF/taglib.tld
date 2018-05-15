@@ -212,6 +212,11 @@
             <required>true</required>
         </attribute>
         <attribute>
+            <name>defaultValue</name>
+            <required>false</required>
+        </attribute>
+
+        <attribute>
             <name>template</name>
             <required>false</required>
         </attribute>

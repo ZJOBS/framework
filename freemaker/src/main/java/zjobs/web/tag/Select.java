@@ -18,8 +18,19 @@ import java.util.Map;
  * @author jiezhang
  */
 public class Select extends AbstractWebUiTag {
+    /**
+     * 数据字典中的Code
+     */
     private String code;
+    /**
+     * 默认选中字段
+     */
     private String defaultValue;
+
+    /**
+     * select的类型包含（）
+     */
+    private String type;
 
     public String getCode() {
         return code;
@@ -51,6 +62,7 @@ public class Select extends AbstractWebUiTag {
             Map<String, Object> data = super.getData();
             //form表单名称
             data.put("name", name);
+            data.put("defaultValue", defaultValue);
 
             JSONObject selectJson = JSONObject.parseObject(redisService.get(RedisConstants.DICT, code).toString());
             //整个select的名称
