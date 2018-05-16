@@ -47,7 +47,9 @@ public class RoleMenu extends BaseEntity {
     @Override
     public String toString() {
         return "RoleMenu{" +
-                "menuId='" + menuId + '\'' +
+                "roleMenuId='" + roleMenuId + '\'' +
+                ", roleId='" + roleId + '\'' +
+                ", menuId='" + menuId + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

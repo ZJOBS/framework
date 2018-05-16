@@ -1,7 +1,10 @@
 package zjobs.entity;
 
 /**
- * Created by ZhangJie on 2016/4/7.
+ * 日志
+ *
+ * @author ZhangJie
+ * @date 2016/4/7
  */
 public class Log extends BaseEntity {
     private String description;

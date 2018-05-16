@@ -9,9 +9,7 @@ import zjobs.entity.BaseEntity;
 import zjobs.entity.DataTablePage;
 import zjobs.utils.JsonUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 中间表绑定与未绑定抽象类
@@ -58,9 +56,24 @@ public abstract class AbstractBindAndNotBindService<F extends BaseEntity, T exte
     @Override
     public int bind(List<T> list) throws Exception {
         List<T> insertList = new ArrayList<>(list.size());
-        for (T entity : list) {
-            entity.putIdField(String.valueOf(sequenceService.getSequence()));
+        //防止出现一毫秒内重号
+        Set<String> set = new HashSet<String>();
+        while (true) {
+            if (set.size() == list.size()) {
+                break;
+            } else {
+                set.add(String.valueOf(sequenceService.getSequence()));
+            }
         }
+        List<String> seqList = new LinkedList<String>();
+        seqList.addAll(set);
+        for (int i = 0; i < list.size(); i++) {
+            T entity = list.get(i);
+            entity.putIdField(seqList.get(i));
+        }
+//        for (T entity : list) {
+//            entity.putIdField(String.valueOf(sequenceService.getSequence()));
+//        }
         return dao.insertList(list);
     }
 

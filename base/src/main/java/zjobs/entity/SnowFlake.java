@@ -116,4 +116,11 @@ public class SnowFlake {
     private long getNewstmp() {
         return System.currentTimeMillis();
     }
+
+    public static void main(String[] args) {
+        SnowFlake snowFlake = new SnowFlake(0, 0);
+        for (int i = 0; i < 30; i++) {
+            System.out.println(snowFlake.getNext() + "");
+        }
+    }
 }

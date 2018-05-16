@@ -5,13 +5,26 @@ import zjobs.entity.db.Admin;
 import java.io.Serializable;
 
 /**
- * Created by ZhangJie on 2016/3/14.
+ * @author ZhangJie
+ * @date 2016/3/14
  */
 public class UAI implements Serializable {
+    /**
+     * 用户ID
+     */
     private String adminId;
-    private String adminName;// 用户名
-    private int roleId;// 角色Id
-    private String roleName;// 角色名
+    /**
+     * 用户名
+     */
+    private String adminName;
+    /**
+     * 角色Id
+     */
+    private int roleId;
+    /**
+     * 角色名
+     */
+    private String roleName;
 
     public String getAdminId() {
         return adminId;

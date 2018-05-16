@@ -16,9 +16,8 @@
         function formatActivating(data, type, full) {
             return data == 0 ? '禁用' : '启用';
         };
-
-        function showUser() {
-            return "<a class='green showUser' href='#' > <i class='ace-icon fa fa-bars bigger-130'></i> </a>";
+        function showMenu() {
+            return "<a class='green showMenu' href='#' > <i class='ace-icon fa fa-bars bigger-130'></i> </a>";
         }
     </script>
 </head>
@@ -41,10 +40,14 @@
                                 </div>
                                 <div>
                                     <div id="search" class="ibox-tools">
-                                        <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
-                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
-                                        <a id="btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
-                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
+                                        <input placeholder="名称" id="name" type="text" name="name"
+                                               class="col-xs-10 col-sm-1"/>
+                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                class="fa fa-search"></i>搜索</a>
+                                        <a id="btn_clear_search" class="btn btn-primary btn-sm"
+                                           href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                class="fa fa-plus"></i>添加</a>
                                     </div>
 
                                     <zj:tableColumn id="role" key="roleId" defaultOperation="YES"
@@ -56,7 +59,7 @@
                                                     columnTitle="编号,名称,是否启用"
                                                     columnName="{'mData': 'roleId'},{'mData': 'name'},{'mData': 'activating','type':'checkbox'}"
                                                     columnFormat="{'aTargets': 2, 'mRender': formatActivating}"
-                                                    customOperation="showUser()"
+                                                    customOperation="showMenu()"
                                                     formId="dialog-confirm"
                                     />
                                 </div>
@@ -83,6 +86,20 @@
         <jsp:include page="/WEB-INF/role/form.jsp"/>
     </div>
 
+    <div id="dialog-bindAndUnbind">
+        <zj:iBindAndUnbind id="roleBindMenu"
+                           sourceTableId="role"
+                           awakenPosition=".showMenu"
+                           keyName="roleId"
+                           relationName="menuId"
+                           leftQueryUrl="/queryRoleBindMenu.do"
+                           deleteUrl="/unbindRoleMenu.do"
+                           rightQueryUrl="/queryRoleNotBindMenu.do"
+                           addUrl="/bindRoleMenu.do"
+                           columnTitle="编号,名称,地址,是否启用,是否子节点"
+                           columnName="{'mData': 'menuId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'activating'},{'mData': 'leaf','type':'checkbox'}"
+        />
+    </div>
 </div><!-- /.main-container -->
 </body>
 </html>

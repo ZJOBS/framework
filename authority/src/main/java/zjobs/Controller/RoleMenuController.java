@@ -62,8 +62,9 @@ public class RoleMenuController extends BaseController {
         try {
             List<RoleMenu> roleMenuList = new ArrayList<RoleMenu>();
             String[] ids = menuIds.split(",");
-            RoleMenu roleMenu = new RoleMenu();
+            RoleMenu roleMenu;
             for (String id : ids) {
+                roleMenu = new RoleMenu();
                 roleMenu.setMenuId(id);
                 roleMenu.setRoleId(roleId);
                 roleMenuList.add(roleMenu);

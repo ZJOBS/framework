@@ -3,11 +3,11 @@
 <mapper namespace="zjobs.dao.RoleMenuDao">
     <select id="queryBindDataTablePage" parameterType="DataTablePage" resultType="zjobs.entity.db.Menu">
         SELECT sm.*
-        FROM system_role sm
-        LEFT JOIN system_role_menu srm ON sm.role_id = srm.role_id
-        LEFT JOIN system_admin sa ON sa.admin_id = srm.admin_id
+        FROM system_menu sm
+        LEFT JOIN system_role_menu srm ON  sm.menu_id = srm.menu_id
+        LEFT JOIN system_role sr ON sr.role_id = srm.role_id
         <where>
-            sa.admin_id = #{params.adminId}
+            sr.role_id = #{params.roleId}
         </where>
     </select>
 
@@ -17,11 +17,11 @@
         WHERE NOT exists(
             SELECT *
             FROM (SELECT sm.*
-                  FROM system_menu sm
-                    LEFT JOIN system_role_menu srm ON sm.menu_id = srm.menu_id
-                    LEFT JOIN system_role sa ON sa.role_id = srm.role_id
-                  WHERE srm.role_id = #{params.roleId}) aaa
-            WHERE sm.menu_id = aaa.menuId
+                    FROM system_menu sm
+                    LEFT JOIN system_role_menu srm ON  sm.menu_id = srm.menu_id
+                    LEFT JOIN system_role sr ON sr.role_id = srm.role_id
+                  WHERE sr.role_id = #{params.roleId}) aaa
+            WHERE sm.menu_id = aaa.menu_id
 )
     </select>
 
