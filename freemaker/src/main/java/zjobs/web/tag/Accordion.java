@@ -1,8 +1,13 @@
 package zjobs.web.tag;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
+import zjobs.Constant.BaseConstants;
+import zjobs.Constant.RedisConstants;
 import zjobs.context.SpringContext;
+import zjobs.entity.UAI;
 import zjobs.service.MenuService;
 
 import javax.servlet.jsp.JspException;
@@ -40,8 +45,9 @@ public class Accordion extends AbstractWebUiTag {
     public Map<String, Object> getData() {
         try {
             Map<String, Object> data = super.getData();
-            MenuService menuService = SpringContext.getBean("menuServiceImpl");
-            JSONArray jsonArray = menuService.getTreeMenu();
+            UAI uai = (UAI) getRequest().getSession().getAttribute(BaseConstants.UAI);
+            Object obj = redisService.get(RedisConstants.MENU, RedisConstants.ADMIN + uai.getAdminId());
+            JSONArray jsonArray = JSONArray.parseArray(obj.toString());
             data.put("treeMenu", jsonArray);
             data.put("id", id);
         } catch (Exception e) {

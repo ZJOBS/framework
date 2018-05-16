@@ -44,12 +44,6 @@ public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements M
             array = treeMenuList(menuList, "00");
             redisService.put(RedisConstants.MENU, RedisConstants.ADMIN + admin.getAdminId(), array.toString());
         }
-
-        //获取用户信息
-/*        JSONArray jsonArray = getTreeMenu();
-        redisService.put(RedisConstants.MENU, RedisConstants.MENU, jsonArray.toString());*/
-
-
     }
 
     @Override
