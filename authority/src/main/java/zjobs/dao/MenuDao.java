@@ -13,5 +13,20 @@ import java.util.Map;
  */
 public interface MenuDao extends BaseDao<Menu, Exception> {
 
+    /**
+     * 查询所有菜单
+     *
+     * @param map
+     * @return
+     */
     public List<Menu> getList(Map<String, Object> map);
+
+    /**
+     * 查询管理员的菜单
+     *
+     * @param map
+     * @return
+     */
+    public List<Menu> selectMenuByAdminId(Map<String, Object> map);
+
 }

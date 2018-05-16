@@ -68,6 +68,14 @@
         <include refid="table_name"/>
     </select>
 
+    <select id="selectMenuByAdminId" parameterType="java.util.Map" resultType="zjobs.entity.db.Menu">
+        select distinct sm.* from system_menu sm
+        left join system_role_menu srm on  srm.menu_id=sm.menu_id
+        left join system_admin_role sar on   sar.role_id=srm.role_id
+        left join system_admin sa on sa.admin_id = sar.admin_id
+        where sa.admin_id = #{adminId}
+    </select>
+
     <delete id="deleteEntity" parameterType="java.util.Map">
         DELETE FROM
         <include refid="table_name"/>

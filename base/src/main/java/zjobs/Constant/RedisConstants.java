@@ -17,4 +17,6 @@ public class RedisConstants {
      */
     public static final String DICT = "dict";
 
+    public static final String ADMIN = "admin";
+
 }

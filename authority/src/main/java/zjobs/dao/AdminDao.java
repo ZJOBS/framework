@@ -12,4 +12,11 @@ import java.util.List;
  * @date 2017/3/14
  */
 public interface AdminDao extends BaseDao<Admin, Exception> {
+
+    /**
+     * 查询所有管理员
+     *
+     * @return
+     */
+    public List<Admin> selectAll();
 }

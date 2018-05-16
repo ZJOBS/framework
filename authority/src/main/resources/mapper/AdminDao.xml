@@ -56,6 +56,11 @@
         WHERE
         admin_id = #{adminId}
     </delete>
+
+    <select id="selectAll" parameterType="java.util.Map" resultType="zjobs.entity.db.Admin">
+        select * from
+        <include refid="table_name"/>
+    </select>
     <sql id="table_name">
           system_admin
     </sql>

@@ -50,6 +50,11 @@ public class AdminServiceImpl extends AbstractService<Admin, AdminDao> implement
     }
 
     @Override
+    public List<Admin> findAll() throws Exception {
+        return dao.selectAll();
+    }
+
+    @Override
     public DataTablePage queryPage(Map parameters, DataTablePage page) throws Exception {
         page.setParams(parameters);
         List<Admin> list = dao.queryDataTablePage(page);

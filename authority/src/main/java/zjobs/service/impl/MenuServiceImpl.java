@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import zjobs.Constant.RedisConstants;
 import zjobs.dao.MenuDao;
+import zjobs.entity.db.Admin;
 import zjobs.entity.db.Menu;
 import zjobs.service.AbstractService;
+import zjobs.service.AdminService;
 import zjobs.service.MenuService;
 import zjobs.service.RedisService;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,14 +27,29 @@ import java.util.Map;
  */
 @Service
 public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements MenuService {
+
+    @Autowired
+    private AdminService adminService;
+
     @Autowired
     private RedisService redisService;
 
     @Override
     public void updateRedisMenu() throws Exception {
+        List<Admin> adminList = adminService.findAll();
+        List<Menu> menuList;
+        JSONArray array;
+        for (Admin admin : adminList) {
+            menuList = findMenuByAdminId(admin.getAdminId());
+            array = treeMenuList(menuList, "00");
+            redisService.put(RedisConstants.MENU, RedisConstants.ADMIN + admin.getAdminId(), array.toString());
+        }
+
         //获取用户信息
-        JSONArray jsonArray = getTreeMenu();
-        redisService.put(RedisConstants.MENU, RedisConstants.MENU, jsonArray.toString());
+/*        JSONArray jsonArray = getTreeMenu();
+        redisService.put(RedisConstants.MENU, RedisConstants.MENU, jsonArray.toString());*/
+
+
     }
 
     @Override
@@ -44,7 +62,9 @@ public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements M
         return treeMenuList(getList(new HashMap<String, Object>()), "00");
     }
 
-    // 菜单树形结构
+    /**
+     * 菜单树形结构
+     */
     private JSONArray treeMenuList(List<Menu> menuList, String parentId) {
         JSONArray childMenu = new JSONArray();
         for (Menu menu : menuList) {
@@ -56,5 +76,17 @@ public class MenuServiceImpl extends AbstractService<Menu, MenuDao> implements M
             }
         }
         return childMenu;
+    }
+
+    /**
+     * 查询用户支持的菜单
+     *
+     * @param adminId
+     * @return
+     */
+    private List<Menu> findMenuByAdminId(String adminId) {
+        Map<String, Object> pmp = new HashMap<String, Object>();
+        pmp.put("adminId", adminId);
+        return dao.selectMenuByAdminId(pmp);
     }
 }
