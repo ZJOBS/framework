@@ -26,7 +26,7 @@ public class DataTablePaginationInterceptor implements Interceptor {
     private static final String DATABASETYPE;
 
     static {
-        DATABASETYPE = PropertiesUtil.loadProperties("jdbc.properties").get("database_dataBaseType");
+        DATABASETYPE = PropertiesUtil.loadProperties("properties/jdbc.properties").get("database_dataBaseType");
     }
 
     @SuppressWarnings("rawtypes")

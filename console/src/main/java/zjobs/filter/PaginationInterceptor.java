@@ -37,7 +37,7 @@ public class PaginationInterceptor implements Interceptor {
     private static final String DATABASETYPE;
 
     static {
-        DATABASETYPE = PropertiesUtil.loadProperties("jdbc.properties").get("database_DATABASETYPE");
+        DATABASETYPE = PropertiesUtil.loadProperties("properties/jdbc.properties").get("database_DATABASETYPE");
     }
 
     private static Map<String, String> Q2Oper;
