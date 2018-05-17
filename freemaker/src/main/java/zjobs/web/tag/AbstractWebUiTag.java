@@ -101,6 +101,9 @@ public abstract class AbstractWebUiTag extends BaseTag {
     public Map<String, Object> getData() {
         data = new HashMap<String, Object>();
         data.put("contextPath", getRequest().getContextPath());
+
+
+
         return data;
     }
 
