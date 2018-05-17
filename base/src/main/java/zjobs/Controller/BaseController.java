@@ -10,11 +10,13 @@ import zjobs.entity.Page;
 import zjobs.entity.UserAccount;
 import zjobs.service.QiNiuService;
 import zjobs.service.SequenceService;
+import zjobs.utils.DataConversionUtil;
 import zjobs.utils.JsonUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -60,10 +62,24 @@ public class BaseController<T extends BaseEntity, E extends Exception> {
         int sEcho = Integer.valueOf(getParameterInt("sEcho", 1));
         int iDisplayStart = Integer.valueOf(getParameterInt("iDisplayStart", 1));
         int iDisplayLength = Integer.valueOf(getParameterInt("iDisplayLength", 10));
+
+        //排序参数
+        //排序的列号
+        String order = getParameterString("iSortCol_0");
+        //排序的顺序asc or desc
+        String orderDir = getParameterString("sSortDir_0");
+        //排序的列。注意，我认为页面上的列的名字要和表中列的名字一致，否则，会导致SQL拼接错误
+        String orderColumn = getParameterString("mDataProp_" + order);
+        orderColumn = DataConversionUtil.underline(new StringBuffer(orderColumn)).toString();
+        //加入排序数据
+        Map<String, Object> pmp = parameter.toMap();
+        pmp.put("orderColumn", orderColumn);
+        pmp.put("orderDir", orderDir);
+
         page.setsEcho(sEcho);
         page.setiDisplayStart(iDisplayStart);
         page.setiDisplayLength(iDisplayLength);
-        page.setParams(parameter.toMap());
+        page.setParams(pmp);
         return page;
     }
 

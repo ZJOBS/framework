@@ -21,8 +21,7 @@
                     LEFT JOIN system_role_menu srm ON  sm.menu_id = srm.menu_id
                     LEFT JOIN system_role sr ON sr.role_id = srm.role_id
                   WHERE sr.role_id = #{params.roleId}) aaa
-            WHERE sm.menu_id = aaa.menu_id
-)
+            WHERE sm.menu_id = aaa.menu_id)
     </select>
 
     <insert id="insertList" parameterType="java.util.List">

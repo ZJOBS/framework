@@ -44,11 +44,17 @@
                 AND name = #{params.name}
             </if>
         </where>
+        <if test="params.orderColumn != null and params.orderColumn != ''">
+            order by ${params.orderColumn} ${params.orderDir}
+        </if>
     </select>
 
     <select id="queryPage" parameterType="Page" resultType="zjobs.entity.db.Admin">
         SELECT * FROM
         <include refid="table_name"/>
+        <if test="params.orderColumn != null and params.orderColumn != ''">
+            order by ${params.orderColumn} ${params.orderDir}
+        </if>
     </select>
     <delete id="deleteEntity" parameterType="java.util.Map">
         DELETE FROM

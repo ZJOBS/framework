@@ -59,6 +59,9 @@
                 AND leaf = #{params.leaf}
             </if>
         </where>
+        <if test="params.orderColumn != null and params.orderColumn != ''">
+            order by ${params.orderColumn} ${params.orderDir}
+        </if>
     </select>
 
 

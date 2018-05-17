@@ -54,6 +54,9 @@
                 AND name = #{params.name}
             </if>
         </where>
+        <if test="params.orderColumn != null and params.orderColumn != ''">
+            order by ${params.orderColumn} ${params.orderDir}
+        </if>
     </select>
 
     <select id="selectAll" resultType="zjobs.entity.db.Dict">

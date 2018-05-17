@@ -85,7 +85,10 @@ public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T,
 
     @Override
     public DataTablePage queryPage(Map parameters, DataTablePage page) throws Exception {
-        page.setParams(parameters);
+        //将自带的和传入的替代掉,
+        if (parameters != null) {
+            page.getParams().putAll(parameters);
+        }
         List<T> list = dao.queryDataTablePage(page);
         page.setAaData(list);
         return page;

@@ -137,7 +137,16 @@ public class BaseEntity implements Serializable {
      * @throws Exception
      */
     public Map<String, Object> toMap() {
-        return DataConversionUtil.toMap(this);
+        return DataConversionUtil.toMapContainsNull(this);
+    }
+
+    /**
+     * 对象转Map，剔除value等于null的属性
+     *
+     * @return
+     */
+    public Map<String, Object> toMapExclusiveNull() {
+        return DataConversionUtil.toMapExclusiveNull(this);
     }
 
 

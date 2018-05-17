@@ -3,10 +3,34 @@ package zjobs.utils;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-//import net.sf.json.JSONObject;
+/**
+ * 数据转换类
+ *
+ * @author jiezhang
+ */
 public class DataConversionUtil {
-    public static Map<String, Object> toMap(Object javaBean) {
+
+    /**
+     * 下划线转驼峰
+     */
+    private static final Pattern camelPattern = Pattern.compile("_(\\w)");
+
+    /**
+     * 驼峰转下划线
+     */
+    private static final Pattern underline = Pattern.compile("[A-Z]");
+
+
+    /**
+     * 对象转Map，当value为null时，转换为""
+     *
+     * @param javaBean
+     * @return
+     */
+    public static Map<String, Object> toMapContainsNull(Object javaBean) {
         Map<String, Object> result = new HashMap<String, Object>();
         Method[] methods = javaBean.getClass().getMethods();
         for (Method method : methods) {
@@ -16,17 +40,85 @@ public class DataConversionUtil {
                     field = field.substring(field.indexOf("get") + 3);
                     field = field.toLowerCase().charAt(0) + field.substring(1);
                     Object value = method.invoke(javaBean, (Object[]) null);
-                    //
                     result.put(field, value);
-                    // result.put(field, null == value ? "" : value);
-                    // string result.put(field, null == value ? "" :
-                    // value.toString());
                 }
             } catch (Exception e) {
                 System.out.println("toMap方法报错，已有用log代替");
             }
         }
         return result;
+    }
+
+    /**
+     * 对象转Map，剔除value等于null的属性
+     *
+     * @param javaBean
+     * @return
+     */
+    public static Map<String, Object> toMapExclusiveNull(Object javaBean) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        Method[] methods = javaBean.getClass().getMethods();
+        for (Method method : methods) {
+            try {
+                if (method.getName().startsWith("get")) {
+                    String field = method.getName();
+                    field = field.substring(field.indexOf("get") + 3);
+                    field = field.toLowerCase().charAt(0) + field.substring(1);
+                    Object value = method.invoke(javaBean, (Object[]) null);
+                    if (value != null) {
+                        result.put(field, value);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("toMap方法报错，已有用log代替");
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 下划线转驼峰
+     *
+     * @param str
+     * @return
+     */
+    public static StringBuffer camel(StringBuffer str) {
+        Matcher matcher = camelPattern.matcher(str);
+        StringBuffer sb = new StringBuffer(str);
+        if (matcher.find()) {
+            sb = new StringBuffer();
+            //将当前匹配子串替换为指定字符串，并且将替换后的子串以及其之前到上次匹配子串之后的字符串段添加到一个StringBuffer对象里。
+            //正则之前的字符和被替换的字符
+            matcher.appendReplacement(sb, matcher.group(1).toUpperCase());
+            //把之后的也添加到StringBuffer对象里
+            matcher.appendTail(sb);
+        } else {
+            return sb;
+        }
+        return camel(sb);
+    }
+
+
+    /**
+     * 驼峰转下划线
+     *
+     * @param str
+     * @return
+     */
+    public static StringBuffer underline(StringBuffer str) {
+        Matcher matcher = underline.matcher(str);
+        StringBuffer sb = new StringBuffer(str);
+        if (matcher.find()) {
+            sb = new StringBuffer();
+            //将当前匹配子串替换为指定字符串，并且将替换后的子串以及其之前到上次匹配子串之后的字符串段添加到一个StringBuffer对象里。
+            //正则之前的字符和被替换的字符
+            matcher.appendReplacement(sb, "_" + matcher.group(0).toLowerCase());
+            //把之后的也添加到StringBuffer对象里
+            matcher.appendTail(sb);
+        } else {
+            return sb;
+        }
+        return underline(sb);
     }
 
     //
@@ -236,6 +328,5 @@ public class DataConversionUtil {
     // }
     // return false;
     // }
-
 
 }
