@@ -29,8 +29,10 @@ import zjobs.entity.Page;
 import zjobs.utils.PropertiesUtil;
 
 /**
- * 分页查询
- * Created by ZJOBS on 2015/2/22.
+ * 分页查询（没用上）
+ *
+ * @author ZJOBS
+ * @date 2015/2/22
  */
 @Intercepts(@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}))
 public class PaginationInterceptor implements Interceptor {

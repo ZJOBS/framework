@@ -20,6 +20,8 @@ import java.util.*;
 
 /**
  * DataTable的分页查询
+ *
+ * @author jiezhang
  */
 @Intercepts(@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}))
 public class DataTablePaginationInterceptor implements Interceptor {
@@ -55,10 +57,12 @@ public class DataTablePaginationInterceptor implements Interceptor {
         }
         return invocation.proceed();
     }
+
     @Override
     public Object plugin(Object target) {
         return Plugin.wrap(target, this);
     }
+
     @Override
     public void setProperties(Properties properties) {
         //   this.dataBaseType = properties.getProperty("databaseType");
