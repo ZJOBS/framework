@@ -1,6 +1,6 @@
 package zjobs.entity;
 
-import zjobs.Constant.UserAccountConstant;
+import zjobs.constant.UserAccountConstant;
 
 /**
  * 用户

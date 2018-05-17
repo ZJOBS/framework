@@ -1,21 +1,17 @@
-package zjobs.Controller;
+package zjobs.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import zjobs.Constant.Oper;
+import zjobs.constant.AuthorityConstant;
 import zjobs.entity.DataTablePage;
-import zjobs.entity.Page;
 import zjobs.entity.UAI;
 import zjobs.entity.db.Admin;
-import zjobs.entity.db.Dict;
 import zjobs.service.AdminService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +19,9 @@ import javax.servlet.http.HttpSession;
 
 /**
  * 用户控制
- * Created by ZJOBS on 2015/3/10.
+ *
+ * @author ZJOBS
+ * @date 2015/3/10
  */
 @SuppressWarnings("rawtypes")
 @Controller
@@ -52,8 +50,8 @@ public class AdminController extends BaseController {
 
     @RequestMapping(value = "logoutAction")
     public String logout(HttpSession session) {
-        session.removeAttribute("user");
-        return "login";
+        session.removeAttribute(AuthorityConstant.UAI);
+        return "index";
     }
 
 
@@ -71,7 +69,7 @@ public class AdminController extends BaseController {
             } else {
                 UAI uai = new UAI();
                 uai.setAdmin(admin);
-                session.setAttribute("UAI", uai);
+                session.setAttribute(AuthorityConstant.UAI, uai);
                 modelAndView.setViewName("redirect:/home.do");
             }
         } catch (Exception e) {

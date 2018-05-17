@@ -1,4 +1,4 @@
-package zjobs.Filter;
+package zjobs.filter;
 
 import javax.servlet.Filter;
 

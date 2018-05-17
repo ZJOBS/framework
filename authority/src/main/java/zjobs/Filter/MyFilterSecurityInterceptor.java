@@ -1,7 +1,4 @@
-package zjobs.Filter;
-
-import javax.servlet.*;
-import java.io.IOException;
+package zjobs.filter;
 
 /**
  * Created by Administrator on 2015/7/15.

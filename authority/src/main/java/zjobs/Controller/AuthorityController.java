@@ -1,7 +1,7 @@
-package zjobs.Controller;
+package zjobs.controller;
 
 import org.springframework.stereotype.Controller;
-import zjobs.Constant.BaseConstants;
+import zjobs.constant.BaseConstants;
 import zjobs.entity.UAI;
 
 /**

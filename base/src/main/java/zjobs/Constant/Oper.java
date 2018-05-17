@@ -1,4 +1,4 @@
-package zjobs.Constant;
+package zjobs.constant;
 
 /**
  * Created by jiezhang on 2017/5/15.

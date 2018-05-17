@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import zjobs.Constant.RedisConstants;
+import zjobs.constant.RedisConstants;
 import zjobs.dao.DictDao;
 import zjobs.entity.db.Dict;
 import zjobs.service.AbstractService;

@@ -1,14 +1,10 @@
 package zjobs.web.tag;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import org.springframework.stereotype.Component;
-import zjobs.Constant.BaseConstants;
-import zjobs.Constant.RedisConstants;
-import zjobs.context.SpringContext;
+import zjobs.constant.BaseConstants;
+import zjobs.constant.RedisConstants;
 import zjobs.entity.UAI;
-import zjobs.service.MenuService;
 
 import javax.servlet.jsp.JspException;
 import java.util.Map;

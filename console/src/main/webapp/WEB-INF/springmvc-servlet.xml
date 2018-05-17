@@ -11,7 +11,7 @@
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 扫描interceptor（切面注入） -->
-    <context:component-scan base-package="zjobs.Controller"/>
+    <context:component-scan base-package="zjobs.controller"/>
     <!-- 注释驱动 -->
     <!--<mvc:annotation-driven/>-->
     <mvc:annotation-driven>
@@ -30,7 +30,7 @@
         <!--登入拦截-->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="zjobs.Filter.UserLogInInterceptor"></bean>
+            <bean class="zjobs.filter.UserLogInInterceptor"></bean>
         </mvc:interceptor>
     </mvc:interceptors>
 

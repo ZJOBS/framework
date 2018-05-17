@@ -1,4 +1,4 @@
-package zjobs.Constant;
+package zjobs.constant;
 
 /**
  * Redis库中的常量

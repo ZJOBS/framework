@@ -2,10 +2,7 @@ package zjobs.web.tag;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.google.gson.JsonArray;
-import zjobs.Constant.RedisConstants;
-import zjobs.context.SpringContext;
-import zjobs.service.MenuService;
+import zjobs.constant.RedisConstants;
 
 import javax.servlet.jsp.JspException;
 import java.util.LinkedList;

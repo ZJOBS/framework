@@ -1,15 +1,13 @@
 package zjobs.service;
 
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import zjobs.Constant.BaseConstants;
+import zjobs.constant.BaseConstants;
 import zjobs.dao.BaseDao;
 import zjobs.entity.DataTablePage;
-import zjobs.entity.Page;
 import zjobs.entity.BaseEntity;
 
 import javax.annotation.Resource;

@@ -1,4 +1,4 @@
-package zjobs.Constant;
+package zjobs.constant;
 
 /**
  * 常量

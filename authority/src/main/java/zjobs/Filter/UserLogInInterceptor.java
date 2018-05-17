@@ -1,4 +1,4 @@
-package zjobs.Filter;
+package zjobs.filter;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -6,10 +6,11 @@ import zjobs.entity.UAI;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Created by jiezhang on 2017/5/25.
+ *
+ * @author jiezhang
+ * @date 2017/5/25
  */
 public class UserLogInInterceptor implements HandlerInterceptor {
 

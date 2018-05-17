@@ -8,7 +8,10 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
 import java.io.IOException;
 
 /**
- * Created by ZhangJie on 2016/11/10.
+ * 基础tag对象
+ *
+ * @author ZhangJie
+ * @date 2016/11/10
  */
 public abstract class BaseTag extends BodyTagSupport {
     public JspWriter getOut() {
@@ -25,7 +28,6 @@ public abstract class BaseTag extends BodyTagSupport {
             e.printStackTrace();
         }
     }
-
 
 
     public HttpServletRequest getRequest() {
