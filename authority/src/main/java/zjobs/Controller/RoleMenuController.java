@@ -11,6 +11,7 @@ import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Menu;
 import zjobs.entity.db.Role;
 import zjobs.entity.db.RoleMenu;
+import zjobs.entity.db.SystemLog;
 import zjobs.service.RoleMenuService;
 
 import java.util.*;
@@ -56,6 +57,7 @@ public class RoleMenuController extends BaseController {
 
     @RequestMapping(value = "bindRoleMenu", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(module = "角色模块", methods = "绑定菜单")
     public int bindRoleMenu(String roleId, String menuIds) {
         int flag = 0;
         try {
@@ -77,6 +79,7 @@ public class RoleMenuController extends BaseController {
 
     @RequestMapping(value = "unbindRoleMenu")
     @ResponseBody
+    @SystemLog(module = "角色模块", methods = "解绑菜单")
     public int unbindRoleMenu(String roleId, String menuIds) {
         int flag = 0;
         try {

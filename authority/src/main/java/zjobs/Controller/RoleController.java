@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Role;
+import zjobs.entity.db.SystemLog;
 import zjobs.service.RoleService;
 
 /**
@@ -38,6 +39,7 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "addRole")
     @ResponseBody
+    @SystemLog(module = "角色模块", methods = "添加角色")
     public int addRole(Role role) {
         int flag = 0;
         try {
@@ -51,6 +53,7 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "deleteRole")
     @ResponseBody
+    @SystemLog(module = "角色模块", methods = "删除角色")
     public int deleteRole(Role role) {
         int flag = 0;
         try {
@@ -64,6 +67,7 @@ public class RoleController extends BaseController {
 
     @RequestMapping(value = "updateRole")
     @ResponseBody
+    @SystemLog(module = "角色模块", methods = "添加角色")
     public int updateRole(Role role) {
         int flag = 0;
         try {

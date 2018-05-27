@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Menu;
+import zjobs.entity.db.SystemLog;
 import zjobs.service.MenuService;
 import zjobs.service.RedisService;
 
@@ -46,6 +47,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(value = "addMenu")
     @ResponseBody
+    @SystemLog(module = "菜单模块", methods = "添加菜单")
     public int addMenu(Menu menu) {
         int flag = 0;
         try {
@@ -61,6 +63,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(value = "deleteMenu")
     @ResponseBody
+    @SystemLog(module = "菜单模块", methods = "删除菜单")
     public int deleteMenu(Menu menu) {
         int flag = 0;
         try {
@@ -76,6 +79,7 @@ public class MenuController extends BaseController {
 
     @RequestMapping(value = "updateMenu")
     @ResponseBody
+    @SystemLog(module = "菜单模块", methods = "修改菜单")
     public int updateMenu(Menu menu) {
         int flag = 0;
         try {
