@@ -9,7 +9,10 @@ import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Product;
 import zjobs.service.ProductService;
 
-@SuppressWarnings("rawtypes")
+
+/**
+ * @author jiezhang
+ */
 @Controller
 public class ProductController extends BaseController {
     @Autowired

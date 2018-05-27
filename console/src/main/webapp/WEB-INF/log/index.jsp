@@ -11,17 +11,6 @@
     <jsp:include page="/WEB-INF/common/style.jsp"/>
     <jsp:include page="/WEB-INF/common/js.jsp"/>
 
-    <script>
-        /*是否可以变为调用数据字典生成此方法*/
-        function formatState(data, type, full) {
-            return data == 0 ? '禁用' : '启用';
-        };
-
-        function formatImage(data, type, full) {
-            var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
-            return "<img src='" + URL + "' height='50' width='50'/>"
-        };
-    </script>
 </head>
 
 <body class="no-skin">
@@ -41,7 +30,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="table-header">
-                                    菜单信息管理
+                                    日志信息管理
                                 </div>
                                 <div>
                                     <div id="search" class="ibox-tools">
@@ -53,24 +42,12 @@
                                         </form>
                                     </div>
 
-                                    <zj:tableColumn id="menu" key="menuId" defaultOperation="YES"
+                                    <zj:tableColumn id="log" key="logId"
                                                     search="#search"
-                                                    queryUrl="/queryMenu.do"
-                                                    addUrl="/addMenu.do"
-                                                    editUrl="/updateMenu.do"
-                                                    deleteUrl="/deleteMenu.do"
-                                                    columnTitle="编号,父编号,名称,地址,图片,是否启用,是否子节点"
-                                                    columnName="{'mData': 'menuId'},{'mData': 'parentId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'image'},{'mData': 'activating','type':'checkbox'},{'mData': 'leaf','type':'checkbox'}"
-                                                    formId="dialog-confirm"
+                                                    queryUrl="/queryLog.do"
+                                                    columnTitle="编号,管理员编号,模块名称,方法,响应时间,ip,执行时间,结果"
+                                                    columnName="{'mData': 'logId'},{'mData': 'adminId'},{'mData': 'moduleName'},{'mData': 'method'},{'mData': 'responseDate'},{'mData': 'ip'},{'mData': 'dateTime'},{'mData': 'result'}"
                                     />
-
-                                    <zj:irelationtable id="parentMenu" queryUrl="/queryMenu.do"
-                                                       columnTitle="编号,父编号,名称,地址,图片,是否启用,是否子节点"
-                                                       columnName="{'mData': 'menuId'},{'mData': 'parentId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'image'},{'mData': 'activating'},{'mData': 'leaf'}"
-                                                       relation="['menuId','parentId']"
-                                                       width="1000"/>
-
-
                                 </div>
                             </div>
                         </div>
@@ -80,20 +57,6 @@
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->
-
-    <%--<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">--%>
-    <%--<i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>--%>
-    <%--</a>--%>
-
-
-    <div id="delete" class="hide">
-        <div class="alert alert-danger bigger-110">
-            确认要删除么？
-        </div>
-    </div>
-    <div id="dialog-confirm" class="hide">
-        <jsp:include page="/WEB-INF/menu/form.jsp"/>
-    </div>
 </div><!-- /.main-container -->
 </body>
 </html>
