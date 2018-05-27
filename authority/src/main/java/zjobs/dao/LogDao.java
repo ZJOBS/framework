@@ -1,6 +1,7 @@
 package zjobs.dao;
 
-import zjobs.entity.Log;
+
+import zjobs.entity.db.Log;
 
 /**
  * 日志数据处理接口

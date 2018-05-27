@@ -11,6 +11,7 @@ import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Admin;
 import zjobs.entity.db.AdminRole;
 import zjobs.entity.db.Role;
+import zjobs.entity.db.SystemLog;
 import zjobs.service.AdminRoleService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,6 +56,7 @@ public class AdminRoleController extends BaseController {
 
     @RequestMapping(value = "bindAdminRole", method = RequestMethod.POST)
     @ResponseBody
+    @SystemLog(module = "管理员模块", methods = "绑定用户角色关系")
     public int bindAdminRole(String adminId, String roleIds, HttpServletRequest request) {
         int flag = 0;
         try {
@@ -76,6 +78,7 @@ public class AdminRoleController extends BaseController {
 
     @RequestMapping(value = "unbindAdminRole")
     @ResponseBody
+    @SystemLog(module = "管理员模块", methods = "解绑用户角色关系")
     public int unbindAdminRole(String adminId, String roleIds, HttpServletRequest request) {
         int flag = 0;
         try {
@@ -89,6 +92,5 @@ public class AdminRoleController extends BaseController {
         }
         return flag;
     }
-
 
 }

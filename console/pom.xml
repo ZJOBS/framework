@@ -74,23 +74,7 @@
         -->
         <!-- log end -->
 
-        <!-- aspect support start -->
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjrt</artifactId>
-            <version>1.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
-            <version>1.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>cglib</groupId>
-            <artifactId>cglib-nodep</artifactId>
-            <version>3.1</version>
-        </dependency>
-        <!-- aspect support end -->
+
 
         <!-- https://mvnrepository.com/artifact/org.freemarker/freemarker -->
 

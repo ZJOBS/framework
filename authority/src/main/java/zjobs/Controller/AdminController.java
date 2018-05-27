@@ -12,6 +12,7 @@ import zjobs.constant.AuthorityConstant;
 import zjobs.entity.DataTablePage;
 import zjobs.entity.UAI;
 import zjobs.entity.db.Admin;
+import zjobs.entity.db.SystemLog;
 import zjobs.service.AdminService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,6 +50,7 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping(value = "logoutAction")
+    @SystemLog(module = "管理员模块", methods = "登出")
     public String logout(HttpSession session) {
         session.removeAttribute(AuthorityConstant.UAI);
         return "index";
@@ -56,6 +58,7 @@ public class AdminController extends BaseController {
 
 
     @RequestMapping(value = "loginAction")
+    @SystemLog(module = "管理员模块", methods = "登入")
     public ModelAndView loginAction(HttpSession session, Admin admin) {
         ModelAndView modelAndView = new ModelAndView();
         logger.info("logback 成功了");
@@ -94,19 +97,19 @@ public class AdminController extends BaseController {
 
     @RequestMapping(value = "queryAdmin")
     @ResponseBody
-    public DataTablePage<Admin> pageQueryAdmin(Admin admin, HttpServletRequest request) {
+    public DataTablePage<Admin> pageQueryAdmin(Admin admin) {
         DataTablePage<Admin> page = null;
         try {
             page = adminService.queryPage(admin.toMap(), createDataTablePage(admin));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return page;
     }
 
     @RequestMapping(value = "addAdmin")
     @ResponseBody
+    @SystemLog(module = "管理员模块", methods = "添加管理员")
     public int addAdmin(Admin admin, MultipartFile file) {
         int flag = 0;
         try {
@@ -124,6 +127,7 @@ public class AdminController extends BaseController {
 
     @RequestMapping(value = "deleteAdmin")
     @ResponseBody
+    @SystemLog(module = "管理员模块", methods = "删除管理员")
     public int deleteAdmin(Admin admin) {
         int flag = 0;
         try {
@@ -137,6 +141,7 @@ public class AdminController extends BaseController {
 
     @RequestMapping(value = "updateAdmin")
     @ResponseBody
+    @SystemLog(module = "管理员模块", methods = "修改管理员")
     public int updateAdmin(Admin admin, MultipartFile avatar) {
         int flag = 0;
         try {

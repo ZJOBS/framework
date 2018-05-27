@@ -91,7 +91,7 @@
 
 
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-            var $update_dialog = $("#${formId}").clone(true).removeClass("hide");
+            var $update_dialog = $("#${formId}").removeClass("hide");
 
             $update_dialog.dialog({
                 resizable: false,

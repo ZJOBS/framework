@@ -4,7 +4,7 @@
     <insert id="insertEntity" parameterType="java.util.Map">
         INSERT INTO
         <include refid="table_name"/>
-        (dictId,code,value,activating,name,parentId)
+        (dict_id,code,value,activating,name,parent_id)
         VALUES
         (#{dictId},#{code},#{value},#{activating},#{name},#{parentId})
     </insert>
@@ -12,14 +12,14 @@
         delete FROM
         <include refid="table_name"/>
         where
-        dictId = #{dictId}
+        dict_id = #{dictId}
     </delete>
 
     <update id="updateEntity" parameterType="java.util.Map">
         UPDATE
         <include refid="table_name"/>
         <include refid="set"/>
-        where dictId=#{dictId}
+        where dict_id=#{dictId}
     </update>
 
     <select id="selectEntity" parameterType="java.util.Map"
@@ -36,10 +36,10 @@
         <include refid="table_name"/>
         <where>
             <if test="params.dictId !=null and params.dictId != ''">
-                dictId = #{params.dictId}
+                dict_id = #{params.dictId}
             </if>
             <if test="params.parentId !=null and params.parentId != ''">
-                AND parentId = #{params.parentId}
+                AND parent_id = #{params.parentId}
             </if>
             <if test="params.code !=null and params.code != ''">
                 AND code = #{params.code}
@@ -70,10 +70,10 @@
     <sql id="where">
         <where>
             <if test="dictId !=null and dictId != ''">
-                dictId = #{dictId}
+                dict_id = #{dictId}
             </if>
             <if test="parentId !=null and parentId != ''">
-                AND parentId = #{parentId}
+                AND parent_id = #{parentId}
             </if>
             <if test="code !=null and code != ''">
                 AND code = #{code}
@@ -92,7 +92,7 @@
     <sql id="set">
         <set>
             <if test="parentId !=null">
-                parentId = #{parentId},
+                parent_id = #{parentId},
             </if>
             <if test="code !=null">
                 code = #{code},

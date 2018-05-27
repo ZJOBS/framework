@@ -17,9 +17,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * @author Administrator
- * @date 2015/3/9
+ * 数据字段服务实现
+ *
+ * @author jiezhang
  */
 @Service
 public class DictServiceImpl extends AbstractService<Dict, DictDao> implements DictService {
