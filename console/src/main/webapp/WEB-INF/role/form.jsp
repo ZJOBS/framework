@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right">姓名</label>
+        <label class="col-sm-3 control-label no-padding-right">角色名称</label>
         <div class="col-sm-9">
             <input name="name" type="text" class="col-xs-10 col-sm-5">
         </div>

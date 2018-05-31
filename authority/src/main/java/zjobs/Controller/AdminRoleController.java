@@ -13,6 +13,7 @@ import zjobs.entity.db.AdminRole;
 import zjobs.entity.db.Role;
 import zjobs.entity.db.SystemLog;
 import zjobs.service.AdminRoleService;
+import zjobs.service.MenuService;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -29,6 +30,9 @@ public class AdminRoleController extends BaseController {
     private final static Logger logger = LoggerFactory.getLogger(AdminRoleController.class);
     @Autowired
     private AdminRoleService adminRoleService;
+
+    @Autowired
+    private MenuService menuService;
 
     @RequestMapping(value = "queryAdminBindRole")
     @ResponseBody
@@ -70,6 +74,9 @@ public class AdminRoleController extends BaseController {
                 adminRoleList.add(adminRole);
             }
             flag = adminRoleService.bind(adminRoleList);
+
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -87,6 +94,9 @@ public class AdminRoleController extends BaseController {
             List<String> list = Arrays.asList(roleIds.split(","));
             pmp.put("list", list);
             flag = adminRoleService.unbind(pmp);
+
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
         } catch (Exception e) {
             e.printStackTrace();
         }

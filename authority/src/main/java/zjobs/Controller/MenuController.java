@@ -24,9 +24,6 @@ public class MenuController extends BaseController {
     @Autowired
     private MenuService menuService;
 
-    @Autowired
-    private RedisService redisService;
-
     @RequestMapping(value = "menuIndex")
     public String menu() {
         return "menu/index";
