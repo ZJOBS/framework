@@ -34,9 +34,7 @@
             "sAjaxSource": "${contextPath}${queryUrl}", //给服务器发请求的url
             "sServerMethod": "POST",
             "aoColumns": [ //这个属性下的设置会应用到所有列，按顺序没有是空
-            ${columnName}
-                , {'sDefaultContent': ''}
-
+            ${columnName}, {'sDefaultContent': ''}
                 // sDefaultContent 如果这一列不需要填充数据用这个属性，值可以不写，起占位作用
 //              {"sDefaultContent": '', "sClass": "action"},//sClass 表示给本列加class
             ],
@@ -85,132 +83,6 @@
         });
 
 
-        <#if editUrl?exists>
-        $("body").delegate(".update", "click", function () {
-            //获取当前选择的参数,填入updata的数据中
-
-
-            var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-            var $update_dialog = $("#${formId}").removeClass("hide");
-
-            $update_dialog.dialog({
-                resizable: false,
-                width: 500,
-                modal: true,
-                title_html: true,
-                buttons: [
-                    {
-                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>保存",
-                        "class": "btn btn-minier",
-                        click: function () {
-                            var This = this;
-                            $update_dialog.find('from').ajaxSubmit({
-                                type: "POST",
-                                url: "${contextPath}${editUrl}",
-                                dataType: "json",
-                                type: "post",
-                                success: function (data, textStatus, jqXHR) {
-                                    $('#btn_search').click();
-                                    $(This).dialog("close");
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                    //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
-                                },
-                                // capture the request before it was sent to server
-                                beforeSend: function (jqXHR, settings) {
-                                    $("#loading").show();
-                                },
-                                complete: function (jqXHR, textStatus) {
-                                    $("#loading").hide();
-                                }
-                            }).resetForm();
-                        }
-                    }, {
-                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
-                        "class": "btn btn-minier",
-                        click: function () {
-                            $update_dialog.find('form').resetForm();
-                            $(this).dialog("close");
-                        }
-                    }
-                ]
-            });
-
-            //单文件上传
-            $update_dialog.find('input[type=file]').ace_file_input({
-                style: 'well',
-                btn_choose: '点击上传',
-                btn_change: null,
-                no_icon: 'ace-icon fa fa-cloud-upload',
-                droppable: true,
-                thumbnail: 'small'
-            });
-            util.setFormInputByJquery($update_dialog, data);
-
-
-            //checkBox启动功能,当数据为1时，checked为switch按钮显示ON状态
-            var columnNames = [${columnName}];
-            for (var i = 0; i < columnNames.length; i++) {
-                //包含类别的时候
-                if ('type' in columnNames[i] && data[columnNames[i].mData] == 1) {
-                    $update_dialog.find('input[name=' + columnNames[i].mData + ']').attr('checked', 'checked');
-                }
-            }
-        });
-        </#if>
-
-        <#if deleteUrl?exists>
-        $("body").delegate(".delete", "click", function () {
-            var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
-            var ${key} =
-            data.${key};
-            $("#delete").removeClass("hide").dialog({
-                resizable: false,
-                width: 500,
-                modal: true,
-                title_html: true,
-                buttons: [
-                    {
-                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>删除",
-                        "class": "btn btn-minier",
-                        click: function () {
-                            ///
-                            var This = this;
-                            $.ajax({
-                                type: "POST",
-                                url: "${contextPath}${deleteUrl}",
-                                data: {"${key}": ${key}},
-                                dataType: "json",
-                                type: "post",
-                                success: function (data, textStatus, jqXHR) {
-                                    $('#btn_search').click();
-                                    $(This).dialog("close");
-                                },
-                                error: function (jqXHR, textStatus, errorThrown) {
-                                    //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
-                                },
-                                // capture the request before it was sent to server
-                                beforeSend: function (jqXHR, settings) {
-                                    $("#loading").show();
-                                },
-                                complete: function (jqXHR, textStatus) {
-                                    $("#loading").hide();
-                                }
-                            });
-                            //搜索就是设置参数，然后销毁datatable重新再建一个
-                        }
-                    }, {
-                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
-                        "class": "btn btn-minier",
-                        click: function () {
-                            $(this).dialog("close");
-                        }
-                    }
-                ]
-            });
-        });
-        </#if>
-
         <#if addUrl?exists>
         $("body").delegate("#add", "click", function () {
             var $add_dialog = $("#${formId}").removeClass("hide");
@@ -246,13 +118,6 @@
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
                                     //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
-                                },
-                                // capture the request before it was sent to server
-                                beforeSend: function (jqXHR, settings) {
-                                    $("#loading").show();
-                                },
-                                complete: function (jqXHR, textStatus) {
-                                    $("#loading").hide();
                                 }
                             }).resetForm();
                         }
@@ -266,8 +131,117 @@
                     }
                 ]
             });
+        });
+        </#if>
 
 
+         <#if deleteUrl?exists>
+            $("body").delegate(".delete", "click", function () {
+                var data = main.${id}dataTable.api().row($(this).parents("tr")).data();
+                        //$('#${id}').dataTable().api().row($(this).parents("tr")).data();
+                var ${key} = data.${key};
+                $("#delete").removeClass("hide").dialog({
+                    resizable: false,
+                    width: 500,
+                    modal: true,
+                    title_html: true,
+                    buttons: [
+                        {
+                            html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>删除",
+                            "class": "btn btn-minier",
+                            click: function () {
+                                var This = this;
+                                $.ajax({
+                                    type: "POST",
+                                    url: "${contextPath}${deleteUrl}",
+                                    data: {"${key}": ${key}},
+                                    dataType: "json",
+                                    type: "post",
+                                    success: function (data, textStatus, jqXHR) {
+                                        $('#btn_search').click();
+                                        $(This).dialog("close");
+                                    },
+                                    error: function (jqXHR, textStatus, errorThrown) {
+                                        //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
+                                    }
+                                });
+                                //搜索就是设置参数，然后销毁datatable重新再建一个
+                            }
+                        }, {
+                            html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
+                            "class": "btn btn-minier",
+                            click: function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    ]
+                });
+            });
+         </#if>
+
+
+        <#if editUrl?exists>
+            $("body").delegate(".update", "click", function () {
+            //获取当前选择的参数,填入updata的数据中
+            var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
+            var $update_dialog = $("#${formId}").removeClass("hide");
+
+            $update_dialog.dialog({
+                resizable: false,
+                width: 500,
+                modal: true,
+                title_html: true,
+                buttons: [
+                    {
+                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>保存",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            var This = this;
+                            $update_dialog.find('form').ajaxSubmit({
+                                type: "POST",
+                                url: "${contextPath}${editUrl}",
+                                dataType: "json",
+                                type: "post",
+                                success: function (data, textStatus, jqXHR) {
+                                    $('#btn_search').click();
+                                    $(This).dialog("close");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
+                                }
+                            }).resetForm();
+                        }
+                    }, {
+                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            $update_dialog.find('form').resetForm();
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
+            });
+
+            //单文件上传
+            $update_dialog.find('input[type=file]').ace_file_input({
+                style: 'well',
+                btn_choose: '点击上传',
+                btn_change: null,
+                no_icon: 'ace-icon fa fa-cloud-upload',
+                droppable: true,
+                thumbnail: 'small'
+            });
+            util.setFormInputByJquery($update_dialog, data);
+
+
+            //checkBox启动功能,当数据为1时，checked为switch按钮显示ON状态
+            var columnNames = [${columnName}];
+            for (var i = 0; i < columnNames.length; i++) {
+                //包含类别的时候
+                if ('type' in columnNames[i] && data[columnNames[i].mData] == 1) {
+                    $update_dialog.find('input[name=' + columnNames[i].mData + ']').attr('checked', 'checked');
+                }
+            }
         });
         </#if>
 

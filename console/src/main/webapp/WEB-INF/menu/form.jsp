@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jiezhang
-  Date: 2017/9/25
-  Time: 下午10:09
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
@@ -61,7 +55,7 @@
         <div class="col-xs-3">
         <label>
                 <input name="leaf" class="ace ace-switch ace-switch-4" type="checkbox">
-        <span class="lbl"></span>
+                <span class="lbl"></span>
         </label>
         </div>
         </div>

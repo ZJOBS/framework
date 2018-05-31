@@ -57,8 +57,7 @@ public abstract class AbstractService<T extends BaseEntity, D extends BaseDao<T,
     public int createEntity(T entity) throws Exception {
         long a = sequenceService.getSequence();
         entity.putIdField(String.valueOf(a));
-        dao.insertEntity(entity.toMap());
-        return Integer.parseInt("0");
+        return dao.insertEntity(entity.toMap());
     }
 
     @Override
