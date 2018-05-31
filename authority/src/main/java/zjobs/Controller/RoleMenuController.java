@@ -12,6 +12,7 @@ import zjobs.entity.db.Menu;
 import zjobs.entity.db.Role;
 import zjobs.entity.db.RoleMenu;
 import zjobs.entity.db.SystemLog;
+import zjobs.service.MenuService;
 import zjobs.service.RoleMenuService;
 
 import java.util.*;
@@ -28,6 +29,9 @@ public class RoleMenuController extends BaseController {
 
     @Autowired
     private RoleMenuService roleMenuService;
+
+    @Autowired
+    private MenuService menuService;
 
 
     @RequestMapping(value = "queryRoleBindMenu")
@@ -71,6 +75,9 @@ public class RoleMenuController extends BaseController {
                 roleMenuList.add(roleMenu);
             }
             flag = roleMenuService.bind(roleMenuList);
+
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -88,6 +95,9 @@ public class RoleMenuController extends BaseController {
             List<String> list = Arrays.asList(menuIds.split(","));
             pmp.put("list", list);
             flag = roleMenuService.unbind(pmp);
+
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
         } catch (Exception e) {
             e.printStackTrace();
         }

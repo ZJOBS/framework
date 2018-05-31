@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import zjobs.entity.DataTablePage;
 import zjobs.entity.db.Role;
 import zjobs.entity.db.SystemLog;
+import zjobs.service.MenuService;
 import zjobs.service.RoleService;
 
 /**
@@ -17,6 +18,9 @@ import zjobs.service.RoleService;
 public class RoleController extends BaseController {
     @Autowired
     private RoleService roleService;
+
+    @Autowired
+    private MenuService menuService;
 
     @RequestMapping(value = "roleIndex")
     public String role() {
@@ -72,6 +76,8 @@ public class RoleController extends BaseController {
         int flag = 0;
         try {
             flag = roleService.modifyEntity(role);
+            //重新设置redis中的数据
+            menuService.updateRedisMenu();
         } catch (Exception e) {
             e.printStackTrace();
         }
