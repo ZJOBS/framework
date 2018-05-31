@@ -84,7 +84,7 @@
 
 
         <#if addUrl?exists>
-        $("body").delegate("#add", "click", function () {
+         $("body").delegate("#add", "click", function () {
             var $add_dialog = $("#${formId}").removeClass("hide");
             //单文件上传
             $add_dialog.find('input[type=file]').ace_file_input({
@@ -99,7 +99,6 @@
             $add_dialog.dialog({
                 resizable: false,
                 width: 500,
-//                modal: true,
                 title_html: true,
                 buttons: [
                     {
@@ -113,7 +112,12 @@
                                 dataType: "json",
                                 type: "post",
                                 success: function (data, textStatus, jqXHR) {
-                                    $('#btn_search').click();
+                                    //$('#btn_search').click();此方法会报错，使用下面这个方法 刷新界面
+
+                                    var oSettings = main.${id}dataTable.fnSettings();
+                                    oSettings._iDisplayStart = 0;
+                                    main.${id}dataTable.fnDraw(oSettings);
+
                                     $(This).dialog("close");
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
@@ -158,7 +162,11 @@
                                     dataType: "json",
                                     type: "post",
                                     success: function (data, textStatus, jqXHR) {
-                                        $('#btn_search').click();
+                                        //$('#btn_search').click();此方法会报错，使用下面这个方法 刷新界面
+                                        var oSettings = main.${id}dataTable.fnSettings();
+                                        oSettings._iDisplayStart = 0;
+                                        main.${id}dataTable.fnDraw(oSettings);
+
                                         $(This).dialog("close");
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
@@ -203,7 +211,12 @@
                                 dataType: "json",
                                 type: "post",
                                 success: function (data, textStatus, jqXHR) {
-                                    $('#btn_search').click();
+                                    //$('#btn_search').click(); 此方法会报错，使用下面这个方法 刷新界面
+                                    var oSettings = main.${id}dataTable.fnSettings();
+                                    oSettings._iDisplayStart = 0;
+                                    main.${id}dataTable.fnDraw(oSettings);
+
+
                                     $(This).dialog("close");
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
