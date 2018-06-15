@@ -1,34 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>zjobs</groupId>
+    <artifactId>uust</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <name>uust</name>
+    <url>http://www.example.com</url>
+
     <parent>
-        <artifactId>parent</artifactId>
         <groupId>zjobs</groupId>
+        <artifactId>parent</artifactId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
-    <artifactId>license</artifactId>
-    <packaging>jar</packaging>
-    <name>license</name>
-    <url>http://maven.apache.org</url>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <dependencies>
-        <!--zjobs base  start-->
+        <!--zjobs authority  start-->
         <dependency>
             <groupId>zjobs</groupId>
-            <artifactId>base</artifactId>
+            <artifactId>authority</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <!--zjobs base end-->
-
-
-        <dependency>
-            <groupId>de.schlichtherle.truelicense</groupId>
-            <artifactId>truelicense-core</artifactId>
-            <version>1.32</version>
         </dependency>
     </dependencies>
 
@@ -57,4 +50,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

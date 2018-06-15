@@ -133,6 +133,10 @@
             <resource>
                 <directory>../base/src/main/resources</directory>
             </resource>
+            <resource>
+                <directory>../uust/src/main/resources</directory>
+            </resource>
+
         </resources>
 
         <plugins>

@@ -31,4 +31,9 @@
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
     </root>
+
+    <!--日志拦截，一个请求一个日志-->
+    <!--<logger name="main.java.zjobs.filter.LogInterceptor" level="INFO" additivity="false">-->
+        <!--<appender-ref ref="WEBFILE"/>-->
+    <!--</logger>-->
 </configuration>
