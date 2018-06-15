@@ -21,6 +21,34 @@
             var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
             return "<img src='" + URL + "' height='50' width='50'/>"
         };
+
+        $("input:file").localResizeIMG({
+            width: 500,
+            quality: 0.8,
+            success: function (result) {
+                var img = new Image();
+                img.src = result.base64;
+                console.log(result.clearBase64);
+                //$("body").append(img);
+                $("#result").empty();
+                $("#result").append(img); //呈现图像(拍照結果)
+                $.ajax({
+                    url: "upLoadImageServlet",
+                    type: "POST",
+                    data:{formFile:result.clearBase64},
+                    dataType: "HTML",
+                    timeout: 1000,
+                    error: function(){
+                        alert("Error loading PHP document");
+                    },
+                    success: function(result){
+                        //alert(result);
+                        //console.log(result);
+                        alert("Uploads success~")
+                    }
+                });
+            }
+        });
     </script>
 </head>
 
@@ -39,9 +67,12 @@
                 <zj:icheckbox name="国家" code="COUNTRY"></zj:icheckbox>
 
                 <zj:iradio name="国家" code="COUNTRY"></zj:iradio>
+
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->
+
+
 </body>
 </html>

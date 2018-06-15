@@ -4,13 +4,10 @@ import org.codehaus.jackson.JsonEncoding;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
 
 /**
  * flex 端 JSON 与java 工具之间的转换
@@ -18,7 +15,6 @@ import java.util.Map;
  * @author yu_jk
  */
 public class JsonUtil {
-    //	private static final Logger logger = LoggerFactory.getLogger(JsonUtil.class);
     private static final ObjectMapper OBJECT_MAP = new ObjectMapper();
 
     /**

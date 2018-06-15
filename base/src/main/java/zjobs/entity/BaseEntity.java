@@ -20,7 +20,6 @@ import java.util.Map;
  * @date 2015/2/12
  */
 public class BaseEntity implements Serializable {
-//    protected String id;
 
     protected String createUserName;
 
@@ -36,21 +35,18 @@ public class BaseEntity implements Serializable {
 
     protected String updateDateStr;
 
-    /*状态为多种时*/
+    /**
+     * 状态为多种时
+     */
     protected String state;
 
-    /*只有禁用和启用状态*/
+    /**
+     * 只有禁用和启用状态
+     */
     protected Boolean activating;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-//    public String getId() {
-//        return id;
-//    }
-//
-//    public void setId(String id) {
-//        this.id = id;
-//    }
 
     public String getCreateUserName() {
         return createUserName;
@@ -197,27 +193,11 @@ public class BaseEntity implements Serializable {
     }
 
 
-//    public void putIdField() {
-//        Field idField = gainIdField();
-//        String name = idField.getName();
-//        String methodName = "set" + name.toUpperCase().charAt(0) + name.substring(1);
-//        Method method = null;
-//        try {
-//            method = this.getClass().getDeclaredMethod(methodName, String.class);
-//            method.invoke(this, new Object[]{getId()});
-//        } catch (NoSuchMethodException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException("获取method方法失败。");
-//        } catch (IllegalAccessException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException("设置ID的值失败。");
-//        } catch (InvocationTargetException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException("设置ID的值失败。");
-//        }
-//    }
-
-    /*获取ID数据*/
+    /**
+     * 获取ID值
+     *
+     * @return
+     */
     public Object gainKeyValue() {
         Field idField = gainIdField();
         String name = idField.getName();
@@ -240,6 +220,11 @@ public class BaseEntity implements Serializable {
         return obj;
     }
 
+    /**
+     * 设置ID
+     *
+     * @param id
+     */
     public void putIdField(String id) {
         Field idField = gainIdField();
         String name = idField.getName();

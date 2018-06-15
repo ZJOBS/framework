@@ -4,6 +4,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * 全局线程工具
+ *
+ * @author jiezhang
+ */
 public class ContextHolderUtils {
     private static ThreadLocal<HttpServletRequest> requestLocal = new ThreadLocal<HttpServletRequest>();
     private static ThreadLocal<HttpServletResponse> responseLocal = new ThreadLocal<HttpServletResponse>();
@@ -25,7 +30,6 @@ public class ContextHolderUtils {
     }
 
     public static HttpSession getSession() {
-        return (HttpSession) ((HttpServletRequest) requestLocal.get())
-                .getSession();
+        return (HttpSession) ((HttpServletRequest) requestLocal.get()).getSession();
     }
 }
