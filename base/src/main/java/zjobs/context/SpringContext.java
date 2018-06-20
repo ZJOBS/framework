@@ -8,11 +8,14 @@ import java.util.Map;
 
 /**
  * 获取Spring管理的bean
- * Created by ZhangJie on 2016/3/28.
+ *
+ * @author ZhangJie
+ * @date 2016/3/28
  */
 public class SpringContext implements ApplicationContextAware {
-
-    // Spring应用上下文环境
+    /**
+     * Spring应用上下文环境
+     */
     private static ApplicationContext applicationContext;
 
     /**

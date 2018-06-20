@@ -6,12 +6,15 @@ import javax.servlet.ServletContextListener;
 
 /**
  * 全局的数据
- * Created by jiezhang on 2017/6/15.
+ *
+ * @author jiezhang
+ * @date 2017/6/15
  */
 public class Application implements ServletContextListener {
 
-
-    // Spring应用上下文环境
+    /**
+     * Spring应用上下文环境
+     */
     private static ServletContext applicationContext;
 
 
