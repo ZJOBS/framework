@@ -2,6 +2,7 @@ package zjobs.web.tag;
 
 
 import org.springframework.stereotype.Component;
+import zjobs.base.AbstractWebUiTag;
 
 import javax.servlet.jsp.JspException;
 import java.util.Map;
@@ -145,13 +146,7 @@ public class BindAndUnBind extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getData();
-
-        data.put("id", id);
-        data.put("css", css);
-        data.put("props", props);
-
-
+        Map<String, Object> data = super.getBaseData();
         data.put("sourceTableId", sourceTableId);
         data.put("awakenPosition", awakenPosition);
         data.put("keyName", keyName);
@@ -170,9 +165,6 @@ public class BindAndUnBind extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        if (template != null && !template.equals("")) {
-            return template;
-        }
         return "iBindAndUnbind.ftl";
     }
 

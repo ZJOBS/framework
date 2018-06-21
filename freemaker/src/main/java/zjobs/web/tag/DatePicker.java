@@ -1,5 +1,9 @@
 package zjobs.web.tag;
 
+import zjobs.base.AbstractWebUiTag;
+
+import java.util.Map;
+
 /**
  * 日期选择器
  *
@@ -92,5 +96,16 @@ public class DatePicker extends AbstractWebUiTag {
                 ", format='" + format + '\'' +
                 ", todayBtn='" + todayBtn + '\'' +
                 '}';
+    }
+
+    @Override
+    public Map<String, Object> getData() {
+        Map<String, Object> data = super.getBaseData();
+        return data;
+    }
+
+    @Override
+    public String getStartTemplate() {
+        return null;
     }
 }

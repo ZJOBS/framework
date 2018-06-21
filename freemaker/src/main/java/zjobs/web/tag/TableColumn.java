@@ -1,5 +1,7 @@
 package zjobs.web.tag;
 
+import zjobs.base.AbstractWebUiTag;
+
 import javax.servlet.jsp.JspException;
 import java.util.Map;
 
@@ -127,26 +129,12 @@ public class TableColumn extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        if (template != null && !template.equals("")) {
-            return template;
-        }
         return "itablecolumn.ftl";
     }
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getData();
-        data.put("id", id);
-        data.put("css", css);
-        data.put("props", props);
-
-//        try {
-//            Object obj = redisService.get("", "");
-//        } catch (Exception e) {
-//            //redis获取失败
-//            e.printStackTrace();
-//        }
-
+        Map<String, Object> data = super.getBaseData();
         data.put("key", key);
         data.put("search", search);
         data.put("addUrl", addUrl);

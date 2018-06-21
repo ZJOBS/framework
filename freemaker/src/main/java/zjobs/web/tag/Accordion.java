@@ -2,6 +2,7 @@ package zjobs.web.tag;
 
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.stereotype.Component;
+import zjobs.base.AbstractWebUiTag;
 import zjobs.constant.BaseConstants;
 import zjobs.constant.RedisConstants;
 import zjobs.entity.UAI;
@@ -17,35 +18,20 @@ import java.util.Map;
  */
 @Component
 public class Accordion extends AbstractWebUiTag {
-    protected String id;
-
-    @Override
-    public String getId() {
-        return id;
-    }
-
-    @Override
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @Override
     public String getStartTemplate() {
-        if (template != null && !template.equals("")) {
-            return template;
-        }
         return "iaccordion.ftl";
     }
 
     @Override
     public Map<String, Object> getData() {
+        Map<String, Object> data = super.getBaseData();
         try {
-            Map<String, Object> data = super.getData();
             UAI uai = (UAI) getRequest().getSession().getAttribute(BaseConstants.UAI);
             Object obj = redisService.get(RedisConstants.MENU, RedisConstants.ADMIN + uai.getAdminId());
             JSONArray jsonArray = JSONArray.parseArray(obj.toString());
             data.put("treeMenu", jsonArray);
-            data.put("id", id);
         } catch (Exception e) {
             e.printStackTrace();
         }

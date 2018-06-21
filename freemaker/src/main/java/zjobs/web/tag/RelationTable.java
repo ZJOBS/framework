@@ -1,10 +1,13 @@
 package zjobs.web.tag;
 
+import zjobs.base.AbstractWebUiTag;
+
 import javax.servlet.jsp.JspException;
 import java.util.Map;
 
 /**
- * Created by jiezhang on 2017/7/12.
+ * @author jiezhang
+ * @date 2017/7/12
  */
 public class RelationTable extends AbstractWebUiTag {
     protected String caption;
@@ -85,18 +88,12 @@ public class RelationTable extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        if (template != null && !template.equals("")) {
-            return template;
-        }
         return "irelationtable.ftl";
     }
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getData();
-        data.put("id", id);
-        data.put("css", css);
-        data.put("props", props);
+        Map<String, Object> data = super.getBaseData();
         data.put("queryUrl", queryUrl);
         data.put("caption", caption);
         String[] columnTitles = columnTitle.split(",");

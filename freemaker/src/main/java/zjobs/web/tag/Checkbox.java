@@ -2,6 +2,7 @@ package zjobs.web.tag;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import zjobs.base.AbstractWebUiTag;
 import zjobs.constant.RedisConstants;
 
 import javax.servlet.jsp.JspException;
@@ -20,6 +21,19 @@ public class Checkbox extends AbstractWebUiTag {
      */
     private String code;
 
+    /**
+     * 字典名称
+     */
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getCode() {
         return code;
     }
@@ -30,16 +44,13 @@ public class Checkbox extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        if (template != null && !template.equals("")) {
-            return template;
-        }
         return "icheckbox.ftl";
     }
 
     @Override
     public Map<String, Object> getData() {
+        Map<String, Object> data = super.getBaseData();
         try {
-            Map<String, Object> data = super.getData();
             //form表单名称
             data.put("name", name);
             JSONObject selectJson = JSONObject.parseObject(redisService.get(RedisConstants.DICT, code).toString());
