@@ -241,7 +241,7 @@
             <required>false</required>
         </attribute>
     </tag>
-
+    <!--radio-->
     <tag>
         <description>radio</description>
         <name>iradio</name>
@@ -261,4 +261,23 @@
         </attribute>
     </tag>
 
+    <!--switch-->
+    <tag>
+        <description>switch</description>
+        <name>iswitch</name>
+        <tag-class>zjobs.web.tag.Switch</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>template</name>
+            <required>false</required>
+        </attribute>
+    </tag>
 </taglib>

@@ -30,6 +30,11 @@ public class Select extends AbstractWebUiTag {
      */
     private String defaultValue;
 
+    /**
+     * 文本
+     */
+    private String text;
+
 
     public String getCode() {
         return code;
@@ -68,6 +73,7 @@ public class Select extends AbstractWebUiTag {
             //form表单名称
             data.put("name", name);
             data.put("defaultValue", defaultValue);
+            data.put("text", text);
             JSONObject selectJson = JSONObject.parseObject(redisService.get(RedisConstants.DICT, code).toString());
             //整个select的名称
             data.put("label", selectJson.get("name"));

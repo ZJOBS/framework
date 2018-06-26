@@ -21,35 +21,9 @@
             var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
             return "<img src='" + URL + "' height='50' width='50'/>"
         };
-
-        $("input:file").localResizeIMG({
-            width: 500,
-            quality: 0.8,
-            success: function (result) {
-                var img = new Image();
-                img.src = result.base64;
-                console.log(result.clearBase64);
-                //$("body").append(img);
-                $("#result").empty();
-                $("#result").append(img); //呈现图像(拍照結果)
-                $.ajax({
-                    url: "upLoadImageServlet",
-                    type: "POST",
-                    data:{formFile:result.clearBase64},
-                    dataType: "HTML",
-                    timeout: 1000,
-                    error: function(){
-                        alert("Error loading PHP document");
-                    },
-                    success: function(result){
-                        //alert(result);
-                        //console.log(result);
-                        alert("Uploads success~")
-                    }
-                });
-            }
-        });
     </script>
+
+
 </head>
 
 <body class="no-skin">
@@ -61,13 +35,19 @@
                 <div class="clearfix">
                     <div class="pull-right tableTools-container"></div>
                 </div>
-                <%--已完成--%>
-                <zj:iselect name="国家" code="COUNTRY"></zj:iselect>
+                <form class="form-horizontal" role="form" enctype="multipart/form-data">
+                    <%--已完成--%>
+                    <zj:iselect name="国家" code="COUNTRY"></zj:iselect>
 
-                <zj:icheckbox name="国家" code="COUNTRY"></zj:icheckbox>
+                    <zj:icheckbox name="国家" code="COUNTRY"></zj:icheckbox>
 
-                <zj:iradio name="国家" code="COUNTRY"></zj:iradio>
-
+                    <zj:iradio name="国家" code="COUNTRY"></zj:iradio>
+                    <zj:iswitch name="activating"></zj:iswitch>
+                    <button id="test_ben" type="button"
+                            class="btn btn-minier ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+                            role="button"><span class="ui-button-text"><i class="ace-icon fa fa-trash-o bigger-110"></i>保存</span>
+                    </button>
+                </form>
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->

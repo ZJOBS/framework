@@ -1,19 +1,26 @@
 <script type="text/javascript">
-    $('[name="status"]').bootstrapSwitch({
-        onText: "启动",
-        offText: "停止",
-        onColor: "success",
-        offColor: "info",
-        size: "small",
-        onSwitchChange: function (event, state) {
-            if (state == true) {
-                $(this).val("1");
+    jQuery(function ($) {
+        $('input[name=${name}]').click(function () {
+            var checked = this.checked;
+            if (checked) {
+                $(this).val(true);
+                $(this).prop("checked",true);
             } else {
-                $(this).val("2");
+                $(this).val(false);
+                $(this).prop("checked",false);
             }
-        }
+        });
     });
 </script>
-<input name="activating" class="ace ace-switch ace-switch-6" type="checkbox">
+
+<div class="form-group">
+    <label class="col-sm-3 control-label no-padding-right">${text}</label>
+    <div class="col-xs-3">
+        <label>
+            <input name="${name}" class="ace ace-switch ace-switch-4" type="checkbox">
+            <span class="lbl"></span>
+        </label>
+    </div>
+</div>
 
 

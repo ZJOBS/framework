@@ -6,7 +6,8 @@ import zjobs.entity.BaseEntity;
 import javax.persistence.Id;
 
 /**
- * Created by ZhangJie on 2016/2/14.
+ * @author ZhangJie
+ * @date 2016/2/14
  */
 
 public class Admin extends BaseEntity {
@@ -32,6 +33,7 @@ public class Admin extends BaseEntity {
     public void setName(String name) {
         this.name = name;
     }
+
     public String getAvatar() {
         return avatar;
     }
@@ -66,7 +68,6 @@ public class Admin extends BaseEntity {
                 ", avatar='" + avatar + '\'' +
                 ", password='" + password + '\'' +
                 ", description='" + description + '\'' +
-//                ", id='" + id + '\'' +
                 ", createUserName='" + createUserName + '\'' +
                 ", updateUserName='" + updateUserName + '\'' +
                 ", createDate=" + createDate +

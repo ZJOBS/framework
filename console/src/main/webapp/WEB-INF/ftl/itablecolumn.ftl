@@ -86,6 +86,9 @@
         <#if addUrl?exists>
          $("body").delegate("#add", "click", function () {
             var $add_dialog = $("#${formId}").removeClass("hide");
+
+             $add_dialog.find('form').resetForm();
+
             //单文件上传
             $add_dialog.find('input[type=file]').ace_file_input({
                 style: 'well',
@@ -112,12 +115,7 @@
                                 dataType: "json",
                                 type: "post",
                                 success: function (data, textStatus, jqXHR) {
-                                    //$('#btn_search').click();此方法会报错，使用下面这个方法 刷新界面
-
-                                    var oSettings = main.${id}dataTable.fnSettings();
-                                    oSettings._iDisplayStart = 0;
-                                    main.${id}dataTable.fnDraw(oSettings);
-
+                                    main.${id}dataTable.fnDraw(false);
                                     $(This).dialog("close");
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
@@ -138,8 +136,7 @@
         });
         </#if>
 
-
-         <#if deleteUrl?exists>
+        <#if deleteUrl?exists>
             $("body").delegate(".delete", "click", function () {
                 var data = main.${id}dataTable.api().row($(this).parents("tr")).data();
                         //$('#${id}').dataTable().api().row($(this).parents("tr")).data();
@@ -162,11 +159,7 @@
                                     dataType: "json",
                                     type: "post",
                                     success: function (data, textStatus, jqXHR) {
-                                        //$('#btn_search').click();此方法会报错，使用下面这个方法 刷新界面
-                                        var oSettings = main.${id}dataTable.fnSettings();
-                                        oSettings._iDisplayStart = 0;
-                                        main.${id}dataTable.fnDraw(oSettings);
-
+                                        main.${id}dataTable.fnDraw(false);
                                         $(This).dialog("close");
                                     },
                                     error: function (jqXHR, textStatus, errorThrown) {
@@ -211,12 +204,7 @@
                                 dataType: "json",
                                 type: "post",
                                 success: function (data, textStatus, jqXHR) {
-                                    //$('#btn_search').click(); 此方法会报错，使用下面这个方法 刷新界面
-                                    var oSettings = main.${id}dataTable.fnSettings();
-                                    oSettings._iDisplayStart = 0;
-                                    main.${id}dataTable.fnDraw(oSettings);
-
-
+                                    main.${id}dataTable.fnDraw(false);
                                     $(This).dialog("close");
                                 },
                                 error: function (jqXHR, textStatus, errorThrown) {
@@ -246,15 +234,22 @@
             });
             util.setFormInputByJquery($update_dialog, data);
 
-
             //checkBox启动功能,当数据为1时，checked为switch按钮显示ON状态
             var columnNames = [${columnName}];
             for (var i = 0; i < columnNames.length; i++) {
                 //包含类别的时候
-                if ('type' in columnNames[i] && data[columnNames[i].mData] == 1) {
-                    $update_dialog.find('input[name=' + columnNames[i].mData + ']').attr('checked', 'checked');
+                if ('type' in columnNames[i]) {
+                    if(data[columnNames[i].mData] == true){
+                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').val(true);
+                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').prop("checked",true);
+                    }else if(data[columnNames[i].mData] == false){
+                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').val(false);
+                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').prop("checked",false);
+                    }
                 }
             }
+
+            //redio
         });
         </#if>
 

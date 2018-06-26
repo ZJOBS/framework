@@ -41,9 +41,9 @@ public class BaseEntity implements Serializable {
     protected String state;
 
     /**
-     * 只有禁用和启用状态
+     * 只有禁用和启用状态, checkbox没选中不会往后端传值，所以需要boolean的默认值
      */
-    protected Boolean activating;
+    protected boolean activating;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
@@ -118,13 +118,22 @@ public class BaseEntity implements Serializable {
         this.state = state;
     }
 
-    public Boolean getActivating() {
+    public boolean getActivating() {
         return activating;
     }
 
-    public void setActivating(Boolean activating) {
+    public void setActivating(boolean activating) {
         this.activating = activating;
     }
+
+
+    //    public Boolean getActivating() {
+//        return activating;
+//    }
+//
+//    public void setActivating(Boolean activating) {
+//        this.activating = activating;
+//    }
 
     /**
      * 将对象转换为map
