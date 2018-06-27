@@ -197,6 +197,30 @@
 
     </tag>
 
+    <!--input-->
+    <tag>
+        <description>input</description>
+        <name>iinput</name>
+        <tag-class>zjobs.web.tag.Input</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>hide</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>template</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+
     <!--select-->
     <tag>
         <description>select</description>

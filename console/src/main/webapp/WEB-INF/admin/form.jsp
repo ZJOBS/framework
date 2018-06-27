@@ -2,65 +2,18 @@
 <%@ taglib prefix="zj" uri="http://www.zjobs.cn/jsp/jstl" %>
 <html>
 <body>
-
 <form class="form-horizontal" role="form" enctype="multipart/form-data">
-    <div class="form-group hide">
-        <label class="col-sm-3 control-label no-padding-right"> 产品名称 </label>
-        <div class="col-sm-9">
-            <input name="adminId" type="text" class="col-xs-10 col-sm-5">
-        </div>
-    </div>
 
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right">姓名</label>
-        <div class="col-sm-9">
-            <input name="name" type="text" class="col-xs-10 col-sm-5">
-        </div>
-    </div>
-
-
-    <zj:iswitch name="activating" text="激活"></zj:iswitch>
-
+    <zj:iinput name="adminId" text="管理员ID" hide="hide"/>
+    <zj:iinput name="name" text="姓名"/>
+    <zj:iswitch name="activating" text="激活"/>
     <div class="form-group">
         <label class="col-sm-3 control-label no-padding-right">头像</label>
         <div class="col-xs-12 col-sm-5">
             <input name="file" type="file">
         </div>
     </div>
-
-    <div class="form-group">
-        <label class="col-sm-3 control-label no-padding-right">描述</label>
-        <div class="col-xs-12 col-sm-5">
-            <textarea name="description" class="form-control" rows="3"></textarea>
-        </div>
-    </div>
-
-
-    <%--<div class="form-group">--%>
-    <%--<label class="col-sm-3 control-label no-padding-right">日期选择</label>--%>
-    <%--<div class="col-xs-12 col-sm-5">--%>
-    <%--<div class="input-append date date-picker">--%>
-    <%--<input size="16" type="text" value="" readonly>--%>
-    <%--<span class="add-on"><i class="icon-remove"></i></span>--%>
-    <%--<span class="add-on"><i class="icon-calendar"></i></span>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</div>--%>
-
-
-    <%--<script type="text/javascript">--%>
-    <%--$(function () {--%>
-    <%--$(".date-picker").datetimepicker({--%>
-    <%--language:'zh-CN',--%>
-    <%--weekStart:1,--%>
-    <%--todayHighlight:true,--%>
-    <%--format: 'yyyymmddhhii',--%>
-    <%--autoclose: true,--%>
-    <%--pickerPosition: "bottom-right",--%>
-    <%--});--%>
-    <%--});--%>
-    <%--</script>--%>
+    <zj:iinput name="description" text="描述"/>
 </form>
 </body>
 </html>

@@ -13,8 +13,8 @@
 
     <script>
         /*是否可以变为调用数据字典生成此方法*/
-        function formatState(data, type, full) {
-            return data == 0 ? '禁用' : '启用';
+        function formatActivating(data, type, full) {
+            return data == 0 ? '未激活' : '激活';
         };
 
         function formatImage(data, type, full) {
@@ -66,6 +66,7 @@
                                                     columnTitle="编号,姓名,头像,是否激活,描述"
                                                     columnName="{'mData': 'adminId'},{'mData': 'name'},{'mData': 'avatar'},{'mData': 'activating','type':'checkbox'},{'mData': 'description'}"
                                                     customOperation="showRole()"
+                                                    columnFormat="{'aTargets': 3, 'mRender': formatActivating}"
                                                     formId="dialog-confirm"
                                     />
                                 </div>

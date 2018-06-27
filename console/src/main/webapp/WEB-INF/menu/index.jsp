@@ -12,15 +12,21 @@
     <jsp:include page="/WEB-INF/common/js.jsp"/>
 
     <script>
-        /*是否可以变为调用数据字典生成此方法*/
-        function formatState(data, type, full) {
-            return data == 0 ? '禁用' : '启用';
+        // /*是否可以变为调用数据字典生成此方法*/
+        // function formatState(data, type, full) {
+        //     return data == 0 ? '禁用' : '启用';
+        // };
+        function formatActivating(data, type, full) {
+            return data == 0 ? '未激活' : '激活';
+        };
+        function formatLeaf(data, type, full) {
+            return data == 0 ? '父' : '子';
         };
 
-        function formatImage(data, type, full) {
-            var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
-            return "<img src='" + URL + "' height='50' width='50'/>"
-        };
+        // function formatImage(data, type, full) {
+        //     var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
+        //     return "<img src='" + URL + "' height='50' width='50'/>"
+        // };
     </script>
 </head>
 
@@ -61,6 +67,7 @@
                                                     deleteUrl="/deleteMenu.do"
                                                     columnTitle="编号,父编号,名称,地址,图片,是否启用,是否子节点"
                                                     columnName="{'mData': 'menuId'},{'mData': 'parentId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'image'},{'mData': 'activating','type':'checkbox'},{'mData': 'leaf','type':'checkbox'}"
+                                                    columnFormat="{'aTargets': 5, 'mRender': formatActivating},{'aTargets': 6, 'mRender': formatLeaf}"
                                                     formId="dialog-confirm"
                                     />
 
