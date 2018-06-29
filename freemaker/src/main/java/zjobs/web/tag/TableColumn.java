@@ -129,7 +129,7 @@ public class TableColumn extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "itablecolumn.ftl";
+        return "tablecolumn.ftl";
     }
 
     @Override

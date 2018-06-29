@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html lang="zh-cn">
 <div id="sidebar" class="sidebar responsive ace-save-state" data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
-    <zj:iaccordion/>
+    <zj:accordion/>
     <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
         <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
            data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>

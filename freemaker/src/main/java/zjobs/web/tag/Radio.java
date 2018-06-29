@@ -16,15 +16,20 @@ import java.util.Map;
  * @author jiezhang
  */
 public class Radio extends AbstractWebUiTag {
-    /**
-     * 数据字典中的Code
-     */
+
+    private String text;
+
     private String code;
 
-    /**
-     * 字典名称
-     */
     private String name;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public String getName() {
         return name;
@@ -44,7 +49,7 @@ public class Radio extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "iradio.ftl";
+        return "radio.ftl";
     }
 
     @Override
@@ -52,6 +57,7 @@ public class Radio extends AbstractWebUiTag {
         Map<String, Object> data = super.getBaseData();
         try {
             //form表单名称
+            data.put("text", text);
             data.put("name", name);
             JSONObject selectJson = JSONObject.parseObject(redisService.get(RedisConstants.DICT, code).toString());
             //整个checkbox的名称

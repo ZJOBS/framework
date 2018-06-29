@@ -22,7 +22,7 @@ public class Wizard extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "iwizard.ftl";
+        return "wizard.ftl";
     }
 
     @Override

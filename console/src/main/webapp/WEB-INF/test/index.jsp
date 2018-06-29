@@ -37,39 +37,11 @@
                 </div>
                 <form class="form-horizontal" role="form" enctype="multipart/form-data">
                     <%--已完成--%>
-                    <zj:iselect name="国家" code="COUNTRY"></zj:iselect>
-
-                    <zj:icheckbox name="国家" code="COUNTRY"></zj:icheckbox>
-
-                    <zj:iradio name="国家" code="COUNTRY"></zj:iradio>
-                    <zj:iswitch name="activating" text="激活"></zj:iswitch>
-
-
-                    <%--<div class="form-group">--%>
-                    <%--<label class="col-sm-3 control-label no-padding-right">日期选择</label>--%>
-                    <%--<div class="col-xs-12 col-sm-5">--%>
-                    <%--<div class="input-append date date-picker">--%>
-                    <%--<input size="16" type="text" value="" readonly>--%>
-                    <%--<span class="add-on"><i class="icon-remove"></i></span>--%>
-                    <%--<span class="add-on"><i class="icon-calendar"></i></span>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-                    <%--</div>--%>
-
-
-                    <%--<script type="text/javascript">--%>
-                    <%--$(function () {--%>
-                    <%--$(".date-picker").datetimepicker({--%>
-                    <%--language:'zh-CN',--%>
-                    <%--weekStart:1,--%>
-                    <%--todayHighlight:true,--%>
-                    <%--format: 'yyyymmddhhii',--%>
-                    <%--autoclose: true,--%>
-                    <%--pickerPosition: "bottom-right",--%>
-                    <%--});--%>
-                    <%--});--%>
-                    <%--</script>--%>
-
+                    <%--<zj:select name="country" code="COUNTRY" text="国籍"/>--%>
+                    <%--<zj:checkbox name="country" code="COUNTRY" text="国籍"/>--%>
+                    <%--<zj:radio name="country" code="COUNTRY" text="国籍"/>--%>
+                    <%--<zj:switch name="activating" text="激活"/>--%>
+                    <zj:date id="testDate" text="日期选择" name="testDate" format="yyyy-mm-dd"/>
                 </form>
             </div><!-- /.page-content -->
         </div>

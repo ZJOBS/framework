@@ -3,12 +3,12 @@
 <html>
 <body>
 <form class="form-horizontal" role="form">
-    <zj:iinput name="dictId" text="编号" hide="hide"/>
-    <zj:iinput name="parentId" text="父编号"/>
-    <zj:iinput name="code" text="编码"/>
-    <zj:iinput name="name" text="名称"/>
-    <zj:iinput name="value" text="值"/>
-    <zj:iswitch name="activating" text="激活"></zj:iswitch>
+    <zj:input name="dictId" text="编号" hide="hide"/>
+    <zj:input name="parentId" text="父编号"/>
+    <zj:input name="code" text="编码"/>
+    <zj:input name="name" text="名称"/>
+    <zj:input name="value" text="值"/>
+    <zj:switch name="activating" text="激活"/>
 </form>
 </body>
 </html>

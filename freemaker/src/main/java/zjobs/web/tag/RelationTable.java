@@ -88,7 +88,7 @@ public class RelationTable extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "irelationtable.ftl";
+        return "relationtable.ftl";
     }
 
     @Override

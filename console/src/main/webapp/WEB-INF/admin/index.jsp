@@ -93,7 +93,7 @@
         <jsp:include page="/WEB-INF/admin/form.jsp"/>
     </div>
     <div id="dialog-bindAndUnbind">
-        <zj:iBindAndUnbind id="adminBindRole"
+        <zj:bindAndUnbind id="adminBindRole"
                            sourceTableId="admin"
                            awakenPosition=".showRole"
                            keyName="adminId"

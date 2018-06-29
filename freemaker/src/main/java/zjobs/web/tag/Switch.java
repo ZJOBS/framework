@@ -41,6 +41,6 @@ public class Switch extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "iswitch.ftl";
+        return "switch.ftl";
     }
 }

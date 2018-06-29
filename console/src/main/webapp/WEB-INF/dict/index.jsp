@@ -59,7 +59,7 @@
                                                     formId="dialog-confirm"
                                     />
 
-                                    <zj:irelationtable id="parentDict" queryUrl="/queryDict.do"
+                                    <zj:relationtable id="parentDict" queryUrl="/queryDict.do"
                                                        columnTitle="编号,父编号,编码,名称,值,是否启用"
                                                        columnName="{'mData': 'dictId'},{'mData': 'parentId'},{'mData': 'code'},{'mData': 'name'},{'mData': 'value'},{'mData': 'activating'}"
                                                        relation="['dictId','parentId']"

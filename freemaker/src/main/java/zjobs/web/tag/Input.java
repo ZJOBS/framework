@@ -51,6 +51,6 @@ public class Input extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "iinput.ftl";
+        return "input.ftl";
     }
 }

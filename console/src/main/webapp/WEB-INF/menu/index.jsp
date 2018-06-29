@@ -22,11 +22,6 @@
         function formatLeaf(data, type, full) {
             return data == 0 ? '父' : '子';
         };
-
-        // function formatImage(data, type, full) {
-        //     var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
-        //     return "<img src='" + URL + "' height='50' width='50'/>"
-        // };
     </script>
 </head>
 
@@ -58,7 +53,6 @@
                                             <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
                                         </form>
                                     </div>
-
                                     <zj:tableColumn id="menu" key="menuId" defaultOperation="YES"
                                                     search="#search"
                                                     queryUrl="/queryMenu.do"
@@ -70,14 +64,11 @@
                                                     columnFormat="{'aTargets': 5, 'mRender': formatActivating},{'aTargets': 6, 'mRender': formatLeaf}"
                                                     formId="dialog-confirm"
                                     />
-
-                                    <zj:irelationtable id="parentMenu" queryUrl="/queryMenu.do"
+                                    <zj:relationtable id="parentMenu" queryUrl="/queryMenu.do"
                                                        columnTitle="编号,父编号,名称,地址,图片,是否启用,是否子节点"
                                                        columnName="{'mData': 'menuId'},{'mData': 'parentId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'image'},{'mData': 'activating'},{'mData': 'leaf'}"
                                                        relation="['menuId','parentId']"
                                                        width="1000"/>
-
-
                                 </div>
                             </div>
                         </div>

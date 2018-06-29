@@ -21,7 +21,7 @@ public class Accordion extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "iaccordion.ftl";
+        return "accordion.ftl";
     }
 
     @Override

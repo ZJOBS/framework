@@ -79,22 +79,14 @@
 
     <!--关联组件-->
     <tag>
-        <description>irelationtable</description>
-        <name>irelationtable</name>
+        <description>relationtable</description>
+        <name>relationtable</name>
         <tag-class>zjobs.web.tag.RelationTable</tag-class>
         <body-content>JSP</body-content>
         <attribute>
             <name>id</name>
             <required>true</required>
         </attribute>
-        <!--以上为默认值-->
-
-        <!--原Table-->
-        <!--<attribute>-->
-        <!--<name>rootTable</name>-->
-        <!--<required>true</required>-->
-        <!--<rtexprvalue>true</rtexprvalue>-->
-        <!--</attribute>-->
         <attribute>
             <name>queryUrl</name>
             <required>true</required>
@@ -124,8 +116,8 @@
 
     <!--管理台菜单组件-->
     <tag>
-        <description>iaccordion</description>
-        <name>iaccordion</name>
+        <description>accordion</description>
+        <name>accordion</name>
         <tag-class>zjobs.web.tag.Accordion</tag-class>
         <body-content>JSP</body-content>
         <attribute>
@@ -136,8 +128,8 @@
 
     <!--绑定与解绑组件-->
     <tag>
-        <description>iBindAndUnbind</description>
-        <name>iBindAndUnbind</name>
+        <description>bindAndUnbind</description>
+        <name>bindAndUnbind</name>
         <tag-class>zjobs.web.tag.BindAndUnBind</tag-class>
         <body-content>JSP</body-content>
         <attribute>
@@ -200,15 +192,15 @@
     <!--input-->
     <tag>
         <description>input</description>
-        <name>iinput</name>
+        <name>input</name>
         <tag-class>zjobs.web.tag.Input</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-            <name>name</name>
+            <name>text</name>
             <required>true</required>
         </attribute>
         <attribute>
-            <name>text</name>
+            <name>name</name>
             <required>true</required>
         </attribute>
         <attribute>
@@ -224,9 +216,13 @@
     <!--select-->
     <tag>
         <description>select</description>
-        <name>iselect</name>
+        <name>select</name>
         <tag-class>zjobs.web.tag.Select</tag-class>
         <body-content>JSP</body-content>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
         <attribute>
             <name>name</name>
             <required>true</required>
@@ -249,13 +245,18 @@
     <!--checkbox-->
     <tag>
         <description>checkbox</description>
-        <name>icheckbox</name>
+        <name>checkbox</name>
         <tag-class>zjobs.web.tag.Checkbox</tag-class>
         <body-content>JSP</body-content>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
         <attribute>
             <name>name</name>
             <required>true</required>
         </attribute>
+
         <attribute>
             <name>code</name>
             <required>true</required>
@@ -268,9 +269,13 @@
     <!--radio-->
     <tag>
         <description>radio</description>
-        <name>iradio</name>
+        <name>radio</name>
         <tag-class>zjobs.web.tag.Radio</tag-class>
         <body-content>JSP</body-content>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
         <attribute>
             <name>name</name>
             <required>true</required>
@@ -288,7 +293,7 @@
     <!--switch-->
     <tag>
         <description>switch</description>
-        <name>iswitch</name>
+        <name>switch</name>
         <tag-class>zjobs.web.tag.Switch</tag-class>
         <body-content>JSP</body-content>
         <attribute>
@@ -297,6 +302,35 @@
         </attribute>
         <attribute>
             <name>text</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>template</name>
+            <required>false</required>
+        </attribute>
+    </tag>
+
+
+    <!--date-->
+    <tag>
+        <description>date</description>
+        <name>date</name>
+        <tag-class>zjobs.web.tag.DateTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>id</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>format</name>
             <required>true</required>
         </attribute>
         <attribute>

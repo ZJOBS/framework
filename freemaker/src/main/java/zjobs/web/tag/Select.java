@@ -16,6 +16,12 @@ import java.util.Map;
  * @author jiezhang
  */
 public class Select extends AbstractWebUiTag {
+
+    /**
+     * 文本
+     */
+    private String text;
+
     /**
      * 数据字典中的Code
      */
@@ -30,11 +36,14 @@ public class Select extends AbstractWebUiTag {
      */
     private String defaultValue;
 
-    /**
-     * 文本
-     */
-    private String text;
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     public String getCode() {
         return code;
@@ -63,7 +72,7 @@ public class Select extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "iselect.ftl";
+        return "select.ftl";
     }
 
     @Override

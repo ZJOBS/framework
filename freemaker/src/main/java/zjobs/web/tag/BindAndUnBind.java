@@ -165,7 +165,7 @@ public class BindAndUnBind extends AbstractWebUiTag {
 
     @Override
     public String getStartTemplate() {
-        return "iBindAndUnbind.ftl";
+        return "bindAndUnbind.ftl";
     }
 
     @Override

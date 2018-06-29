@@ -87,7 +87,7 @@
     </div>
 
     <div id="dialog-bindAndUnbind">
-        <zj:iBindAndUnbind id="roleBindMenu"
+        <zj:bindAndUnbind id="roleBindMenu"
                            sourceTableId="role"
                            awakenPosition=".showMenu"
                            keyName="roleId"
