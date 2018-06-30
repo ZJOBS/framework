@@ -3,6 +3,7 @@ package zjobs.web.tag;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import zjobs.base.AbstractWebUiTag;
+import zjobs.base.FormTag;
 import zjobs.constant.RedisConstants;
 
 import javax.servlet.jsp.JspException;
@@ -15,29 +16,13 @@ import java.util.Map;
  *
  * @author jiezhang
  */
-public class Checkbox extends AbstractWebUiTag {
+public class Checkbox extends FormTag {
 
-    private  String text;
 
+    /**
+     * 数据字典中的名称
+     */
     private String code;
-
-    private String name;
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getCode() {
         return code;
@@ -57,8 +42,6 @@ public class Checkbox extends AbstractWebUiTag {
         Map<String, Object> data = super.getData();
         try {
             //form表单名称
-            data.put("text", text);
-            data.put("name", name);
             JSONObject selectJson = JSONObject.parseObject(redisService.get(RedisConstants.DICT, code).toString());
             //整个checkbox的名称
             data.put("label", selectJson.get("name"));

@@ -1,6 +1,7 @@
 package zjobs.web.tag;
 
 import zjobs.base.AbstractWebUiTag;
+import zjobs.base.FormTag;
 
 import java.util.Map;
 
@@ -9,33 +10,12 @@ import java.util.Map;
  *
  * @author jiezhang
  */
-public class Switch extends AbstractWebUiTag {
+public class Switch extends FormTag {
 
-    private String name;
-
-    private String text;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 
     @Override
     public Map<String, Object> getData() {
         Map<String, Object> data = super.getData();
-        data.put("name", name);
-        data.put("text", text);
         return data;
     }
 

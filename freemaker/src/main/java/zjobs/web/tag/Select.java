@@ -3,6 +3,7 @@ package zjobs.web.tag;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import zjobs.base.AbstractWebUiTag;
+import zjobs.base.FormTag;
 import zjobs.constant.RedisConstants;
 
 import javax.servlet.jsp.JspException;
@@ -15,12 +16,7 @@ import java.util.Map;
  *
  * @author jiezhang
  */
-public class Select extends AbstractWebUiTag {
-
-    /**
-     * 文本
-     */
-    private String text;
+public class Select extends FormTag {
 
     /**
      * 数据字典中的Code
@@ -28,22 +24,10 @@ public class Select extends AbstractWebUiTag {
     private String code;
 
     /**
-     * 字典名称
-     */
-    private String name;
-    /**
      * 默认选中字段
      */
     private String defaultValue;
 
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
 
     public String getCode() {
         return code;
@@ -62,14 +46,6 @@ public class Select extends AbstractWebUiTag {
     }
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public String getStartTemplate() {
         return "select.ftl";
@@ -80,9 +56,7 @@ public class Select extends AbstractWebUiTag {
         Map<String, Object> data = super.getData();
         try {
             //form表单名称
-            data.put("name", name);
             data.put("defaultValue", defaultValue);
-            data.put("text", text);
             JSONObject selectJson = JSONObject.parseObject(redisService.get(RedisConstants.DICT, code).toString());
             //整个select的名称
             data.put("label", selectJson.get("name"));

@@ -31,7 +31,7 @@ public abstract class FormTag extends AbstractWebUiTag {
     public Map<String, Object> getData() {
         Map<String, Object> data = super.getData();
         data.put("name", name);
-        data.put("test", text);
+        data.put("text", text);
         return data;
     }
 }
