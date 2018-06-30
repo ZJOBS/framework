@@ -1,6 +1,7 @@
 package zjobs.web.tag;
 
 import zjobs.base.AbstractWebUiTag;
+import zjobs.base.FormTag;
 
 import java.util.Map;
 
@@ -9,7 +10,7 @@ import java.util.Map;
  *
  * @author jiezhang
  */
-public class DatePicker extends AbstractWebUiTag {
+public class DatePicker extends FormTag {
     /**
      * 默认选中时间
      */
@@ -87,25 +88,15 @@ public class DatePicker extends AbstractWebUiTag {
     }
 
     @Override
-    public String toString() {
-        return "DatePicker{" +
-                "initialDate='" + initialDate + '\'' +
-                ", datesDisabled='" + datesDisabled + '\'' +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", format='" + format + '\'' +
-                ", todayBtn='" + todayBtn + '\'' +
-                '}';
+    public String getStartTemplate() {
+        return "datepicker.ftl";
     }
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
+        data.put("format", format);
         return data;
     }
 
-    @Override
-    public String getStartTemplate() {
-        return null;
-    }
 }

@@ -58,7 +58,7 @@ public class DateTag extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
         data.put("name", name);
         data.put("text", text);
         data.put("format", format);

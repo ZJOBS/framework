@@ -146,7 +146,7 @@ public class BindAndUnBind extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
         data.put("sourceTableId", sourceTableId);
         data.put("awakenPosition", awakenPosition);
         data.put("keyName", keyName);

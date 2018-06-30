@@ -37,11 +37,11 @@
                 </div>
                 <form class="form-horizontal" role="form" enctype="multipart/form-data">
                     <%--已完成--%>
-                    <%--<zj:select name="country" code="COUNTRY" text="国籍"/>--%>
-                    <%--<zj:checkbox name="country" code="COUNTRY" text="国籍"/>--%>
-                    <%--<zj:radio name="country" code="COUNTRY" text="国籍"/>--%>
-                    <%--<zj:switch name="activating" text="激活"/>--%>
-                    <zj:date id="testDate" text="日期选择" name="testDate" format="yyyy-mm-dd"/>
+                    <zj:select name="country" code="COUNTRY" text="国籍"/>
+                    <zj:checkbox name="country" code="COUNTRY" text="国籍"/>
+                    <zj:radio name="country" code="COUNTRY" text="国籍"/>
+                    <zj:switch name="activating" text="激活"/>
+                    <zj:datepicker id="testDate" text="日期选择" name="testDate" format="yyyy-mm-dd"/>
                 </form>
             </div><!-- /.page-content -->
         </div>

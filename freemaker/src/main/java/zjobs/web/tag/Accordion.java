@@ -26,7 +26,7 @@ public class Accordion extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
         try {
             UAI uai = (UAI) getRequest().getSession().getAttribute(BaseConstants.UAI);
             Object obj = redisService.get(RedisConstants.MENU, RedisConstants.ADMIN + uai.getAdminId());

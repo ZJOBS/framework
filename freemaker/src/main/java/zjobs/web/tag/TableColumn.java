@@ -134,7 +134,7 @@ public class TableColumn extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
         data.put("key", key);
         data.put("search", search);
         data.put("addUrl", addUrl);

@@ -27,7 +27,7 @@ public class Wizard extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
 
         return data;
     }

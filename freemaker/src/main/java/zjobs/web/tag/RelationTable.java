@@ -93,7 +93,7 @@ public class RelationTable extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
         data.put("queryUrl", queryUrl);
         data.put("caption", caption);
         String[] columnTitles = columnTitle.split(",");

@@ -54,7 +54,7 @@ public class Radio extends AbstractWebUiTag {
 
     @Override
     public Map<String, Object> getData() {
-        Map<String, Object> data = super.getBaseData();
+        Map<String, Object> data = super.getData();
         try {
             //form表单名称
             data.put("text", text);
