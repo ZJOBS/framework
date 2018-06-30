@@ -67,8 +67,6 @@
                                                     columnName="{'mData': 'productId'},{'mData': 'name'},{'mData': 'type'},{'mData': 'image'},{'mData': 'state','type':'checkbox'}"
                                                     formId="dialog-confirm"
                                                     />
-
-
                                 </div>
                             </div>
                         </div>

@@ -196,11 +196,11 @@
         <tag-class>zjobs.web.tag.Input</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-            <name>text</name>
+            <name>name</name>
             <required>true</required>
         </attribute>
         <attribute>
-            <name>name</name>
+            <name>text</name>
             <required>true</required>
         </attribute>
         <attribute>
@@ -220,11 +220,11 @@
         <tag-class>zjobs.web.tag.Select</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-            <name>text</name>
+            <name>name</name>
             <required>true</required>
         </attribute>
         <attribute>
-            <name>name</name>
+            <name>text</name>
             <required>true</required>
         </attribute>
         <attribute>
@@ -249,14 +249,13 @@
         <tag-class>zjobs.web.tag.Checkbox</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-            <name>text</name>
-            <required>true</required>
-        </attribute>
-        <attribute>
             <name>name</name>
             <required>true</required>
         </attribute>
-
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
         <attribute>
             <name>code</name>
             <required>true</required>
@@ -273,11 +272,11 @@
         <tag-class>zjobs.web.tag.Radio</tag-class>
         <body-content>JSP</body-content>
         <attribute>
-            <name>text</name>
+            <name>name</name>
             <required>true</required>
         </attribute>
         <attribute>
-            <name>name</name>
+            <name>text</name>
             <required>true</required>
         </attribute>
         <attribute>
@@ -310,6 +309,25 @@
         </attribute>
     </tag>
 
+    <!--file-->
+    <tag>
+        <description>file</description>
+        <name>file</name>
+        <tag-class>zjobs.web.tag.UploadFile</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>text</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>template</name>
+            <required>false</required>
+        </attribute>
+    </tag>
 
     <!--date-->
     <tag>

@@ -1,53 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jiezhang
-  Date: 2017/9/25
-  Time: 下午10:09
-  To change this template use File | Settings | File Templates.
---%>
+<%@ taglib prefix="zj" uri="http://www.zjobs.cn/jsp/jstl" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <body>
-
-    <form class="form-horizontal" role="form" enctype="multipart/form-data">
-        <div class="form-group hide">
-            <label class="col-sm-3 control-label no-padding-right"> 产品名称 </label>
-            <div class="col-sm-9">
-                <input name="productId" type="text" class="col-xs-10 col-sm-5">
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"> 产品名称 </label>
-            <div class="col-sm-9">
-                <input name="name" type="text" class="col-xs-10 col-sm-5">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"> 类别</label>
-            <div class="col-sm-9">
-                <input name="type" type="text" class="col-xs-10 col-sm-5">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right"> 状态 </label>
-            <div class="col-xs-3">
-                <label>
-                    <input name="state" class="ace ace-switch ace-switch-4" type="checkbox">
-                    <span class="lbl"></span>
-                </label>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">图片</label>
-            <div class="col-xs-12 col-sm-5">
-                <input name="file" type="file">
-            </div>
-        </div>
-    </form>
+<form class="form-horizontal" role="form" enctype="multipart/form-data">
+    <zj:input name="productId" text="产品编号" hide="hide"/>
+    <zj:input name="name" text="产品名称"/>
+    <zj:input name="type" text="类别" hide="hide"/>
+    <zj:switch name="state" text="状态"/>
+    <zj:file name="file" text="图片"/>
+</form>
 </body>
 </html>
