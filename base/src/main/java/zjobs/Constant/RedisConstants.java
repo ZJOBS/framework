@@ -1,7 +1,7 @@
 package zjobs.constant;
 
 /**
- * Redis库中的常量
+ * Redis库中的常量，用于存放"表"名
  *
  * @author jiezhang
  */
@@ -17,6 +17,14 @@ public class RedisConstants {
      */
     public static final String DICT = "dict";
 
+    /**
+     * 管理员
+     */
     public static final String ADMIN = "admin";
+
+    /**
+     * 不可被选中的日期
+     */
+    public static final String DISABLED_DATE = "disabled_date";
 
 }

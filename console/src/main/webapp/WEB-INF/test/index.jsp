@@ -41,7 +41,7 @@
                     <zj:checkbox name="country" code="COUNTRY" text="国家"/>
                     <zj:radio name="country" code="COUNTRY" text="国家"/>
                     <zj:switch name="activating" text="激活"/>
-                    <zj:datepicker id="testDate" text="日期选择" name="testDate" format="yyyy-mm-dd"/>
+                    <zj:datepicker id="testDate" text="日期选择" name="testDate" format="yyyymmdd" todayBtn="true"/>
                 </form>
             </div><!-- /.page-content -->
         </div>

@@ -1,5 +1,8 @@
 package zjobs.web.tag;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.lang.StringUtils;
 import zjobs.base.AbstractWebUiTag;
 import zjobs.base.FormTag;
 
@@ -19,7 +22,7 @@ public class DatePicker extends FormTag {
     /**
      * 不可选中时间
      */
-    private String datesDisabled;
+    private String disabledDate;
     /**
      * 最早可选择时间
      */
@@ -47,12 +50,12 @@ public class DatePicker extends FormTag {
         this.initialDate = initialDate;
     }
 
-    public String getDatesDisabled() {
-        return datesDisabled;
+    public String getDisabledDate() {
+        return disabledDate;
     }
 
-    public void setDatesDisabled(String datesDisabled) {
-        this.datesDisabled = datesDisabled;
+    public void setDisabledDate(String disabledDate) {
+        this.disabledDate = disabledDate;
     }
 
     public String getStartDate() {
@@ -95,7 +98,20 @@ public class DatePicker extends FormTag {
     @Override
     public Map<String, Object> getData() {
         Map<String, Object> data = super.getData();
-        data.put("format", format);
+
+        try {
+
+            data.put("format", format);
+            data.put("todayBtn", todayBtn);
+            //        不能选中的日期，从redis中取
+            if (StringUtils.isNotBlank(disabledDate)) {
+                JSONObject disabledJson = JSONObject.parseObject(redisService.get("DISABLED_DATE", disabledDate).toString());
+                JSONArray array = disabledJson.getJSONArray("value");
+                data.put("disabledDate", array);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return data;
     }
 

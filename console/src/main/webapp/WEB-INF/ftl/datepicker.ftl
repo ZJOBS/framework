@@ -1,12 +1,25 @@
 <script type="text/javascript">
     $(function () {
         $("#${id}").datetimepicker({
+            //语言
             language: 'zh-CN',
+            //允许方向键
+            keyboardNavigation: true,
+            //一周从周一开始
             weekStart: 1,
+            //高亮当前日期
             todayHighlight: true,
+            //日期格式
             format: '${format}',
+            //自动关闭
             autoclose: true,
+            //选择器组件的底部显示一个 "Today" 按钮用以选择当前日期
+            todayBtn:${todayBtn},
             pickerPosition: "bottom-right",
+            //不允许选中的日期，必须是YYYY-MM-DD的格式
+            <#if disabledDate?exists>
+                datesDisabled: ${disabledDate},
+            </#if>
         });
     });
 </script>

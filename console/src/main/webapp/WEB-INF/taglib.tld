@@ -333,6 +333,15 @@
             <name>format</name>
             <required>true</required>
         </attribute>
+
+        <attribute>
+            <name>todayBtn</name>
+            <required>true</required>
+        </attribute>
+        <attribute>
+            <name>disabledDate</name>
+            <required>false</required>
+        </attribute>
         <attribute>
             <name>template</name>
             <required>false</required>
