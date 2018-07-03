@@ -21,6 +21,9 @@
             var URL = "http://omjgaayha.bkt.clouddn.com/" + data;
             return "<img src='" + URL + "' height='50' width='50'/>"
         };
+
+
+
     </script>
 
 
@@ -44,6 +47,8 @@
                     <zj:datepicker id="testDate" text="日期选择" name="testDate" format="yyyymmdd" todayBtn="true"/>
                 </form>
             </div><!-- /.page-content -->
+
+
         </div>
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->

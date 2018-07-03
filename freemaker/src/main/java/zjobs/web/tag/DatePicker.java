@@ -37,6 +37,10 @@ public class DatePicker extends FormTag {
      */
     private String format;
 
+    private String minView;
+
+    private String maxView;
+
     /**
      * 是否展现今日按钮
      */
@@ -90,6 +94,23 @@ public class DatePicker extends FormTag {
         this.todayBtn = todayBtn;
     }
 
+
+    public String getMinView() {
+        return minView;
+    }
+
+    public void setMinView(String minView) {
+        this.minView = minView;
+    }
+
+    public String getMaxView() {
+        return maxView;
+    }
+
+    public void setMaxView(String maxView) {
+        this.maxView = maxView;
+    }
+
     @Override
     public String getStartTemplate() {
         return "datepicker.ftl";
@@ -103,6 +124,12 @@ public class DatePicker extends FormTag {
 
             data.put("format", format);
             data.put("todayBtn", todayBtn);
+            if (StringUtils.isNotBlank(minView)) {
+                data.put("minView", minView);
+            }
+            if (StringUtils.isNotBlank(maxView)) {
+                data.put("maxView", maxView);
+            }
             //        不能选中的日期，从redis中取
             if (StringUtils.isNotBlank(disabledDate)) {
                 JSONObject disabledJson = JSONObject.parseObject(redisService.get("DISABLED_DATE", disabledDate).toString());

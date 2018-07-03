@@ -17,9 +17,15 @@
             todayBtn:${todayBtn},
             pickerPosition: "bottom-right",
             //不允许选中的日期，必须是YYYY-MM-DD的格式
-            <#if disabledDate?exists>
-                datesDisabled: ${disabledDate},
-            </#if>
+        <#if disabledDate?exists>
+            datesDisabled: ${disabledDate},
+        </#if>
+        <#if minView?exists>
+            minView: ${minView},
+        </#if>
+        <#if maxView?exists>
+            maxView: ${maxView},
+        </#if>
         });
     });
 </script>

@@ -331,7 +331,15 @@
 
     <!--date-->
     <tag>
-        <description>datepicker</description>
+        <description>
+            datepicker
+            minView,maxView
+            'hour' for the hour view
+            'day' for the day view
+            'month' for month view (the default)
+            'year' for the 12-month overview
+            'decade' for the 10-year overview. Useful for date-of-birth datetimepickers
+        </description>
         <name>datepicker</name>
         <tag-class>zjobs.web.tag.DatePicker</tag-class>
         <body-content>JSP</body-content>
@@ -358,6 +366,18 @@
         </attribute>
         <attribute>
             <name>disabledDate</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>startView</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>minView</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>maxView</name>
             <required>false</required>
         </attribute>
         <attribute>
