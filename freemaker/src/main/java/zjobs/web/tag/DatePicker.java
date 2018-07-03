@@ -32,13 +32,25 @@ public class DatePicker extends FormTag {
      */
     private String endDate;
 
+
     /**
      * 时间格式
      */
     private String format;
 
+    /**
+     * 最开始选择的日期
+     */
+    private String startView;
+
+    /**
+     * 最小的时间
+     */
     private String minView;
 
+    /**
+     * 最大的时间
+     */
     private String maxView;
 
     /**
@@ -94,6 +106,13 @@ public class DatePicker extends FormTag {
         this.todayBtn = todayBtn;
     }
 
+    public String getStartView() {
+        return startView;
+    }
+
+    public void setStartView(String startView) {
+        this.startView = startView;
+    }
 
     public String getMinView() {
         return minView;
@@ -119,18 +138,21 @@ public class DatePicker extends FormTag {
     @Override
     public Map<String, Object> getData() {
         Map<String, Object> data = super.getData();
-
         try {
-
             data.put("format", format);
-            data.put("todayBtn", todayBtn);
+            if (StringUtils.isNotBlank(todayBtn)) {
+                data.put("todayBtn", todayBtn);
+            }
             if (StringUtils.isNotBlank(minView)) {
                 data.put("minView", minView);
             }
             if (StringUtils.isNotBlank(maxView)) {
                 data.put("maxView", maxView);
             }
-            //        不能选中的日期，从redis中取
+            if (StringUtils.isNotBlank(startView)) {
+                data.put("startView", startView);
+            }
+            //不能选中的日期，从redis中取
             if (StringUtils.isNotBlank(disabledDate)) {
                 JSONObject disabledJson = JSONObject.parseObject(redisService.get("DISABLED_DATE", disabledDate).toString());
                 JSONArray array = disabledJson.getJSONArray("value");

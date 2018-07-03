@@ -13,18 +13,23 @@
             format: '${format}',
             //自动关闭
             autoclose: true,
-            //选择器组件的底部显示一个 "Today" 按钮用以选择当前日期
-            todayBtn:${todayBtn},
             pickerPosition: "bottom-right",
+            //选择器组件的底部显示一个 "Today" 按钮用以选择当前日期
+        <#if disabledDate?exists>
+            todayBtn:${todayBtn},
+        </#if>
             //不允许选中的日期，必须是YYYY-MM-DD的格式
         <#if disabledDate?exists>
-            datesDisabled: ${disabledDate},
+            datesDisabled: '${disabledDate}',
+        </#if>
+        <#if startView?exists>
+            startView: '${startView}',
         </#if>
         <#if minView?exists>
-            minView: ${minView},
+            minView: '${minView}',
         </#if>
         <#if maxView?exists>
-            maxView: ${maxView},
+            maxView: '${maxView}',
         </#if>
         });
     });
