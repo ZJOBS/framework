@@ -1,17 +1,17 @@
 package zjobs.entity;
 
-import java.io.Serializable;
+
+import zjobs.utils.DateUtil;
 
 /**
- * 返回值公共方法
+ * 返回对象包装类
  *
  * @author jiezhang
  */
-public class Result implements Serializable {
-
+public class SystemReturn {
 
     /**
-     * 是否成功  true：成功 、false：失败
+     * 是否成功 true：成功 、false：失败
      */
     public boolean success;
 
@@ -72,6 +72,9 @@ public class Result implements Serializable {
         this.pushResult = pushResult;
     }
 
+    public String getServerTime() {
+        return DateUtil.getTimeStamp();
+    }
 
     public void setServerTime(String serverTime) {
         this.serverTime = serverTime;
@@ -103,6 +106,4 @@ public class Result implements Serializable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
-
 }

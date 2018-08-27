@@ -24,6 +24,8 @@ public class DateUtil {
      */
     public final static String DATE_PATTERN = "yyyyMMdd";
 
+    public final static String DATETIME_PATTERN = "yyyyMMddHHmmss";
+
     /**
      * 时间格式(yyyy年MM月dd日)
      */
@@ -145,9 +147,23 @@ public class DateUtil {
         return formatter.format(calendar.getTime());
     }
 
-
+    /**
+     * 获取今日
+     *
+     * @return
+     */
     public static String getTodayDate() {
         return new SimpleDateFormat(DATE_PATTERN).format(new Date());
+    }
+
+
+    /**
+     * 获取当前时间时分秒
+     *
+     * @return
+     */
+    public static String getTimeStamp() {
+        return new SimpleDateFormat(DATETIME_PATTERN).format(new Date());
     }
 
 }
