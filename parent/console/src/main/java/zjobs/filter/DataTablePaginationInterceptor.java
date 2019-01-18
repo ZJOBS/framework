@@ -85,10 +85,9 @@ public class DataTablePaginationInterceptor implements Interceptor {
 
     @SuppressWarnings("rawtypes")
     private String getMysqlPageSql(DataTablePage page, StringBuffer sqlBuffer) {
-        //int offset = (page.getCurrentPage() - 1) * page.getPageSize();
         int offset = page.getiDisplayStart();
         sqlBuffer.append(" limit ").append(offset).append(",")
-                .append(offset + page.getiDisplayLength());
+                .append(page.getiDisplayLength());
         return sqlBuffer.toString();
     }
 
