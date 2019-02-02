@@ -3,8 +3,8 @@
     <div class="col-sm-9">
         <#list options as option>
             <label>
-                <input name="${name}" type="radio" class="ace" value="${option.value}">
-                <span class="lbl">${option.name}</span>
+            <input name="${name}" type="radio" class="ace" value="${option.value}">
+            <span class="lbl">${option.name}</span>
             </label>
         </#list>
     </div>

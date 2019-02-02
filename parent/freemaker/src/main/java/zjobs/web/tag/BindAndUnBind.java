@@ -8,7 +8,7 @@ import javax.servlet.jsp.JspException;
 import java.util.Map;
 
 /**
- * 一堆多，绑定与解绑模板
+ * 一对多，绑定与解绑模板
  *
  * @author jiezhang
  * @date 2017/6/13

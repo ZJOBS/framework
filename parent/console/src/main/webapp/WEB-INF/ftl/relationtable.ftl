@@ -47,7 +47,7 @@
                 aoData._rand = Math.random();
                 //search方法获取值
                 aoData.push(
-                        {"name": "name", "value": $('#name').val()}
+                    {"name": "name", "value": $('#name').val()}
                 );
             };
             //搜索就是设置参数，然后销毁datatable重新再建一个
@@ -64,7 +64,7 @@
         $("body").delegate("input[name=" + ${id}relation[1] + "]", "click", function () {
             if (!${id}DataTable) {
                 ${id}DataTable = $("#${id}").dataTable($.${id}dataTablesSettings);
-            }else{
+            } else {
                 ${id}DataTable.api().ajax.reload();
             }
 
@@ -86,7 +86,7 @@
                     }
                 ]
             });
-        <#--$('#${id}_wrapper').dialog("moveToTop");-->
+            <#--$('#${id}_wrapper').dialog("moveToTop");-->
         });
 
         $('#${id}').delegate('tr', "dblclick", function () {
@@ -104,9 +104,9 @@
 <table id="${id}" class="table table-striped table-bordered table-hover" style="display: none">
     <thead>
     <tr>
-    <#list columnTitle as ct>
-        <th>${ct}</th>
-    </#list>
+        <#list columnTitle as ct>
+            <th>${ct}</th>
+        </#list>
     </tr>
     </thead>
     <tbody>

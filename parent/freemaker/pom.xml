@@ -8,7 +8,7 @@
     <packaging>jar</packaging>
     <name>freemaker</name>
     <url>http://maven.apache.org</url>
-    
+
     <parent>
         <groupId>zjobs</groupId>
         <artifactId>parent</artifactId>

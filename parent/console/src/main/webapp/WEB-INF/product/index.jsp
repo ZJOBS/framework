@@ -66,7 +66,7 @@
                                                     columnFormat="{'aTargets': 4, 'mRender': formatState},{'aTargets': 3, 'mRender': formatImage}"
                                                     columnName="{'mData': 'productId'},{'mData': 'name'},{'mData': 'type'},{'mData': 'image'},{'mData': 'state','type':'checkbox'}"
                                                     formId="dialog-confirm"
-                                                    />
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
     </div><!-- /.main-content -->
 
     <%--<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">--%>
-        <%--<i class="ace-icon fa fa-angle-double-up icon-only bigger-110">shadongxi</i>--%>
+    <%--<i class="ace-icon fa fa-angle-double-up icon-only bigger-110">shadongxi</i>--%>
     <%--</a>--%>
 
 

@@ -35,10 +35,14 @@
                                 <div>
                                     <div id="search" class="ibox-tools">
                                         <form>
-                                            <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
-                                            <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
-                                            <a id="btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
-                                            <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
+                                            <input placeholder="名称" id="name" type="text" name="name"
+                                                   class="col-xs-10 col-sm-1"/>
+                                            <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                    class="fa fa-search"></i>搜索</a>
+                                            <a id="btn_clear_search" class="btn btn-primary btn-sm"
+                                               href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+                                            <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                    class="fa fa-plus"></i>添加</a>
                                         </form>
                                     </div>
 

@@ -16,6 +16,7 @@
         function formatActivating(data, type, full) {
             return data == 0 ? '禁用' : '启用';
         };
+
         function showMenu() {
             return "<a class='green showMenu' href='#' > <i class='ace-icon fa fa-bars bigger-130'></i> </a>";
         }
@@ -88,16 +89,16 @@
 
     <div id="dialog-bindAndUnbind">
         <zj:bindAndUnbind id="roleBindMenu"
-                           sourceTableId="role"
-                           awakenPosition=".showMenu"
-                           keyName="roleId"
-                           relationName="menuId"
-                           leftQueryUrl="/queryRoleBindMenu.do"
-                           deleteUrl="/unbindRoleMenu.do"
-                           rightQueryUrl="/queryRoleNotBindMenu.do"
-                           addUrl="/bindRoleMenu.do"
-                           columnTitle="编号,名称,地址,是否启用,是否子节点"
-                           columnName="{'mData': 'menuId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'activating'},{'mData': 'leaf','type':'checkbox'}"
+                          sourceTableId="role"
+                          awakenPosition=".showMenu"
+                          keyName="roleId"
+                          relationName="menuId"
+                          leftQueryUrl="/queryRoleBindMenu.do"
+                          deleteUrl="/unbindRoleMenu.do"
+                          rightQueryUrl="/queryRoleNotBindMenu.do"
+                          addUrl="/bindRoleMenu.do"
+                          columnTitle="编号,名称,地址,是否启用,是否子节点"
+                          columnName="{'mData': 'menuId'},{'mData': 'name'},{'mData': 'url'},{'mData': 'activating'},{'mData': 'leaf','type':'checkbox'}"
         />
     </div>
 </div><!-- /.main-container -->

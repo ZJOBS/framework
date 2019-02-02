@@ -4,14 +4,14 @@
 <!DOCTYPE HTML>
 <html lang="zh-cn">
 <div class="footer">
-	<div class="footer-inner">
-		<div class="footer-content">
+    <div class="footer-inner">
+        <div class="footer-content">
 						<span class="bigger-120">
 							<span class="blue bolder">管理台</span>
 							Application &copy; 2017-2100
 						</span>
-			&nbsp; &nbsp;
-			<span class="action-buttons">
+            &nbsp; &nbsp;
+            <span class="action-buttons">
                     <a href="#">
                         <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
                     </a>
@@ -22,13 +22,13 @@
                         <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
                     </a>
                 </span>
-		</div>
-	</div>
+        </div>
+    </div>
 </div>
 
 
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='${contextPath}/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if ('ontouchstart' in document.documentElement) document.write("<script src='${contextPath}/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
 </script>
 
 <!-- page specific plugin scripts -->

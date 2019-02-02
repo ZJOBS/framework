@@ -34,32 +34,32 @@
             "sAjaxSource": "${contextPath}${queryUrl}", //给服务器发请求的url
             "sServerMethod": "POST",
             "aoColumns": [ //这个属性下的设置会应用到所有列，按顺序没有是空
-            ${columnName}, {'sDefaultContent': ''}
+                ${columnName}, {'sDefaultContent': ''}
                 // sDefaultContent 如果这一列不需要填充数据用这个属性，值可以不写，起占位作用
 //              {"sDefaultContent": '', "sClass": "action"},//sClass 表示给本列加class
             ],
             "aoColumnDefs": [
-            <#if columnFormat?exists>${columnFormat},</#if>
+                <#if columnFormat?exists>${columnFormat}, </#if>
                 {"aTargets": [${columnLength}+1], "mRender": operating}
-            <#--{-->
-            <#--"aTargets": [${columnlength}],-->
-            <#--"mRender": operating-->
-            <#--},-->
+                <#--{-->
+                <#--"aTargets": [${columnlength}],-->
+                <#--"mRender": operating-->
+                <#--},-->
                 /*{"aTargets":[0],第零个,"mRender": function(){}格式化方法}*/
 
             ],
             "fnServerParams": function (aoData) {
                 aoData._rand = Math.random();
 
-            <#if search?exists>
+                <#if search?exists>
                 var dataSer = util.getFrom("${search}");
                 for (var key in dataSer) {
                     aoData.push(
-                            {"name": key, "value": dataSer[key]}
-                            //添加所有搜索参数
+                        {"name": key, "value": dataSer[key]}
+                        //添加所有搜索参数
                     );
                 }
-            </#if>
+                </#if>
             },
             "fnDrawCallback": function () {
 
@@ -84,10 +84,10 @@
 
 
         <#if addUrl?exists>
-         $("body").delegate("#add", "click", function () {
+        $("body").delegate("#add", "click", function () {
             var $add_dialog = $("#${formId}").removeClass("hide");
 
-             $add_dialog.find('form').resetForm();
+            $add_dialog.find('form').resetForm();
 
             //单文件上传
             $add_dialog.find('input[type=file]').ace_file_input({
@@ -137,52 +137,53 @@
         </#if>
 
         <#if deleteUrl?exists>
-            $("body").delegate(".delete", "click", function () {
-                var data = main.${id}dataTable.api().row($(this).parents("tr")).data();
-                        //$('#${id}').dataTable().api().row($(this).parents("tr")).data();
-                var ${key} = data.${key};
-                $("#delete").removeClass("hide").dialog({
-                    resizable: false,
-                    width: 500,
-                    modal: true,
-                    title_html: true,
-                    buttons: [
-                        {
-                            html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>删除",
-                            "class": "btn btn-minier",
-                            click: function () {
-                                var This = this;
-                                $.ajax({
-                                    type: "POST",
-                                    url: "${contextPath}${deleteUrl}",
-                                    data: {"${key}": ${key}},
-                                    dataType: "json",
-                                    type: "post",
-                                    success: function (data, textStatus, jqXHR) {
-                                        main.${id}dataTable.fnDraw(false);
-                                        $(This).dialog("close");
-                                    },
-                                    error: function (jqXHR, textStatus, errorThrown) {
-                                        //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
-                                    }
-                                });
-                                //搜索就是设置参数，然后销毁datatable重新再建一个
-                            }
-                        }, {
-                            html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
-                            "class": "btn btn-minier",
-                            click: function () {
-                                $(this).dialog("close");
-                            }
+        $("body").delegate(".delete", "click", function () {
+            var data = main.${id}dataTable.api().row($(this).parents("tr")).data();
+            //$('#${id}').dataTable().api().row($(this).parents("tr")).data();
+            var ${key} =
+            data.${key};
+            $("#delete").removeClass("hide").dialog({
+                resizable: false,
+                width: 500,
+                modal: true,
+                title_html: true,
+                buttons: [
+                    {
+                        html: "<i class='ace-icon fa fa-trash-o bigger-110'></i>删除",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            var This = this;
+                            $.ajax({
+                                type: "POST",
+                                url: "${contextPath}${deleteUrl}",
+                                data: {"${key}": ${key}},
+                                dataType: "json",
+                                type: "post",
+                                success: function (data, textStatus, jqXHR) {
+                                    main.${id}dataTable.fnDraw(false);
+                                    $(This).dialog("close");
+                                },
+                                error: function (jqXHR, textStatus, errorThrown) {
+                                    //alert('处理您的请求时发生意外错误,可能是请求过于频繁或登陆超时,请刷新后重试.');
+                                }
+                            });
+                            //搜索就是设置参数，然后销毁datatable重新再建一个
                         }
-                    ]
-                });
+                    }, {
+                        html: "<i class='ace-icon fa fa-times bigger-110'></i>取消",
+                        "class": "btn btn-minier",
+                        click: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                ]
             });
-         </#if>
+        });
+        </#if>
 
 
         <#if editUrl?exists>
-            $("body").delegate(".update", "click", function () {
+        $("body").delegate(".update", "click", function () {
             //获取当前选择的参数,填入updata的数据中
             var data = $('#${id}').dataTable().api().row($(this).parents("tr")).data();
             var $update_dialog = $("#${formId}").removeClass("hide");
@@ -239,12 +240,12 @@
             for (var i = 0; i < columnNames.length; i++) {
                 //包含类别的时候
                 if ('type' in columnNames[i]) {
-                    if(data[columnNames[i].mData] == true){
+                    if (data[columnNames[i].mData] == true) {
                         $update_dialog.find('input[name=' + columnNames[i].mData + ']').val(true);
-                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').prop("checked",true);
-                    }else if(data[columnNames[i].mData] == false){
+                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').prop("checked", true);
+                    } else if (data[columnNames[i].mData] == false) {
                         $update_dialog.find('input[name=' + columnNames[i].mData + ']').val(false);
-                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').prop("checked",false);
+                        $update_dialog.find('input[name=' + columnNames[i].mData + ']').prop("checked", false);
                     }
                 }
             }
@@ -259,13 +260,13 @@
     * 生成操作列*/
     function operating(data, type, full) {
         var result = "<div class='hidden-sm hidden-xs action-buttons'>";
-    <#if defaultOperation?exists>
+        <#if defaultOperation?exists>
         result += "<a class='green update' href='#'> <i class='ace-icon fa fa-pencil bigger-130'></i> </a> <a class='red delete' href='#'> <i class='ace-icon fa fa-trash-o bigger-130'></i> </a>";
-    </#if>
-    <#if customOperation?exists>
+        </#if>
+        <#if customOperation?exists>
         var customOperation = ${customOperation};
         result += customOperation;
-    </#if>
+        </#if>
         result += "</div>"
         return result;
     };
@@ -275,9 +276,9 @@
 <table id="${id}" class="table table-striped table-bordered table-hover">
     <thead>
     <tr>
-    <#list columnTitle as ct>
-        <th>${ct}</th>
-    </#list>
+        <#list columnTitle as ct>
+            <th>${ct}</th>
+        </#list>
         <th>操作</th>
     </thead>
     <tbody>

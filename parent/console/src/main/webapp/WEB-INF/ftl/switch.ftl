@@ -4,10 +4,10 @@
             var checked = this.checked;
             if (checked) {
                 $(this).val(true);
-                $(this).prop("checked",true);
+                $(this).prop("checked", true);
             } else {
                 $(this).val(false);
-                $(this).prop("checked",false);
+                $(this).prop("checked", false);
             }
         });
     });

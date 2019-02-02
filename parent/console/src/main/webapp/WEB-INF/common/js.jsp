@@ -59,8 +59,12 @@
 <script src="${pageContext.request.contextPath}/component/assets/js/ace.min.js"></script>
 
 <%--日期时间讯择期--%>
-<script type="text/javascript" src="${pageContext.request.contextPath}/component/datetimepicker/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/component/datetimepicker/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/component/datetimepicker/bootstrap-datetimepicker.min.js"
+        charset="UTF-8"></script>
+<script type="text/javascript"
+        src="${pageContext.request.contextPath}/component/datetimepicker/bootstrap-datetimepicker.zh-CN.js"
+        charset="UTF-8"></script>
 
 <%--编辑工具--%>
 <script src="${pageContext.request.contextPath}/component/assets/js/bootstrap-wysiwyg.min.js"></script>

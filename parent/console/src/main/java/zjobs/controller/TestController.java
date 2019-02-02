@@ -1,5 +1,6 @@
 package zjobs.controller;
 
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import zjobs.utils.MailServiceUtil;
@@ -14,6 +15,9 @@ import java.io.UnsupportedEncodingException;
  */
 @Controller
 public class TestController {
+
+
+
     /**
      * 用于测试界面的
      *
@@ -39,6 +43,16 @@ public class TestController {
             e.printStackTrace();
         }
     }
+
+
+//    @RequestMapping(value = "websocket1111")
+//    @ResponseBody
+//    public int websocket1111(Product product) {
+//        int flag = 0;
+//        temp.sendAllMessage("测试websocket成功");
+//        return flag;
+//    }
+
 
     public static void main(String[] args) {
         System.out.println(Double.MAX_VALUE);

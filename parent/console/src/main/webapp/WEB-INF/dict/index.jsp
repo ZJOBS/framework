@@ -39,11 +39,16 @@
                                 </div>
                                 <div>
                                     <div id="search" class="ibox-tools">
-                                        <input placeholder="编号" id="id" type="text" name="id" class="col-xs-10 col-sm-1"/>
-                                        <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
-                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
-                                        <a id="btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
-                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
+                                        <input placeholder="编号" id="id" type="text" name="id"
+                                               class="col-xs-10 col-sm-1"/>
+                                        <input placeholder="名称" id="name" type="text" name="name"
+                                               class="col-xs-10 col-sm-1"/>
+                                        <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                class="fa fa-search"></i>搜索</a>
+                                        <a id="btn_clear_search" class="btn btn-primary btn-sm"
+                                           href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+                                        <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                class="fa fa-plus"></i>添加</a>
                                     </div>
                                     <%--dynamic-table--%>
 
@@ -60,10 +65,10 @@
                                     />
 
                                     <zj:relationtable id="parentDict" queryUrl="/queryDict.do"
-                                                       columnTitle="编号,父编号,编码,名称,值,是否启用"
-                                                       columnName="{'mData': 'dictId'},{'mData': 'parentId'},{'mData': 'code'},{'mData': 'name'},{'mData': 'value'},{'mData': 'activating'}"
-                                                       relation="['dictId','parentId']"
-                                                       width="1000"/>
+                                                      columnTitle="编号,父编号,编码,名称,值,是否启用"
+                                                      columnName="{'mData': 'dictId'},{'mData': 'parentId'},{'mData': 'code'},{'mData': 'name'},{'mData': 'value'},{'mData': 'activating'}"
+                                                      relation="['dictId','parentId']"
+                                                      width="1000"/>
                                 </div>
                             </div>
                         </div>

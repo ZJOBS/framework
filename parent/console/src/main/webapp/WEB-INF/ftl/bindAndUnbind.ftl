@@ -42,8 +42,8 @@
                 var dataSer = util.getFrom("${search}");
                 for (var key in dataSer) {
                     aoData.push(
-                            {"name": key, "value": dataSer[key]}
-                            //添加所有搜索参数
+                        {"name": key, "value": dataSer[key]}
+                        //添加所有搜索参数
                     );
                 }
                 </#if>
@@ -92,15 +92,15 @@
             "aoColumnDefs": [<#if columnFormat?exists>${columnFormat}</#if>],
             "fnServerParams": function (aoData) {
                 aoData._rand = Math.random();
-            <#if search?exists>
+                <#if search?exists>
                 var dataSer = util.getFrom("${search}");
                 for (var key in dataSer) {
                     aoData.push(
-                            {"name": key, "value": dataSer[key]}
-                            //添加所有搜索参数
+                        {"name": key, "value": dataSer[key]}
+                        //添加所有搜索参数
                     );
                 }
-            </#if>
+                </#if>
             },
             "fnDrawCallback": function () {
 
@@ -122,7 +122,7 @@
                 aoData._rand = Math.random();
                 //search方法获取值
                 aoData.push(
-                        {"name": "${keyName}", "value": ${keyName}Bind}
+                    {"name": "${keyName}", "value": ${keyName}Bind}
                 );
             };
             if (!${id}LeftDataTable) {
@@ -136,7 +136,7 @@
                 aoData._rand = Math.random();
                 //search方法获取值
                 aoData.push(
-                        {"name": "${keyName}", "value": ${keyName}Bind}
+                    {"name": "${keyName}", "value": ${keyName}Bind}
                 );
             };
             if (!${id}RightDataTable) {
@@ -172,12 +172,16 @@
             $.ajax({
                 url: "${contextPath}${addUrl}",
                 type: 'post',
-                data: {${relationName}s: ids.join(","),${keyName}:${keyName}Bind},
-                success: function (result) {
-                    ${id}LeftDataTable.api().ajax.reload();
-                    ${id}RightDataTable.api().ajax.reload();
-                }
-            });
+                data: {${relationName}s: ids.join(","),
+            ${keyName}:
+            ${keyName}Bind
+        },
+            success: function (result) {
+                ${id}LeftDataTable.api().ajax.reload();
+                ${id}RightDataTable.api().ajax.reload();
+            }
+        })
+            ;
         });
 
 
@@ -196,7 +200,8 @@
             $.ajax({
                 url: "${contextPath}${deleteUrl}",
                 type: 'post',
-                data: {${relationName}s: ids.join(","),${keyName}:
+                data: {${relationName}s: ids.join(","),
+            ${keyName}:
             ${keyName}Bind
         },
             success: function (result) {
@@ -222,15 +227,17 @@
 
 
 <div id="${id}" class="bootstrap-duallistbox-container row moveonselect" style="display: none">
-<#--左侧start-->
+    <#--左侧start-->
     <div class="box1 col-md-6">
         <span class="info-container">
             <span class="info">绑定</span>
         </span>
         <div id="${id}LeftSearch" class="ibox-tools">
             <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
-            <a id="${id}Left_btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
-            <a id="${id}Left_btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+            <a id="${id}Left_btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                        class="fa fa-search"></i>搜索</a>
+            <a id="${id}Left_btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                        class="fa fa-search"></i>清空</a>
             <button id="${id}LeftMove" type="button" class="btn move btn-white btn-bold btn-info" title="Move selected">
                 <i class="fa fa-arrow-right"></i>
             </button>
@@ -241,9 +248,9 @@
                     <table id="${id}LeftTable" class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
-                        <#list columnTitle as ct>
-                            <th>${ct}</th>
-                        </#list>
+                            <#list columnTitle as ct>
+                                <th>${ct}</th>
+                            </#list>
                         </tr>
                         </thead>
                         <tbody>
@@ -253,16 +260,18 @@
             </div>
         </div>
     </div>
-<#--左侧end-->
-<#--右侧start-->
+    <#--左侧end-->
+    <#--右侧start-->
     <div class="box2 col-md-6">
         <span class="info-container">
             <span class="info">未绑定</span>
         </span>
         <div id="${id}RightSearch" class="ibox-tools">
             <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
-            <a id="${id}Right_btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
-            <a id="${id}Right_btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+            <a id="${id}Right_btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                        class="fa fa-search"></i>搜索</a>
+            <a id="${id}Right_btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                        class="fa fa-search"></i>清空</a>
             <button id="${id}RightMove" type="button" class="btn remove btn-white btn-bold btn-info"
                     title="Remove selected">
                 <i class="fa fa-arrow-left"></i>
@@ -274,9 +283,9 @@
                     <table id="${id}RightTable" class="table table-striped table-bordered table-hover">
                         <thead>
                         <tr>
-                        <#list columnTitle as ct>
-                            <th>${ct}</th>
-                        </#list>
+                            <#list columnTitle as ct>
+                                <th>${ct}</th>
+                            </#list>
                         </tr>
                         </thead>
                         <tbody>
@@ -286,7 +295,7 @@
             </div>
         </div>
     </div>
-<#--左侧end-->
+    <#--左侧end-->
 </div>
 
 

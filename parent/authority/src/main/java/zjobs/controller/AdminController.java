@@ -62,8 +62,6 @@ public class AdminController extends BaseController {
     public ModelAndView loginAction(HttpSession session, Admin admin) {
         ModelAndView modelAndView = new ModelAndView();
         logger.info("logback 成功了");
-        logger.error("logback 成功了");
-        logger.debug("logback 成功了");
         try {
             admin = adminService.login(admin);
             if (admin == null) {

@@ -15,22 +15,22 @@
             autoclose: true,
             pickerPosition: "bottom-right",
             //选择器组件的底部显示一个 "Today" 按钮用以选择当前日期
-        <#if disabledDate?exists>
+            <#if disabledDate?exists>
             todayBtn:${todayBtn},
-        </#if>
+            </#if>
             //不允许选中的日期，必须是YYYY-MM-DD的格式
-        <#if disabledDate?exists>
+            <#if disabledDate?exists>
             datesDisabled: '${disabledDate}',
-        </#if>
-        <#if startView?exists>
+            </#if>
+            <#if startView?exists>
             startView: '${startView}',
-        </#if>
-        <#if minView?exists>
+            </#if>
+            <#if minView?exists>
             minView: '${minView}',
-        </#if>
-        <#if maxView?exists>
+            </#if>
+            <#if maxView?exists>
             maxView: '${maxView}',
-        </#if>
+            </#if>
         });
     });
 </script>

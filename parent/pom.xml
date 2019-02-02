@@ -32,6 +32,7 @@
         <module>authority</module>
         <module>freemaker</module>
         <module>console</module>
+        <module>dubbo_Interface</module>
         <!--<module>license</module>-->
         <!--<module>uust</module>-->
     </modules>

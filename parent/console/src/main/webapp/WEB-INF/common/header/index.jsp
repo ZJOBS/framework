@@ -4,17 +4,22 @@
 <html lang="zh-cn">
 <head>
     <script>
-        var ws = new WebSocket("ws://localhost:8080");
+        var ws = new WebSocket("ws://localhost:8080/console/pushMess");
+
         ws.onopen = function (evt) {
             console.log("Connection open ...");
-            ws.send("Hello WebSockets!");
         };
+
         ws.onmessage = function (evt) {
+            if (typeof event.data === String) {
+                console.log("Received data string");
+            }
+
+            if (event.data instanceof ArrayBuffer) {
+                var buffer = event.data;
+                console.log("Received arraybuffer");
+            }
             console.log("Received Message: " + evt.data);
-            ws.close();
-        };
-        ws.onclose = function (evt) {
-            console.log("Connection closed.");
         };
     </script>
 </head>

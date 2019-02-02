@@ -13,7 +13,7 @@ Device/OS Detection
     var iphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/);
 
     device.ios = device.android = device.iphone = device.ipad = device.androidChrome = false;
-    
+
     // Android
     if (android) {
         device.os = 'android';
@@ -47,14 +47,14 @@ Device/OS Detection
 
     // Webview
     device.webView = (iphone || ipad || ipod) && ua.match(/.*AppleWebKit(?!.*Safari)/i);
-        
+
     // Minimal UI
     if (device.os && device.os === 'ios') {
         var osVersionArr = device.osVersion.split('.');
         device.minimalUi = !device.webView &&
-                            (ipod || iphone) &&
-                            (osVersionArr[0] * 1 === 7 ? osVersionArr[1] * 1 >= 1 : osVersionArr[0] * 1 > 7) &&
-                            $('meta[name="viewport"]').length > 0 && $('meta[name="viewport"]').attr('content').indexOf('minimal-ui') >= 0;
+            (ipod || iphone) &&
+            (osVersionArr[0] * 1 === 7 ? osVersionArr[1] * 1 >= 1 : osVersionArr[0] * 1 > 7) &&
+            $('meta[name="viewport"]').length > 0 && $('meta[name="viewport"]').attr('content').indexOf('minimal-ui') >= 0;
     }
 
     // Check for status bar and fullscreen app mode
@@ -63,8 +63,7 @@ Device/OS Detection
     device.statusBar = false;
     if (device.webView && (windowWidth * windowHeight === screen.width * screen.height)) {
         device.statusBar = true;
-    }
-    else {
+    } else {
         device.statusBar = false;
     }
 
@@ -87,13 +86,12 @@ Device/OS Detection
                 classNames.push('ios-gt-' + i);
             }
         }
-        
+
     }
     // Status bar classes
     if (device.statusBar) {
         classNames.push('with-statusbar-overlay');
-    }
-    else {
+    } else {
         $('html').removeClass('with-statusbar-overlay');
     }
 

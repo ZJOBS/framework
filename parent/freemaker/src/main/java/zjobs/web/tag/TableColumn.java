@@ -6,6 +6,8 @@ import javax.servlet.jsp.JspException;
 import java.util.Map;
 
 /**
+ * 表
+ *
  * @author ZhangJie
  */
 public class TableColumn extends AbstractWebUiTag {

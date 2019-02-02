@@ -30,7 +30,8 @@ class="ace-main-stylesheet"/>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/component/assets/css/dropzone.min.css"/>
 
 <%--日期时间选择器--%>
-<link href="${pageContext.request.contextPath}/component/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" >
+<link href="${pageContext.request.contextPath}/component/datetimepicker/bootstrap-datetimepicker.min.css"
+      rel="stylesheet">
 
 <![endif]-->
 <style type="text/css">

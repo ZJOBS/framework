@@ -1,7 +1,7 @@
 /* global $:true */
 
-+ function($) {
-  "use strict";
++function ($) {
+    "use strict";
 
 
 }($);

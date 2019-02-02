@@ -36,16 +36,9 @@
                 <form class="form-horizontal" role="form" enctype="multipart/form-data" action="test.do">
                     <%--已完成--%>
                     <zj:select name="country" code="COUNTRY" text="国籍"/>
-                    <zj:checkbox name="country" code="COUNTRY" text="国家"/>
-                    <zj:radio name="country" code="COUNTRY" text="国家"/>
-                    <zj:switch name="activating" text="激活"/>
-                    <zj:datepicker id="testDate" text="日期选择" name="testDate" format="yyyymmdd" todayBtn="true"
-                                   startView="decade" maxView="decade" minView="month"/>
                     <input type="submit">
                 </form>
             </div><!-- /.page-content -->
-
-
         </div>
     </div><!-- /.main-content -->
 </div><!-- /.main-container -->

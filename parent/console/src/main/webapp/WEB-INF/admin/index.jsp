@@ -50,10 +50,14 @@
                                 <div>
                                     <div id="search" class="ibox-tools">
                                         <form>
-                                            <input placeholder="名称" id="name" type="text" name="name" class="col-xs-10 col-sm-1"/>
-                                            <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>搜索</a>
-                                            <a id="btn_clear_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
-                                            <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i class="fa fa-plus"></i>添加</a>
+                                            <input placeholder="名称" id="name" type="text" name="name"
+                                                   class="col-xs-10 col-sm-1"/>
+                                            <a id="btn_search" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                    class="fa fa-search"></i>搜索</a>
+                                            <a id="btn_clear_search" class="btn btn-primary btn-sm"
+                                               href="javascript:void(0)"><i class="fa fa-search"></i>清空</a>
+                                            <a id="add" class="btn btn-primary btn-sm" href="javascript:void(0)"><i
+                                                    class="fa fa-plus"></i>添加</a>
                                         </form>
                                     </div>
 
@@ -94,16 +98,16 @@
     </div>
     <div id="dialog-bindAndUnbind">
         <zj:bindAndUnbind id="adminBindRole"
-                           sourceTableId="admin"
-                           awakenPosition=".showRole"
-                           keyName="adminId"
-                           relationName="roleId"
-                           leftQueryUrl="/queryAdminBindRole.do"
-                           deleteUrl="/unbindAdminRole.do"
-                           rightQueryUrl="/queryAdminNotBindRole.do"
-                           addUrl="/bindAdminRole.do"
-                           columnTitle="编号,名称,是否启用"
-                           columnName="{'mData': 'roleId'},{'mData': 'name'},{'mData': 'activating'}"
+                          sourceTableId="admin"
+                          awakenPosition=".showRole"
+                          keyName="adminId"
+                          relationName="roleId"
+                          leftQueryUrl="/queryAdminBindRole.do"
+                          deleteUrl="/unbindAdminRole.do"
+                          rightQueryUrl="/queryAdminNotBindRole.do"
+                          addUrl="/bindAdminRole.do"
+                          columnTitle="编号,名称,是否启用"
+                          columnName="{'mData': 'roleId'},{'mData': 'name'},{'mData': 'activating'}"
         />
     </div>
 </div><!-- /.main-container -->

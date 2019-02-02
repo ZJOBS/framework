@@ -6,7 +6,6 @@ import zjobs.base.AbstractWebUiTag;
 import zjobs.constant.BaseConstants;
 import zjobs.constant.RedisConstants;
 import zjobs.entity.UAI;
-
 import javax.servlet.jsp.JspException;
 import java.util.Map;
 
