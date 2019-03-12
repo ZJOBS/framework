@@ -13,7 +13,6 @@ import java.util.Properties;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.apache.ibatis.executor.parameter.DefaultParameterHandler;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.statement.RoutingStatementHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
@@ -25,6 +24,7 @@ import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Plugin;
 import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
 import zjobs.entity.Page;
 import zjobs.utils.PropertiesUtil;
 
@@ -34,7 +34,7 @@ import zjobs.utils.PropertiesUtil;
  * @author ZJOBS
  * @date 2015/2/22
  */
-@Intercepts(@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}))
+@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class, Integer.class }) })
 public class PaginationInterceptor implements Interceptor {
     private static final String DATABASETYPE;
 

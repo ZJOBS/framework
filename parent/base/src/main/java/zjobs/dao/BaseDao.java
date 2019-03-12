@@ -5,6 +5,7 @@ import zjobs.entity.BaseEntity;
 import zjobs.entity.DataTablePage;
 import zjobs.entity.Page;
 
+import java.lang.annotation.Inherited;
 import java.util.List;
 import java.util.Map;
 

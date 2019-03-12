@@ -1,6 +1,5 @@
 package zjobs.filter;
 
-import org.apache.ibatis.executor.parameter.DefaultParameterHandler;
 import org.apache.ibatis.executor.parameter.ParameterHandler;
 import org.apache.ibatis.executor.statement.RoutingStatementHandler;
 import org.apache.ibatis.executor.statement.StatementHandler;
@@ -8,6 +7,7 @@ import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
 import zjobs.entity.DataTablePage;
 import zjobs.utils.PropertiesUtil;
 
@@ -23,7 +23,7 @@ import java.util.*;
  *
  * @author jiezhang
  */
-@Intercepts(@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class}))
+@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class, Integer.class }) })
 public class DataTablePaginationInterceptor implements Interceptor {
     private static final String DATABASETYPE;
 
