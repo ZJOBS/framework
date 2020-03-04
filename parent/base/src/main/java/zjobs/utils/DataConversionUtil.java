@@ -43,7 +43,7 @@ public class DataConversionUtil {
                     result.put(field, value);
                 }
             } catch (Exception e) {
-                System.out.println("toMap方法报错，已有用log代替");
+//                System.out.println("toMap方法报错，已有用log代替");
             }
         }
         return result;
@@ -70,7 +70,7 @@ public class DataConversionUtil {
                     }
                 }
             } catch (Exception e) {
-                System.out.println("toMap方法报错，已有用log代替");
+//                System.out.println("toMap方法报错，已有用log代替");
             }
         }
         return result;

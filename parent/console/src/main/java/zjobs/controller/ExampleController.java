@@ -42,4 +42,14 @@ public class ExampleController {
         return "example/tableColumn";
     }
 
+    @RequestMapping(value = "/product")
+    public String product() {
+        return "example/product";
+    }
+
+    @RequestMapping(value = "/productEdit")
+    public String productEdit() {
+        return "example/productEdit";
+    }
+
 }

@@ -49,8 +49,8 @@ public class QiNiuUtils {
         System.out.println(response);
     }
 
-    public static void main(String[] args) throws Exception {
-        String file = "D:\\我的坚果云\\图片\\地平线 期待黎明\\0001202195.jpg";//图片路径
-        new QiNiuUtils().put64image(new File(file), "Image");
-    }
+//    public static void main(String[] args) throws Exception {
+//        String file = "D:\\我的坚果云\\图片\\地平线 期待黎明\\0001202195.jpg";//图片路径
+//        new QiNiuUtils().put64image(new File(file), "Image");
+//    }
 }

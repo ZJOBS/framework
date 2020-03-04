@@ -21,7 +21,7 @@ import javax.servlet.http.HttpSession;
 /**
  * 用户控制
  *
- * @author ZJOBS
+ * @author zjobs
  * @date 2015/3/10
  */
 @SuppressWarnings("rawtypes")
