@@ -12,7 +12,7 @@
     <properties>
         <!--<org.springframework.version>3.2.8.RELEASE</org.springframework.version>-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <version.spring>4.0.3.RELEASE</version.spring>
+        <version.spring>5.2.2.RELEASE</version.spring>
         <mybatis.version>3.2.7</mybatis.version> <!--注意 高版本 mybatis不支持DefaultParameterHandler 类-->
         <logback.version>1.1.7</logback.version>
         <slf4j.version>1.7.21</slf4j.version>
