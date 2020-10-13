@@ -21,7 +21,7 @@
         <version.jdk>1.8</version.jdk>
         <version.jackson-core>2.3.3</version.jackson-core>
         <version.jackson-mapper-asl>1.9.13</version.jackson-mapper-asl>
-        <version.junit>4.12</version.junit>
+        <version.junit>4.13.1</version.junit>
         <version.aspectj>1.8.0</version.aspectj>
         <version.cglib>3.1</version.cglib>
     </properties>
